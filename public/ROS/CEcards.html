@@ -10,12 +10,12 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Calendar</title>
+    <title>CE Card</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -30,38 +30,19 @@
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-    <!-- FullCalendar -->
-    <link href='vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
-
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
 
-    <style type="text/css">
-    /* force class color to override the bootstrap base rule
-       NOTE: adding 'url: #' to calendar makes this unneeded
-     */
-    .fc-event, .fc-event:hover {
-          color: #fff !important;
-          text-decoration: none;
-    }
-    </style>
-
 </head>
 
-<!-- animsition overrides all click events on clickable things like a,
-      since calendar doesn't add href's be default,
-      it leads to odd behaviors like loading 'undefined'
-      moving the class to menus lead to only the menu having the effect -->
 <body class="animsition">
     <div class="page-wrapper">
         
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="Cool Admin" />
-                </a>
+                <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -69,7 +50,8 @@
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <a href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>    
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                         
                         </li>
                         <li>
                             <a href="chart.html">
@@ -83,7 +65,7 @@
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
-                        <li class="active">
+                        <li>
                             <a href="calendar.html">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
@@ -102,7 +84,7 @@
                                 </li>
                             </ul>
                         </li>
-                       <li class="has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="CEcards.html">
                                 <i class="fas fa-desktop"></i>CE Cards</a>
                         </li>
@@ -170,21 +152,48 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
+
             <div class="main-content">
+                <div class="table-data__tool-right">
+                    <li>
+                        <a href="CEcardform.html"> 
+                           <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                        <i class="zmdi zmdi-plus"></i>add clinical engineer</button> </a>
+                    </li>
+                </div>
+
+                    
+
                 <div class="section__content section__content--p30">
+                    
                     <div class="container-fluid">
+
                         <div class="row">
-                            <div class="col">
-                              <div class="au-card">
-                                <div id="calendar"></div>
-                              </div>
-                            </div><!-- .col -->
+
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Clinical Engineer <span>.....</span></h4>
+                                        <div class="card-text">Name: <span>.....</span></div>
+                                        <div class="card-text">Phone: <span>.....</span></div>
+                                        <div class="card-text">Age: <span>.....</span></div>
+                                        <div class="card-text">Email: <span>.....</span></div>
+                                        <div class="card-text">Address: <span>.....</span></div>
+                                        <div class="card-text">Department: <span>.....</span></div>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         
+
                     </div>
                 </div>
             </div>
         </div>
+        <!-- END PAGE CONTAINER-->
 
     </div>
 
@@ -206,60 +215,11 @@
     <script src="vendor/circle-progress/circle-progress.min.js"></script>
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="vendor/select2/select2.min.js"></script>
-
-    <!-- full calendar requires moment along jquery which is included above -->
-    <script src="vendor/fullcalendar-3.10.0/lib/moment.min.js"></script>
-    <script src="vendor/fullcalendar-3.10.0/fullcalendar.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-
-    <script type="text/javascript">
-$(function() {
-  // for now, there is something adding a click handler to 'a'
-  var tues = moment().day(2).hour(19);
-
-  // build trival night events for example data
-  var events = [
-    {
-      title: "Special Conference",
-      start: moment().format('YYYY-MM-DD'),
-      url: '#'
-    },
-    {
-      title: "Doctor Appt",
-      start: moment().hour(9).add(2, 'days').toISOString(),
-      url: '#'
-    }
-
-  ];
-
-  var trivia_nights = []
-
-  for(var i = 1; i <= 4; i++) {
-    var n = tues.clone().add(i, 'weeks');
-    console.log("isoString: " + n.toISOString());
-    trivia_nights.push({
-      title: 'Trival Night @ Pub XYZ',
-      start: n.toISOString(),
-      allDay: false,
-      url: '#'
-    });
-  }
-
-  // setup a few events
-  $('#calendar').fullCalendar({
-    header: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'month,agendaWeek,agendaDay,listWeek'
-    },
-    events: events.concat(trivia_nights)
-  });
-});
-    </script>
-
 
 </body>
 
