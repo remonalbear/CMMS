@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path')
+const exphbs=require('express-handlebars');
 const bodyParser=require('body-parser');
 const DirName=require('./util/path');
 const sequelize=require('./util/db')
@@ -17,12 +18,42 @@ const maintenance=require('./models/maintenance');
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
+
+app.engine('handlebars', exphbs({layout: false}));
+app.set('view engine', 'handlebars');
+app.set('views','views');
+
 app.use(express.static(DirName+'/public/'));
 
-app.get('/' ,(req,res) =>{
+
+
+
+
+app.get('/department' ,(req,res) =>{
  console.log('test')
- res.sendFile(path.join(DirName,'views','index.html'));
+ res.render('department',{layout:false});
 })
+app.get('/addDepartment' ,(req,res) =>{
+  console.log('test')
+  res.render('addDepartment',{layout:false});
+ })
+
+clinical_engineer.belongsTo(department);
+department.hasMany(clinical_engineer);
+work_order.belongsTo(clinical_engineer);
+clinical_engineer.hasMany(work_order);
+spare_parts.belongsTo(agent_supplier);
+agent_supplier.hasMany(spare_parts);
+equipment.belongsTo(agent_supplier);
+agent_supplier.hasMany(equipment);
+equipment.belongsTo(department);
+department.hasMany(equipment);
+work_order.belongsTo(equipment);
+equipment.hasMany(work_order);
+break_down.belongsTo(equipment);
+equipment.hasMany(break_down);
+maintenance.belongsTo(break_down);
+break_down.hasMany(maintenance);
 
 // synchronizing with database 
 sequelize.sync().then(res => { 
