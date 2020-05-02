@@ -1668,3 +1668,22 @@
   }
 
 })(jQuery);
+
+//popup
+(function ($) {
+  // USE STRICT
+  "use strict";
+
+  // Scroll Bar
+  try {
+    document.getElementById('button').addEventListener('click',function() {
+      document.querySelector('.bg-modal').style.display ='flex';
+    });
+    document.querySelector('.close').addEventListener('click',function() {
+      document.querySelector('.bg-modal').style.display ='none';
+    });
+    } catch (error) {
+    console.log(error);
+  }
+
+})(jQuery);

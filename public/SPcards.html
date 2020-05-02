@@ -155,18 +155,34 @@
 
             <div class="main-content">
                 <div class="table-data__tool-right">
-                    <li>
-                        <a href="SPcardform.html"> 
-                           <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                        <i class="zmdi zmdi-plus"></i>add sparepart</button> </a>
-                    </li>
+                    <a href="#" id="button" class="au-btn au-btn-icon au-btn--green au-btn--small"><i class="zmdi zmdi-plus"></i> add sparepart </a>
                 </div>
-                <div class="section__content section__content--p30">
-                    
+                <!-- POPUP-->
+                <div class="bg-modal">
+                    <div class="modal-content">
+                    <div class="close">+</div>
+                    <div class="login-logo">
+                        <a href="#">
+                        <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                    </div>
+                    <div class="login-form">
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label class=" form-control-label">Name</label>
+                                <input type="text"  placeholder="Enter name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class=" form-control-label">Number</label>
+                                <input type="text"  placeholder="Enter Number" class="form-control">
+                            </div>
+                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                        </form>  
+                    </div>
+
+                </div>
+                <div class="section__content section__content--p30"> 
                     <div class="container-fluid">
-
                         <div class="row">
-
                             <div class="col-md-4">
                                 <div class="card">
                                     <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
@@ -184,7 +200,7 @@
             </div>
         </div>
         <!-- END PAGE CONTAINER-->
-
+        
     </div>
 
     <!-- Jquery JS-->

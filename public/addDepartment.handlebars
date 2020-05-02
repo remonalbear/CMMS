@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>CE Card</title>
+    <title>Forms</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -38,11 +38,12 @@
 <body class="animsition">
     <div class="page-wrapper">
         
+
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -51,7 +52,6 @@
                             <a class="js-arrow" href="#">
                                 <a href="index.html">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                         
                         </li>
                         <li>
                             <a href="chart.html">
@@ -61,7 +61,7 @@
                             <a href="table.html">
                                 <i class="fas fa-table"></i>Tables</a>
                         </li>
-                        <li>
+                        <li class="active">
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
@@ -69,6 +69,7 @@
                             <a href="calendar.html">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
+                        
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
@@ -98,7 +99,7 @@
         </aside>
         <!-- END MENU SIDEBAR-->
 
-        <!-- PAGE CONTAINER-->
+       <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
@@ -154,95 +155,41 @@
             <!-- MAIN CONTENT-->
 
             <div class="main-content">
-                <div class="table-data__tool-right">
-                    <a href="#" id="button" class="au-btn au-btn-icon au-btn--green au-btn--small"><i class="zmdi zmdi-plus"></i> add clinical engineer </a>
-                </div>
-                <!-- POPUP-->
-            <div class="bg-modal">
-                <div class="modal-content">
-                    <div class="close">+</div>
-                    <div class="login-logo">
-                        <a href="#">
-                        <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
-                    </div>
-                    <div class="login-form">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label class=" form-control-label">FName</label>
-                                <input type="text"  placeholder="Enter First name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">LName</label>
-                                <input type="text"  placeholder="Enter Last name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Phone</label>
-                                <input type="text"  placeholder="Enter Phone" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Age</label>
-                                <input type="text" placeholder="Enter Age" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Email</label>
-                                <input type="email"  placeholder="Enter Email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Address</label>
-                                <input type="text"  placeholder="Enter Address" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Work Hours</label>
-                                <input type="text"  placeholder="Enter Work Hours" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Department</label>
-                                <select name="select" id="select" class="form-control">
-                                    <option value="0">Radiology</option>
-                                    <option value="1">OR</option>
-                                    <option value="2">ICU</option>
-                                    <option value="3">CSSD</option>
-                                </select>
-                            </div>
-                            
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
-                            
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-   
-
                 <div class="section__content section__content--p30">
-                    
                     <div class="container-fluid">
-
                         <div class="row">
-
-                            <div class="col-md-4">
+                            
+                            <div class="col-lg-6">
                                 <div class="card">
-                                    <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-3">Clinical Engineer <span>.....</span></h4>
-                                        <div class="card-text">Name: <span>.....</span></div>
-                                        <div class="card-text">Phone: <span>.....</span></div>
-                                        <div class="card-text">Age: <span>.....</span></div>
-                                        <div class="card-text">Email: <span>.....</span></div>
-                                        <div class="card-text">Address: <span>.....</span></div>
-                                        <div class="card-text">Department: <span>.....</span></div>
-
+                                    <div class="card-header">
+                                        <strong>Department</strong>
+                                        <small> Form</small>
                                     </div>
+                                   <form action="/submitDeparment" method="POST"> 
+                                     <div class="card-body card-block">
+                                        <div class="form-group">
+                                            <label for="company" class=" form-control-label">Code</label>
+                                            <input type="text" id="company" placeholder="Enter your company name" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="vat" class=" form-control-label">name</label>
+                                            <input type="text" id="company" placeholder="Enter your company name" class="form-control">
+                                            </select>    
+                                        </div>
+                                        <button type="submit">submit</button>
+                                        
+                                     </div>
+                                   </form>
                                 </div>
                             </div>
+                            
                         </div>
+                       
                     </div>
                 </div>
             </div>
-              
         </div>
-        <!-- END PAGE CONTAINER-->
-          
+
     </div>
 
     <!-- Jquery JS-->
@@ -268,7 +215,7 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-    
+
 </body>
 
 </html>
