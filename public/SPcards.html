@@ -154,32 +154,13 @@
             <!-- MAIN CONTENT-->
 
             <div class="main-content">
-                <div class="table-data__tool-right">
-                    <a href="#" id="button" class="au-btn au-btn-icon au-btn--green au-btn--small"><i class="zmdi zmdi-plus"></i> add sparepart </a>
+                <div class="table-data__tool">
+                        
+                    <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i>Add SparePart</a>
+                 
                 </div>
-                <!-- POPUP-->
-                <div class="bg-modal">
-                    <div class="modal-content">
-                    <div class="close">+</div>
-                    <div class="login-logo">
-                        <a href="#">
-                        <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
-                    </div>
-                    <div class="login-form">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label class=" form-control-label">Name</label>
-                                <input type="text"  placeholder="Enter name" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label class=" form-control-label">Number</label>
-                                <input type="text"  placeholder="Enter Number" class="form-control">
-                            </div>
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
-                        </form>  
-                    </div>
-
-                </div>
+                
                 <div class="section__content section__content--p30"> 
                     <div class="container-fluid">
                         <div class="row">
@@ -191,17 +172,59 @@
                                         <div class="card-text">Name: <span>.....</span></div>
                                         <div class="card-text">Number: <span>.....</span></div>
                                     </div>
+                                    <div class="table-data-feature">
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
+                
             </div>
         </div>
-        <!-- END PAGE CONTAINER-->
-        
+        <!-- END PAGE CONTAINER-->    
     </div>
+<!-- POPUP-->
+<div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            <form method="POST" action="/appointment/{{ id }}">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="login-logo">
+                    <a href="#">
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                </div>
+                <div class="login-form">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label class=" form-control-label">Name</label>
+                            <input type="text"  placeholder="Enter name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Number</label>
+                            <input type="text"  placeholder="Enter Number" class="form-control">
+                        </div>
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                    </form>  
+                </div>
+            </form>
+          </div>  
+        </div>
+    </div>     
+</div>   
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
