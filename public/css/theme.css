@@ -89,6 +89,8 @@ p {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    width: 200px;
+    height: relative;
 }
 
 .btn {
