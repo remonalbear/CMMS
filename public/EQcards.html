@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Forms</title>
+    <title>Equipments</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -38,7 +38,6 @@
 <body class="animsition">
     <div class="page-wrapper">
         
-
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
@@ -49,19 +48,50 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
+                            <a href="home.html">
                             <a class="js-arrow" href="#">
-                                <a href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Home</a>
+                            
                         </li>
-                        <li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="CEcards.html">
+                                <i class="fas fa-copy"></i>Clinical Engineers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="SPcards.html">
+                                <i class="fas fa-copy"></i>Spare Parts</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="agentsupplier.html">
+                                <i class="fas fa-table"></i>Agent Suppliers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="workorder.html">
+                                <i class="fas fa-table"></i>Work Orders</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a href="EQcards.html">
+                                <i class="fas fa-copy"></i>Equipment</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="department.html">
+                                <i class="fas fa-table"></i>Departments</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="maintenance.html">
+                                <i class="fas fa-table"></i>Maintenance</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="breakdown.html">
+                                <i class="fas fa-table"></i>Break Downs</a>
+                        </li>
+                        <!-- <li>
                             <a href="chart.html">
                                 <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
+
+                       
                         <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
-                        <li class="active">
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
                         </li>
@@ -69,7 +99,7 @@
                             <a href="calendar.html">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
-                        
+                       
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
@@ -84,22 +114,15 @@
                                     <a href="forget-pass.html">Forget Password</a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="CEcards.html">
-                                <i class="fas fa-desktop"></i>CE Cards</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="SPcards.html">
-                                <i class="fas fa-desktop"></i>SP Cards</a>
-                        </li>
+                        </li> -->
+                        
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
 
-       <!-- PAGE CONTAINER-->
+        <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
             <header class="header-desktop">
@@ -107,10 +130,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
+                                
                             </form>
                             <div class="header-button">
                               
@@ -139,7 +159,7 @@
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>About Us</a>
+                                                        <i class="zmdi zmdi-account"></i>Sign In</a>
                                                 </div>
                                                 
                                         </div>
@@ -153,60 +173,104 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
+
             <div class="main-content">
-                <div class="section__content section__content--p30">
+                <div class="table-data__tool">
+                        
+                    <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i>Add Equipment</a>
+                 
+                </div>
+                
+                <div class="section__content section__content--p30"> 
                     <div class="container-fluid">
                         <div class="row">
-                            
-                            <div class="col-lg-6">
+                            <div class="col-md-4">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <strong>Company</strong>
-                                        <small> Form</small>
+                                    <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-3">Equipment:<span>.....</span></h4>
+                                        <div class="card-text">Code: <span>.....</span></div>
+                                        <div class="card-text">Name: <span>.....</span></div>
+                                        <div class="card-text">Cost: <span>.....</span></div>
+                                        <div class="card-text">Model Number: <span>.....</span></div>
+                                        <div class="card-text">Serial Number: <span>.....</span></div>
+                                        <div class="card-text">Manufacturer: <span>.....</span></div>
+                                        <div class="card-text">Location: <span>.....</span></div>
                                     </div>
-                                    <div class="card-body card-block">
-                                        <div class="form-group">
-                                            <label for="company" class=" form-control-label">Company</label>
-                                            <input type="text" id="company" placeholder="Enter your company name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="vat" class=" form-control-label">VAT</label>
-                                            <input type="text" id="vat" placeholder="DE1234567890" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="street" class=" form-control-label">Street</label>
-                                            <input type="text" id="street" placeholder="Enter street name" class="form-control">
-                                        </div>
-                                        <div class="row form-group">
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <label for="city" class=" form-control-label">City</label>
-                                                    <input type="text" id="city" placeholder="Enter your city" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <label for="postal-code" class=" form-control-label">Postal Code</label>
-                                                    <input type="text" id="postal-code" placeholder="Postal Code" class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="country" class=" form-control-label">Country</label>
-                                            <input type="text" id="country" placeholder="Country name" class="form-control">
-                                        </div>
+                                    <div class="table-data-feature">
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            
                         </div>
-                       
+
                     </div>
                 </div>
+                
             </div>
         </div>
-
+        <!-- END PAGE CONTAINER-->    
     </div>
+<!-- POPUP-->
+<div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            <form method="POST" action="/appointment/{{ id }}">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="login-logo">
+                    <a href="#">
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                </div>
+                <div class="login-form">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label class=" form-control-label">Code</label>
+                            <input type="text"  placeholder="Enter Code" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Name</label>
+                            <input type="text"  placeholder="Enter Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Cost</label>
+                            <input type="text"  placeholder="Enter Cost" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Model Number</label>
+                            <input type="text"  placeholder="Enter Model Number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Serial Number</label>
+                            <input type="text"  placeholder="Enter Serial Number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Manufacturer</label>
+                            <input type="text"  placeholder="Enter Manufacturer" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Location</label>
+                            <input type="text"  placeholder="Enter Location" class="form-control">
+                        </div>
+
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                    </form>  
+                </div>
+            </form>
+          </div>  
+        </div>
+    </div>     
+</div>   
 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>

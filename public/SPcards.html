@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>SP Card</title>
+    <title>SparePart</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -42,25 +42,55 @@
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
+                            <a href="home.html">
                             <a class="js-arrow" href="#">
-                                <a href="index.html">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                         
+                                <i class="fas fa-tachometer-alt"></i>Home</a>
+                            
                         </li>
-                        <li>
+                        <li class="has-sub">
+                            <a class="js-arrow" href="CEcards.html">
+                                <i class="fas fa-copy"></i>Clinical Engineers</a>
+                        </li>
+                        <li class="active has-sub">
+                            <a class="js-arrow" href="SPcards.html">
+                                <i class="fas fa-copy"></i>Spare Parts</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="agentsupplier.html">
+                                <i class="fas fa-table"></i>Agent Suppliers</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="workorder.html">
+                                <i class="fas fa-table"></i>Work Orders</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="EQcards.html">
+                                <i class="fas fa-copy"></i>Equipment</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="department.html">
+                                <i class="fas fa-table"></i>Departments</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="maintenance.html">
+                                <i class="fas fa-table"></i>Maintenance</a>
+                        </li>
+                        <li class="has-sub">
+                            <a href="breakdown.html">
+                                <i class="fas fa-table"></i>Break Downs</a>
+                        </li>
+                        <!-- <li>
                             <a href="chart.html">
                                 <i class="fas fa-chart-bar"></i>Charts</a>
                         </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fas fa-table"></i>Tables</a>
-                        </li>
+
+                       
                         <li>
                             <a href="form.html">
                                 <i class="far fa-check-square"></i>Forms</a>
@@ -69,6 +99,7 @@
                             <a href="calendar.html">
                                 <i class="fas fa-calendar-alt"></i>Calendar</a>
                         </li>
+                       
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-copy"></i>Pages</a>
@@ -83,15 +114,8 @@
                                     <a href="forget-pass.html">Forget Password</a>
                                 </li>
                             </ul>
-                        </li>
-                       <li class="has-sub">
-                            <a class="js-arrow" href="CEcards.html">
-                                <i class="fas fa-desktop"></i>CE Cards</a>
-                        </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="SPcards.html">
-                                <i class="fas fa-desktop"></i>SP Cards</a>
-                        </li>
+                        </li> -->
+                        
                     </ul>
                 </nav>
             </div>
@@ -106,10 +130,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
-                                    <i class="zmdi zmdi-search"></i>
-                                </button>
+                                
                             </form>
                             <div class="header-button">
                               
@@ -138,7 +159,7 @@
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>About Us</a>
+                                                        <i class="zmdi zmdi-account"></i>Sign In</a>
                                                 </div>
                                                 
                                         </div>
@@ -169,6 +190,7 @@
                                     <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h4 class="card-title mb-3">Spareparts <span>.....</span></h4>
+                                        <div class="card-text">Code: <span>.....</span></div>
                                         <div class="card-text">Name: <span>.....</span></div>
                                         <div class="card-text">Number: <span>.....</span></div>
                                     </div>
@@ -209,6 +231,10 @@
                 </div>
                 <div class="login-form">
                     <form action="" method="post">
+                        <div class="form-group">
+                            <label class=" form-control-label">Code</label>
+                            <input type="text"  placeholder="Enter code" class="form-control">
+                        </div>
                         <div class="form-group">
                             <label class=" form-control-label">Name</label>
                             <input type="text"  placeholder="Enter name" class="form-control">

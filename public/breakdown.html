@@ -10,12 +10,12 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Clinical Engineers</title>
+    <title>Break Downs</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
     <!-- Bootstrap CSS-->
@@ -29,6 +29,8 @@
     <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="../../css/bootstrap_min.css" rel="stylesheet" />
+    <link href="../../css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
@@ -38,11 +40,13 @@
 <body class="animsition">
     <div class="page-wrapper">
         
+
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>CMMS</strong>
+                </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
@@ -53,7 +57,7 @@
                                 <i class="fas fa-tachometer-alt"></i>Home</a>
                             
                         </li>
-                        <li class="active has-sub">
+                        <li class="has-sub">
                             <a class="js-arrow" href="CEcards.html">
                                 <i class="fas fa-copy"></i>Clinical Engineers</a>
                         </li>
@@ -81,7 +85,7 @@
                             <a href="maintenance.html">
                                 <i class="fas fa-table"></i>Maintenance</a>
                         </li>
-                        <li class="has-sub">
+                        <li class="active has-sub">
                             <a href="breakdown.html">
                                 <i class="fas fa-table"></i>Break Downs</a>
                         </li>
@@ -120,7 +124,7 @@
                 </nav>
             </div>
         </aside>
-        <!-- END MENU SIDEBAR-->.
+        <!-- END MENU SIDEBAR-->
 
         <!-- PAGE CONTAINER-->
         <div class="page-container">
@@ -130,7 +134,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                               
+                                
                             </form>
                             <div class="header-button">
                               
@@ -159,7 +163,7 @@
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
                                                     <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>About Us</a>
+                                                        <i class="zmdi zmdi-account"></i>Sign In</a>
                                                 </div>
                                                 
                                         </div>
@@ -173,52 +177,70 @@
             <!-- HEADER DESKTOP-->
 
             <!-- MAIN CONTENT-->
-
             <div class="main-content">
-                <div class="table-data__tool">    
-                    <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
-                    <i class="zmdi zmdi-plus"></i>Add Clinical Engineer</a>
-                </div>
-                
                 <div class="section__content section__content--p30">
-                    
                     <div class="container-fluid">
-
+                        
                         <div class="row">
-
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-3">Clinical Engineer <span>.....</span></h4>
-                                        <div class="card-text">DSSN: <span>.....</span></div>
-                                        <div class="card-text">Name: <span>.....</span></div>
-                                        <div class="card-text">Phone: <span>.....</span></div>
-                                        <div class="card-text">Age: <span>.....</span></div>
-                                        <div class="card-text">Email: <span>.....</span></div>
-                                        <div class="card-text">Address: <span>.....</span></div>
-                                        <div class="card-text">Department: <span>.....</span></div>
-
-                                    </div>
-                                    <div class="table-data-feature">
-                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                            <i class="zmdi zmdi-edit"></i>
-                                        </a>
-                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </a>
-
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">Break Downs</h3>
+                                <div class="table-data__tool">
+                                    
+                                     <div  class="table-data__tool-right">
+                                        <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                            <i class="zmdi zmdi-plus"></i>Add Breakdown</a>
                                     </div>
                                 </div>
+                                <div class="table-responsive table-responsive-data2">
+                                    <table class="table table-data2">
+                                        <thead>
+                                            <tr>
+                                                <th>Code</th>
+                                                <th>Reason</th>
+                                                <th>Date</th>
+                                                <th>engineers</th>
+                                                <th>equipments</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="tr-shadow">
+                                                <td>Lori Lynch</td>
+                                                <td>
+                                                    <span class="block-email">lori@example.com</span>
+                                                </td>
+                                                <td class="desc">Samsung S8 Black</td>
+                                                <td>2018-09-27 02:12</td>
+                                                <td>
+                                                    <span class="status--process">Processed</span>
+                                                </td>
+                                                <td>$679.00</td>
+                                                <td>
+                                                    <div class="table-data-feature">
+                                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </a>
+                                                        <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </a>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="spacer"></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE -->
                             </div>
                         </div>
+                            
                     </div>
                 </div>
             </div>
-              
         </div>
-        <!-- END PAGE CONTAINER-->
-          
+
     </div>
 <!-- POPUP-->
 <div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
@@ -236,58 +258,28 @@
                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
                 </div>
                 <div class="login-form">
-                            <form action="" method="post">
-                                <div class="form-group">
-                                    <label class=" form-control-label">DSSN</label>
-                                    <input type="text"  placeholder="Enter DSSN" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">FName</label>
-                                    <input type="text"  placeholder="Enter First name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">LName</label>
-                                    <input type="text"  placeholder="Enter Last name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">Phone</label>
-                                    <input type="text"  placeholder="Enter Phone" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">Age</label>
-                                    <input type="text" placeholder="Enter Age" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">Email</label>
-                                    <input type="email"  placeholder="Enter Email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">Address</label>
-                                    <input type="text"  placeholder="Enter Address" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">Work Hours</label>
-                                    <input type="text"  placeholder="Enter Work Hours" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class=" form-control-label">Department</label>
-                                    <select name="select" id="select" class="form-control">
-                                        <option value="0">Radiology</option>
-                                        <option value="1">OR</option>
-                                        <option value="2">ICU</option>
-                                        <option value="3">CSSD</option>
-                                    </select>
-                                </div>
-                                
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
-                                
-                            </form>
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label class=" form-control-label">Code</label>
+                            <input type="text"  placeholder="Enter Code" class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Reason</label>
+                            <input type="text"  placeholder="Enter Reason" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Date</label>
+                            <input type="text"  placeholder="Enter Reason" class="form-control">
+                        </div>
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                    </form>  
+                </div>
             </form>
           </div>  
         </div>
     </div>     
-</div>   
+</div>  
+ 
     <!-- Jquery JS-->
     <script src="vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
@@ -311,7 +303,7 @@
 
     <!-- Main JS-->
     <script src="js/main.js"></script>
-    
+
 </body>
 
 </html>
