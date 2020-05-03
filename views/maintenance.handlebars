@@ -1,0 +1,90 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- DATA TABLE -->
+                    <h3 class="title-5 m-b-35">Maintenance</h3>
+                    <div class="table-data__tool">
+                        
+                            <div  class="table-data__tool-right">
+                            <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                <i class="zmdi zmdi-plus"></i>Add Maintenance</a>
+                        </div>
+                    </div>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>description</th>
+                                    <th>engineers</th>
+                                    <th>equipments</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-shadow">
+                                    <td>Lori Lynch</td>
+                                    <td>
+                                        <span class="block-email">lori@example.com</span>
+                                    </td>
+                                    <td class="desc">Samsung S8 Black</td>
+                                    <td>2018-09-27 02:12</td>
+                                    
+                                    <td>
+                                        <div class="table-data-feature">
+                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </a>
+                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </a>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="spacer"></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- END DATA TABLE -->
+                </div>
+            </div>
+                
+        </div>
+    </div>
+</div>
+
+<!-- POPUP-->
+<div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            <form method="POST" action="/appointment/{{ id }}">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="login-logo">
+                    <a href="#">
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                </div>
+                <div class="login-form">
+                        <div class="form-group">
+                            <label class=" form-control-label">ID</label>
+                            <input type="text"  placeholder="Enter ID" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Description</label>
+                            <input type="text"  placeholder="Enter Description" class="form-control">
+                        </div>
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                </div>
+            </form>
+          </div>  
+        </div>
+    </div>     
+</div>  

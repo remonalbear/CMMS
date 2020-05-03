@@ -1,0 +1,50 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="page-wrapper">
+                <div class="page-content--bge5">
+                    <div class="container">
+                        <div class="login-wrap">
+                            <div class="login-content">
+                                <div class="login-logo">
+                                    <a href="#">
+                                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
+                                </div>
+                                <div class="login-form">
+                                    <form action="/agentSupplier/add" method="POST">
+                                        <div class="form-group">
+                                            <label class=" form-control-label">ID</label>
+                                            <input type="text" name="Id" required value="{{ agentSupplier.Id }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Name</label>
+                                            <input type="text" name="Name" required value="{{ agentSupplier.Name }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Address</label>
+                                            <input type="text" required name="Address" value="{{ agentSupplier.Adress }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Phone</label>
+                                            <input type="phone" name="Phone" required  value="0{{ agentSupplier.Phone }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Email</label>
+                                            <input type="email"  required name="Email" value="{{ agentSupplier.Email }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Notes</label>
+                                            <textarea type="text"  name="Notes" value="{{ agentSupplier.Notes }}" class="form-control"></textarea>
+                                        </div>
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                                    </form>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>        
+</div>

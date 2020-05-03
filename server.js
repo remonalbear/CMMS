@@ -12,6 +12,11 @@ const equipment=require('./models/equipment');
 const work_order=require('./models/work_order');
 const break_down=require('./models/break_down');
 const maintenance=require('./models/maintenance');
+const homeController=require('./routes/main');
+const addController=require('./routes/add');
+const deleteController=require('./routes/delete')
+const editController=require('./routes/edit')
+
 
 
 
@@ -19,24 +24,20 @@ const maintenance=require('./models/maintenance');
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.engine('handlebars', exphbs({layout: false}));
+app.use(express.static(DirName+'/public/'));
+
+app.engine('handlebars', exphbs({layoutsDir:'views/layouts/',defaultLayout:'main-layout',partialsDir:'views/includes/'}));
 app.set('view engine', 'handlebars');
 app.set('views','views');
 
-app.use(express.static(DirName+'/public/'));
 
 
 
+app.use(editController);
+app.use(deleteController);
+app.use(addController);
+app.use(homeController);
 
-
-app.get('/department' ,(req,res) =>{
- console.log('test')
- res.render('department',{layout:false});
-})
-app.get('/addDepartment' ,(req,res) =>{
-  console.log('test')
-  res.render('addDepartment',{layout:false});
- })
 
 clinical_engineer.belongsTo(department);
 department.hasMany(clinical_engineer);
@@ -56,7 +57,9 @@ maintenance.belongsTo(break_down);
 break_down.hasMany(maintenance);
 
 // synchronizing with database 
-sequelize.sync().then(res => { 
+sequelize.sync()
+// sequelize.sync({force:true})
+.then(res => { 
     app.listen(3000,() => {
         console.log('Running')
        })

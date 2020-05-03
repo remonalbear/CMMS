@@ -6,9 +6,15 @@ const Department=sequelize.define('Department',{
 Code:{
     type:Sequelize.INTEGER,
     allowNull:false,
-    primaryKey:true
+    primaryKey:true,
+    unique:true
 },
 Name:{
+    type:Sequelize.STRING,
+    allowNull:false,
+    unique:true
+},
+Location:{
     type:Sequelize.STRING,
     allowNull:false
 }

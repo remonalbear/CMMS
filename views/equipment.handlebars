@@ -1,0 +1,92 @@
+<div class="main-content">
+    <div class="section__content section__content--p30"> 
+        <div class="container-fluid">
+            <div class="table-data__tool">     
+                <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <i class="zmdi zmdi-plus"></i>Add Equipment</a>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title mb-3">Equipment:<span>.....</span></h4>
+                            <div class="card-text">Code: <span>.....</span></div>
+                            <div class="card-text">Name: <span>.....</span></div>
+                            <div class="card-text">Cost: <span>.....</span></div>
+                            <div class="card-text">Model Number: <span>.....</span></div>
+                            <div class="card-text">Serial Number: <span>.....</span></div>
+                            <div class="card-text">Manufacturer: <span>.....</span></div>
+                            <div class="card-text">Location: <span>.....</span></div>
+                        </div>
+                        <div class="table-data-feature">
+                            <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                <i class="zmdi zmdi-edit"></i>
+                            </a>
+                            <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <i class="zmdi zmdi-delete"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTAINER-->    
+<!-- POPUP-->
+<div class="modal fade" id="modalAppointment" tabindex="-1" role="dialog" aria-labelledby="modalAppointmentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+          <div class="modal-body">
+            <form method="POST" action="/appointment/{{ id }}">
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="login-logo">
+                    <a href="#">
+                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                </div>
+                <div class="login-form">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label class=" form-control-label">Code</label>
+                            <input type="text" name="Code" placeholder="Enter Code" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Name</label>
+                            <input type="text" name="Name" placeholder="Enter Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Cost</label>
+                            <input type="text" name="Cost" placeholder="Enter Cost" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Model Number</label>
+                            <input type="text" name="modelNumber" placeholder="Enter Model Number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Serial Number</label>
+                            <input type="text" name="serialNumber" placeholder="Enter Serial Number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Manufacturer</label>
+                            <input type="text" name="Manufacturer" placeholder="Enter Manufacturer" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Location</label>
+                            <input type="text" name="Location" placeholder="Enter Location" class="form-control">
+                        </div>
+
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                    </form>  
+                </div>
+            </form>
+          </div>  
+        </div>
+    </div>     
+</div>   
