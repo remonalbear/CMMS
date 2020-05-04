@@ -4,35 +4,37 @@
             <div class="table-data__tool">    
                     <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i>Add Clinical Engineer</a>
-                </div>
+            </div>
+           {{#if hasEngineers}} 
             <div class="row">
-
+              {{#each clinicalEngineers }}   
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card" style="width: auto;">
                         <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title mb-3">Clinical Engineer <span>.....</span></h4>
-                            <div class="card-text">DSSN: <span>.....</span></div>
-                            <div class="card-text">Name: <span>.....</span></div>
-                            <div class="card-text">Phone: <span>.....</span></div>
-                            <div class="card-text">Age: <span>.....</span></div>
-                            <div class="card-text">Email: <span>.....</span></div>
-                            <div class="card-text">Address: <span>.....</span></div>
-                            <div class="card-text">Department: <span>.....</span></div>
+                            <div class="card-text">DSSN: <span>{{ this.DSSN }}</span></div>
+                            <div class="card-text">Name: <span>{{ this.FName }} {{ this.LName }}</span></div>
+                            <div class="card-text">Phone: <span>{{ this.Phone }}</span></div>
+                            <div class="card-text">Age: <span>{{ this.Age }}</span></div>
+                            <div class="card-text">Email: <span>{{ this.Email }}</span></div>
+                            <div class="card-text">Address: <span>{{ this.Adress }}</span></div>
+                            <div class="card-text">Work Hours : <span>{{ this.WorkHours }}</span></div>
+                            <div class="card-text">Department: <span>{{ this.DepartmentCode }}</span></div>
 
                         </div>
                         <div class="table-data-feature">
-                            <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <a href="/clinicalEngineer/edit/{{ this.DSSN }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <i class="zmdi zmdi-edit"></i>
                             </a>
-                            <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <a href="/clinicalEngineer/delete/{{ this.DSSN }}" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="zmdi zmdi-delete"></i>
                             </a>
-
                         </div>
-                    </div>
+                    </div> 
                 </div>
+               {{/each }} 
             </div>
+           {{/if }} 
         </div>
     </div>
 </div>
@@ -44,62 +46,62 @@
         <div class="modal-content">
           
           <div class="modal-body">
-            <form method="POST" action="/appointment/{{ id }}">
-
+            <form method="POST" action="/clinicalEngineer/add">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="login-logo">
-                    <a href="#">
                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
                 </div>
                 <div class="login-form">
-                            <form action="" method="post">
                                 <div class="form-group">
                                     <label class=" form-control-label">DSSN</label>
-                                    <input type="text" name="DSSN" placeholder="Enter DSSN" class="form-control">
+                                    <input type="text" required name="DSSN" placeholder="Enter DSSN" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">FName</label>
-                                    <input type="text" name="FName"  placeholder="Enter First name" class="form-control">
+                                    <input type="text" required name="FName"  placeholder="Enter First name" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">LName</label>
-                                    <input type="text" name="LName" placeholder="Enter Last name" class="form-control">
+                                    <input type="text" required name="LName" placeholder="Enter Last name" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Phone</label>
-                                    <input type="text" name="Phone" placeholder="Enter Phone" class="form-control">
+                                    <input type="text" required name="Phone" placeholder="Enter Phone" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Age</label>
-                                    <input type="text" name="Age" placeholder="Enter Age" class="form-control">
+                                    <input type="text"  required name="Age" placeholder="Enter Age" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Email</label>
-                                    <input type="email" name="Email" placeholder="Enter Email" class="form-control">
+                                    <input type="email" required name="Email" placeholder="Enter Email" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Address</label>
-                                    <input type="text" name="Address" placeholder="Enter Address" class="form-control">
+                                    <input type="text" required name="Address" placeholder="Enter Address" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Work Hours</label>
-                                    <input type="text"  name="workHours" placeholder="Enter Work Hours" class="form-control">
+                                    <input type="text" required name="workHours" placeholder="Enter Work Hours" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Department</label>
-                                    <select name="Department" id="select" class="form-control">
+                                    <select name="Department"required id="select" class="form-control">
                                         <option value="Radiology">Radiology</option>
                                         <option value="OR">OR</option>
                                         <option value="ICU">ICU</option>
                                         <option value="CSSD">CSSD</option>
                                     </select>
                                 </div>
+                                    <div class="form-group">
+                                    <label class=" form-control-label">Password</label>
+                                    <input type="password" required name="Password" placeholder="Enter Password" class="form-control">
+                                </div>
                                 
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
                                 
-                            </form>
                         </div>
             </form>
           </div>  

@@ -1,6 +1,7 @@
+const bcrypt = require('bcryptjs')
 const Department = require('../models/department')
 const AgentSupplier = require('../models/agent_supplier')
-
+const ClinicalEngineer=require('../models/clinical_engineer')
 
 
 exports.addDepartment=(req,res)=>{
@@ -40,8 +41,55 @@ exports.addAgentSupplier=(req,res)=>{
                     Phone:phone,Email:email,Notes:notes})
         }
    
-   }).then(res => console.log(res))
+   }).then(r => res.redirect('/agentSupplier'))
    .catch(err => console.log("ERROR!!!!!!",err))
-
-   res.redirect('/agentSupplier')
 }
+
+
+exports.addClinicalEngineer=(req,res)=>{
+    dssn=req.body.DSSN
+    fname=req.body.FName
+    lname=req.body.LName
+    address=req.body.Address
+    phone=req.body.Phone
+    email=req.body.Email
+    age=req.body.Age
+    workhours=req.body.workHours
+    department=req.body.Department
+    var departmentCode=null
+    Department.findOne({where:{Name:department}}).then(department => { departmentCode=department.Code})
+    if(req.body.Password)   
+        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.Password, salt, (err, hash) => {
+        pass=hash 
+        });
+            
+        });
+
+
+
+    ClinicalEngineer.findByPk(dssn).then(clinicalEngineer=>{
+        if(clinicalEngineer){
+            clinicalEngineer.DSSN=dssn
+            clinicalEngineer.FName=fname
+            clinicalEngineer.LName=lname
+            clinicalEngineer.Adress=address
+            clinicalEngineer.Phone=phone
+            clinicalEngineer.Email=email
+            clinicalEngineer.Age=age
+            clinicalEngineer.WorkHours=workhours
+            clinicalEngineer.DepartmentCode=departmentCode
+            return clinicalEngineer.save()
+        }
+        else{
+            return ClinicalEngineer.create({DSSN:dssn,FName:fname,
+                    LName:lname,Adress:address,Phone:phone,
+                    Email:email,Age:age,WorkHours:workhours,
+                    DepartmentCode:departmentCode,Password:pass})
+        }
+    }).then(r => res.redirect('/clinicalEngineer'))
+    .catch(err => console.log("ERROR!!!!!!",err))
+
+}
+
+

@@ -19,7 +19,25 @@ exports.homeSignIn=(req,res) => {
 exports.signIn=(req,res) => {
    email=req.body.email
    pass=req.body.password
+   if(email == 'admin@gmail.com' && pass==0000){
     res.redirect('/home');  
+   }
+   else{
+       ClinicalEngineer.findOne({where:{Email:email}}).then(clinicalengineer => {
+           if(clinicalengineer){
+            bcrypt.compare(pass, clinicalengineer.Password).then(result => {
+                if(result)
+                 res.redirect('/home');  
+                else
+                 res.redirect('/')    
+                })
+           }
+           else
+           res.redirect('/')    
+            
+       })
+   }
+   
 }
 
 exports.home=(req,res) =>{
@@ -54,9 +72,34 @@ exports.maintenance=(req,res)=>{
 
 
 exports.clinicalEngineer=(req,res)=>{
+    let departmentName=null
 
+    ClinicalEngineer.findAll().then(clinicalEngineers=>{
+        const clinicalengineers=clinicalEngineers.map(clinicalengineer => {     
+            return{
+                DSSN:clinicalengineer.DSSN,
+                FName:clinicalengineer.FName,
+                LName:clinicalengineer.LName,
+                Adress:clinicalengineer.Adress,
+                Phone:clinicalengineer.Phone,
+                Email:clinicalengineer.Email,
+                Age:clinicalengineer.Age,
+                WorkHours:clinicalengineer.WorkHours,
+                DepartmentCode:clinicalengineer.DepartmentCode
+            }
 
-    res.render('clinicalEngineer',{pageTitle:'clinicalEngineer',CE:true});
+        })
+        clinicalengineers.map(clinicalEngineer => {
+            Department.findOne({where:{Code:clinicalEngineer.DepartmentCode}}).then(department => {
+                clinicalEngineer.DepartmentCode=department.dataValues.Name
+        })
+            
+        }) 
+        res.render('clinicalEngineer',{pageTitle:'clinicalEngineer',CE:true,
+                                clinicalEngineers:clinicalengineers,hasEngineers:clinicalengineers.length>0});
+    })
+
+    
 }
 
 exports.sparePart=(req,res)=>{
@@ -111,9 +154,3 @@ exports.equipment=(req,res)=>{
 
 
 
-// bcrypt.genSalt(10, (err, salt) => {
-//     bcrypt.hash(pass, salt, (err, hash) => {
-        
-//     });
-           
-// });
