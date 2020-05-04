@@ -46,21 +46,27 @@ exports.home=(req,res) =>{
 
 
 exports.department=(req,res)=>{
-Department.findAll().then(departments => {
-const deps = departments.map(department => {
-          return {
-            Name: department.Name,
-            Code: department.Code,
-            Location: department.Location
-          }
-        })
-      
-res.render('department',{pageTitle:'Department',
-                        Department:true,
-                        departments:deps,
-                        hasDepartment:deps.length>0});
+var engs=[]
+Department.findAll({include:[{model:ClinicalEngineer}]}).then(departments => {
+        const deps = departments.map(department => {
+                    return {
+                        Name: department.Name,
+                        Code: department.Code,
+                        Location: department.Location,
+                        Engineers:department.ClinicalEnginners.length,
+                        Equipments:0
+                    }
+                })      
+
+console.log(engs)
+    res.render('department',{pageTitle:'Department',
+                            Department:true,
+                            departments:deps,
+                            hasDepartment:deps.length>0});
                     
 }).catch(err => console.log("ERROR!!!!!!",err))
+
+
 
 }
 
@@ -72,8 +78,6 @@ exports.maintenance=(req,res)=>{
 
 
 exports.clinicalEngineer=(req,res)=>{
-    let departmentName=null
-
     ClinicalEngineer.findAll().then(clinicalEngineers=>{
         const clinicalengineers=clinicalEngineers.map(clinicalengineer => {     
             return{
