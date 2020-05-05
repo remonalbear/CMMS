@@ -75,3 +75,23 @@ exports.editClinicalEngineer=(req,res) => {
 
  }
 
+
+
+ exports.editSparePart=(req,res)=>{
+   id=req.params.id
+   SparePart.findByPk(id).then(sparePart =>{ 
+       const sp = {
+             Name: sparePart.Name,
+             Id: sparePart.Id,
+             Number:sparePart.Number,
+             AgentID:agentSupplier.Id
+           }
+   
+       
+   res.render('editSparePart',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
+                                    SP:true,sparePart:sp});
+})
+   .catch(err => console.log("ERROR!!!!!!",err) )
+
+
+}

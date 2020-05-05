@@ -3,6 +3,8 @@ const Department = require('../models/department')
 const AgentSupplier = require('../models/agent_supplier')
 const ClinicalEngineer=require('../models/clinical_engineer')
 const Equipment =require('../models/equipment')
+const SpareParts = require('../models/spare_part')
+
 
 
 exports.addDepartment=(req,res)=>{
@@ -136,5 +138,38 @@ exports.addEquipment=(req,res) => {
         }
     }).then(r => res.redirect('/equipment'))
     .catch(err => console.log("ERROR!!!!!!",err))
+
+}
+
+
+exports.addSpareParts=(req,res)=>{
+    code=req.body.Code
+    name=req.body.Name
+    number=req.body.Number
+    AgentID=req.body.AgentID
+    var AgentID = null
+    AgentSupplier.findOne({where:{Id:AgentID}}).then(AgentID =>{
+        if(AgentID){
+            AgentID=agent.Id
+        }
+        else
+        console.log("ERROR!!!!!!",err)
+        
+    })
+    SpareParts.findByPk(code).then(SparePart=>{
+        if(SpareParts){
+            part.Code=code
+            part.Name=name
+            part.AgentId=agentCode
+            return part.save()
+        }
+    SpareParts.create({Code:code,Name:name,Number:number}).then(dep =>{
+    }).catch(err=> {
+        console.log("ERROR!!!!!!",err)
+        })
+    res.redirect('/spare_part');
+    
+    
+    })
 
 }
