@@ -150,26 +150,25 @@ exports.addSpareParts=(req,res)=>{
     var AgentId = null
     AgentSupplier.findOne({where:{Id:agentId}}).then(agent =>{
         if(agent){
-            AgentId=agent.Id
+            SpareParts.findByPk(code).then(part=>{
+                if(part){
+                    part.Code=code
+                    part.Name=name
+                    part.Amount=amount
+                    part.AgentSupplierId=agentId
+                    return part.save()
+                }
+        
+            SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId})
+            .then(res.redirect('/sparePart'))
+            .catch(err=> {
+                console.log("ERROR!!!!!!",err)
+                })
+            })
         }
         else
-        console.log("ERROR!!!!!!",err)
+         return res.render('error',{layout:false,pageTitle:'Error',href:'/sparePart',message:'Sorry !!! Could Not Get this Agent'})
         
-    })
-    SpareParts.findByPk(code).then(part=>{
-        if(part){
-            part.Code=code
-            part.Name=name
-            part.Amount=amount
-            part.AgentSupplierId=agentId
-            return part.save()
-        }
-
-    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId})
-    .then(res.redirect('/sparePart'))
-    .catch(err=> {
-        console.log("ERROR!!!!!!",err)
-        })
     })
 
 }

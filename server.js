@@ -38,7 +38,7 @@ app.use(deleteController);
 app.use(addController);
 app.use(homeController);
 app.use((req,res)=>{
-  res.render('error',{layout:false,pageTitle:'404 Error',message:'404 Sorry !!! Could Not Get This Page'})
+  res.render('error',{layout:false,href:'/home',pageTitle:'404 Error',message:'404 Sorry !!! Could Not Get This Page'})
 })
 
 

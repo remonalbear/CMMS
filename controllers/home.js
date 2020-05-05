@@ -65,8 +65,10 @@ Department.findAll({
                             departments:deps,
                             hasDepartment:deps.length>0});
                     
-}).catch(err => console.log("ERROR!!!!!!",err))
-
+}).catch(err => {
+    if(err)    
+        res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Departments'})
+    })
 
 
 }
@@ -103,13 +105,15 @@ exports.clinicalEngineer=(req,res)=>{
         res.render('clinicalEngineer',{pageTitle:'clinicalEngineer',CE:true,
                                 clinicalEngineers:clinicalengineers,hasEngineers:clinicalengineers.length>0});
     })
-
+    .catch(err => {
+        if(err)
+         res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Engineers'})
+    })
     
 }
 
 exports.sparePart=(req,res)=>{
     SparePart.findAll({include:[{model:AgentSupplier}]}).then(sparepart => {
-        console.log(sparepart)
         const sp = sparepart.map(sparepart => {
                   return {
                     Code:sparepart.Code,
@@ -121,7 +125,10 @@ exports.sparePart=(req,res)=>{
                 })
     res.render('sparePart',{pageTitle:'SpareParts',SP:true,SpareParts:sp,
                                                     hasPart:sp.length>0});
-}).catch(err => console.log("ERROR!!!!!!",err))
+}).catch( err=> {
+    if (err)
+     res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Spare Parts'})
+})
 }
 
 exports.agentSupplier=(req,res)=>{
@@ -140,7 +147,10 @@ exports.agentSupplier=(req,res)=>{
     res.render('agentSupplier',{pageTitle:'AgentSupplier',
                                 AS:true,agentSuppliers:as,
                                 hasAgentSupplier:as.length>0});
-    }).catch(err => console.log("ERROR!!!!!!",err))
+    }).catch(err => {
+        if(err)
+        res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Agents'})
+    })
 }
 
 exports.workOrder=(req,res)=>{
@@ -175,7 +185,10 @@ exports.equipment=(req,res)=>{
                 })
         res.render('equipment',{pageTitle:'Equipment',Equipment:true,
                                 equipments:eq,hasEquipments:eq.length>0});
-    }).catch(err => console.log("ERROR!!!!!!",err))
+    }).catch( err => {
+        if(err)
+         res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Equipments'})
+        })
 
 
    
