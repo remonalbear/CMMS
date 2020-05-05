@@ -5,15 +5,17 @@
                 <a href="#" data-toggle="modal" data-target="#modalAppointment" class="au-btn au-btn-icon au-btn--green au-btn--small">
                 <i class="zmdi zmdi-plus"></i>Add SparePart</a>
             </div>
+           {{#if hasPart}} 
             <div class="row">
+              {{#each SparePart }}   
                 <div class="col-md-4">
                     <div class="card">
                         <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
                         <div class="card-body">
-                            <h4 class="card-title mb-3">Spareparts <span>.....</span></h4>
-                            <div class="card-text">Code: <span>.....</span></div>
-                            <div class="card-text">Name: <span>.....</span></div>
-                            <div class="card-text">Number: <span>.....</span></div>
+                            <div class="card-text">Code: <span>{{this.Code}}</span></div>
+                            <div class="card-text">Name: <span>{{this.Name}}</span></div>
+                            <div class="card-text">Number: <span>{{this.Number}}</span></div>
+                            <div class="card-text">Agent ID: <span>{{this.AgentID}}</span></div>
                         </div>
                         <div class="table-data-feature">
                             <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -26,8 +28,9 @@
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
-
+            {{/if}}
         </div>
     </div>
 </div>

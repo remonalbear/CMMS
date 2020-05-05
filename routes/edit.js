@@ -6,5 +6,6 @@ const editController=require('../controllers/edit')
 router.get('/agentSupplier/edit/:id',editController.editAgentSupplier);
 router.get('/clinicalEngineer/edit/:id',editController.editClinicalEngineer);
 router.get('/equipment/edit/:id',editController.editEquipment);
+router.get('/sparePart/edit/:id',editController.editSparePart);
 
 module.exports=router;
