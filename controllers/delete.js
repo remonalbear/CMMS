@@ -1,6 +1,7 @@
 const AgentSupplier = require('../models/agent_supplier')
 const ClinicalEngineer=require('../models/clinical_engineer')
 const Equipment =require('../models/equipment')
+const SparePart=require('../models/spare_part')
 exports.deleteAgentSupplier=(req,res)=>{
     id=req.params.id
     AgentSupplier.findByPk(id).then(agentSupplier =>{ 
@@ -34,6 +35,13 @@ exports.deleteAgentSupplier=(req,res)=>{
      .catch(err => console.log("ERROR!!!!!!",err) )
  }
 
- 
+ exports.deleteSparePart=(req,res)=>{
+    code=req.params.id
+    SparePart.findByPk(code).then(sparepart=>{ 
+     sparepart.destroy()
+     res.redirect('/sparePart')
+ })
+     .catch(err => console.log("ERROR!!!!!!",err) )
+ }
 
 

@@ -145,31 +145,31 @@ exports.addEquipment=(req,res) => {
 exports.addSpareParts=(req,res)=>{
     code=req.body.Code
     name=req.body.Name
-    number=req.body.Number
-    AgentID=req.body.AgentID
-    var AgentID = null
-    AgentSupplier.findOne({where:{Id:AgentID}}).then(AgentID =>{
-        if(AgentID){
-            AgentID=agent.Id
+    amount=req.body.Amount
+    agentId=req.body.AgentSupplierId
+    var AgentId = null
+    AgentSupplier.findOne({where:{Id:agentId}}).then(agent =>{
+        if(agent){
+            AgentId=agent.Id
         }
         else
         console.log("ERROR!!!!!!",err)
         
     })
-    SpareParts.findByPk(code).then(SparePart=>{
-        if(SpareParts){
+    SpareParts.findByPk(code).then(part=>{
+        if(part){
             part.Code=code
             part.Name=name
-            part.AgentId=agentCode
+            part.Amount=amount
+            part.AgentSupplierId=agentId
             return part.save()
         }
-    SpareParts.create({Code:code,Name:name,Number:number}).then(dep =>{
-    }).catch(err=> {
+
+    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId})
+    .then(res.redirect('/sparePart'))
+    .catch(err=> {
         console.log("ERROR!!!!!!",err)
         })
-    res.redirect('/spare_part');
-    
-    
     })
 
 }

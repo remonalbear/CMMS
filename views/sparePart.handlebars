@@ -7,21 +7,21 @@
             </div>
            {{#if hasPart}} 
             <div class="row">
-              {{#each SparePart }}   
+              {{#each SpareParts }}   
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card" style="width: auto;">
                         <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
                         <div class="card-body">
                             <div class="card-text">Code: <span>{{this.Code}}</span></div>
                             <div class="card-text">Name: <span>{{this.Name}}</span></div>
-                            <div class="card-text">Number: <span>{{this.Number}}</span></div>
-                            <div class="card-text">Agent ID: <span>{{this.AgentID}}</span></div>
+                            <div class="card-text">Amount: <span>{{this.Amount}}</span></div>
+                            <div class="card-text">Agent ID: <span>{{ this.AgentSupplierName }} (Id:{{this.AgentSupplierId}})</span></div>
                         </div>
                         <div class="table-data-feature">
-                            <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                            <a href="/sparePart/edit/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                 <i class="zmdi zmdi-edit"></i>
                             </a>
-                            <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                            <a href="/sparePart/delete/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="zmdi zmdi-delete"></i>
                             </a>
 
@@ -41,7 +41,7 @@
         <div class="modal-content">
           
           <div class="modal-body">
-            <form method="POST" action="/appointment/{{ id }}">
+            <form method="POST" action="/sparePart/add">
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -51,21 +51,23 @@
                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
                 </div>
                 <div class="login-form">
-                    <form action="" method="post">
                         <div class="form-group">
                             <label class=" form-control-label">Code</label>
-                            <input type="text" name="Code" placeholder="Enter code" class="form-control">
+                            <input type="text" name="Code" required placeholder="Enter code" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Name</label>
-                            <input type="text" name="Name" placeholder="Enter name" class="form-control">
+                            <input type="text" name="Name" required placeholder="Enter name" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class=" form-control-label">Number</label>
-                            <input type="text" name="Number" placeholder="Enter Number" class="form-control">
+                            <label class=" form-control-label">Amount</label>
+                            <input type="text" name="Amount" required placeholder="Enter Amount" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Agent Id</label>
+                            <input type="text" name="AgentSupplierId" required placeholder="Enter Agent Id" class="form-control">
                         </div>
                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
-                    </form>  
                 </div>
             </form>
           </div>  

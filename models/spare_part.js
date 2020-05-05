@@ -12,7 +12,7 @@ Name:{
     type:Sequelize.STRING,
     allowNull:false
 },
-Number:{
+Amount:{
     type:Sequelize.INTEGER,
     allowNull:false
 }

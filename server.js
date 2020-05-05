@@ -37,6 +37,9 @@ app.use(editController);
 app.use(deleteController);
 app.use(addController);
 app.use(homeController);
+app.use((req,res)=>{
+  res.render('error',{layout:false,pageTitle:'404 Error',message:'404 Sorry !!! Could Not Get This Page'})
+})
 
 
 clinical_engineer.belongsTo(department);
@@ -60,7 +63,7 @@ break_down.hasMany(maintenance);
 sequelize.sync()
 //sequelize.sync({force:true})
 .then(res => { 
-    app.listen(80,() => {
+    app.listen(3000,() => {
         console.log('Running')
        })
       

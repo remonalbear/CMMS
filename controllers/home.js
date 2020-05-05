@@ -108,17 +108,19 @@ exports.clinicalEngineer=(req,res)=>{
 }
 
 exports.sparePart=(req,res)=>{
-    sparePart.findAll().then(sparepart => {
+    SparePart.findAll({include:[{model:AgentSupplier}]}).then(sparepart => {
+        console.log(sparepart)
         const sp = sparepart.map(sparepart => {
                   return {
-                    code:sparePart.Code,
-                    name:sparePart.Name,
-                    number:sparePart.Number,
-                    AgentID:sparePart.AgentID
+                    Code:sparepart.Code,
+                    Name:sparepart.Name,
+                    Amount:sparepart.Amount,
+                    AgentSupplierId:sparepart.AgentSupplier.dataValues.Id,
+                    AgentSupplierName:sparepart.AgentSupplier.dataValues.Name
                   }
                 })
-    res.render('sparePart',{pageTitle:'SpareParts',SP:true,SparePart:sp,
-                                                hasPart:sp.length>0});
+    res.render('sparePart',{pageTitle:'SpareParts',SP:true,SpareParts:sp,
+                                                    hasPart:sp.length>0});
 }).catch(err => console.log("ERROR!!!!!!",err))
 }
 

@@ -1,6 +1,7 @@
 const AgentSupplier = require('../models/agent_supplier');
 const ClinicalEngineer = require('../models/clinical_engineer');
 const Equipment =require('../models/equipment')
+const SparePart =require('../models/spare_part');
 
 exports.editAgentSupplier=(req,res)=>{
     id=req.params.id
@@ -78,13 +79,13 @@ exports.editClinicalEngineer=(req,res) => {
 
 
  exports.editSparePart=(req,res)=>{
-   id=req.params.id
-   SparePart.findByPk(id).then(sparePart =>{ 
+   code=req.params.id
+   SparePart.findByPk(code).then(sparePart =>{ 
        const sp = {
              Name: sparePart.Name,
-             Id: sparePart.Id,
-             Number:sparePart.Number,
-             AgentID:agentSupplier.Id
+             Code: sparePart.Code,
+             Amount:sparePart.Amount,
+             AgentSupplierId:sparePart.AgentSupplierId
            }
    
        
