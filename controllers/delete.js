@@ -1,5 +1,6 @@
 const AgentSupplier = require('../models/agent_supplier')
 const ClinicalEngineer=require('../models/clinical_engineer')
+const Equipment =require('../models/equipment')
 exports.deleteAgentSupplier=(req,res)=>{
     id=req.params.id
     AgentSupplier.findByPk(id).then(agentSupplier =>{ 
@@ -23,6 +24,15 @@ exports.deleteAgentSupplier=(req,res)=>{
  
  }
 
+
+ exports.deleteEquipment=(req,res)=>{
+    code=req.params.id
+    Equipment.findByPk(code).then(equipment =>{ 
+     equipment.destroy()
+     res.redirect('/equipment')
+ })
+     .catch(err => console.log("ERROR!!!!!!",err) )
+ }
 
  
 

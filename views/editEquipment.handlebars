@@ -1,0 +1,73 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="page-wrapper" style="height: auto;" >
+                <div class="page-content--bge5" style="height: auto;">
+                    <div class="container" style="height: auto;">
+                        <div class="login-wrap">
+                            <div class="login-content">
+                                <div class="login-logo">
+                                    <a href="#">
+                                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
+                                </div>
+                                <div class="login-form" style="height: auto;">
+                                    <form action="/equipment/add" method="POST">
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Code</label>
+                                                <input type="text" required name="Code" placeholder="Enter Code" value="{{ equipment.Code }}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Name</label>
+                                                <input type="text"required name="Name" placeholder="Enter Name" value="{{ equipment.Name }}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Cost</label>
+                                                <input type="number"required name="Cost" placeholder="Enter Cost" value="{{ equipment.Cost }}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Installation Date</label>
+                                                <input type="date"required name="InstallationDate" placeholder="Enter Installation Date" value="{{ equipment.InstallationDate }}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Model Number</label>
+                                                <input type="number" required name="ModelNumber" value="{{ equipment.ModelNumber}}" placeholder="Enter Model Number" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Serial Number</label>
+                                                <input type="number"required name="SerialNumber" value="{{ equipment.SerialNumber }}" placeholder="Enter Serial Number" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Manufacturer</label>
+                                                <input type="text" required name="Manufacturer" value="{{ equipment.Manufacturer }}" placeholder="Enter Manufacturer" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Location</label>
+                                                <input type="text" required name="Location" value="{{ equipment.Location }}" placeholder="Enter Location" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Agent Code</label>
+                                                <input type="text" required name="Agent" placeholder="Enter Agent Code" value="{{ equipment.AgentSupplierId }}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Department</label>
+                                                <select name="Department"required id="select" class="form-control">
+                                                        <option value="OR" >OR</option>
+                                                        <option value="Radiology">Radiology</option> 
+                                                        <option value="ICU">ICU</option>
+                                                        <option value="CSSD">CSSD</option>
+                                                </select>
+                                            </div>
+                                                            
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                                
+                                    </form>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>        
+</div>

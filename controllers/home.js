@@ -46,19 +46,20 @@ exports.home=(req,res) =>{
 
 
 exports.department=(req,res)=>{
-var engs=[]
-Department.findAll({include:[{model:ClinicalEngineer}]}).then(departments => {
+Department.findAll({
+    include:[{model:ClinicalEngineer},{model:Equipment}]
+    }).then(departments => {
         const deps = departments.map(department => {
-                    return {
+            console.log(department)        
+            return {
                         Name: department.Name,
                         Code: department.Code,
                         Location: department.Location,
                         Engineers:department.ClinicalEnginners.length,
-                        Equipments:0
+                        Equipments:department.Equipment.length
                     }
                 })      
 
-console.log(engs)
     res.render('department',{pageTitle:'Department',
                             Department:true,
                             departments:deps,
@@ -144,9 +145,29 @@ exports.breakDown=(req,res)=>{
 }
 
 exports.equipment=(req,res)=>{
+    Equipment.findAll({
+        include:[{model:Department},{model:AgentSupplier}]
+        }).then(equipments => {
+        const eq = equipments.map(equipment => {
+                  return {
+                    Code: equipment.Code,
+                    Name: equipment.Name,
+                    Cost: equipment.Cost,
+                    InstallationDate: equipment.InstallationDate,
+                    ModelNumber:equipment.ModelNumber,
+                    SerialNumber:equipment.SerialNumber,
+                    Manufacturer:equipment.Manufacturer,
+                    Location:equipment.Location,
+                    DepartmentCode:equipment.Department.dataValues.Name,
+                    AgentSupplierId:equipment.AgentSupplier.dataValues.Name
+                  }
+                })
+        res.render('equipment',{pageTitle:'Equipment',Equipment:true,
+                                equipments:eq,hasEquipments:eq.length>0});
+    }).catch(err => console.log("ERROR!!!!!!",err))
 
 
-    res.render('equipment',{pageTitle:'Equipment',Equipment:true});
+   
 }
 
 

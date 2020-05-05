@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const Department = require('../models/department')
 const AgentSupplier = require('../models/agent_supplier')
 const ClinicalEngineer=require('../models/clinical_engineer')
+const Equipment =require('../models/equipment')
 
 
 exports.addDepartment=(req,res)=>{
@@ -92,4 +93,48 @@ exports.addClinicalEngineer=(req,res)=>{
 
 }
 
+exports.addEquipment=(req,res) => {
+    code=req.body.Code
+    name=req.body.Name
+    cost=req.body.Cost
+    modelnumber=req.body.ModelNumber
+    serialnumber=req.body.SerialNumber
+    installationdate=req.body.InstallationDate
+    manufacturer=req.body.Manufacturer
+    location=req.body.Location
+    department=req.body.Department
+    agent=req.body.Agent
+    var departmentCode=null
+    var agentCode=null
+    Department.findOne({where:{Name:department}}).then(department => { departmentCode=department.Code})
+    AgentSupplier.findOne({where:{Id:agent}}).then(agent =>{
+        if(agent){
+            agentCode=agent.Id
+        }
+        else
+        console.log("ERROR!!!!!!",err)
+        
+    })
+    Equipment.findByPk(code).then(equipment=>{
+        if(equipment){
+            equipment.Code=code
+            equipment.Name=name
+            equipment.Cost=cost
+            equipment.ModelNumber=modelnumber
+            equipment.InstallationDate=installationdate
+            equipment.SerialNumber=serialnumber
+            equipment.Manufacturer=manufacturer
+            equipment.Location=location
+            equipment.DepartmentCode=departmentCode
+            equipment.AgentSupplierId=agentCode
+            return equipment.save()
+        }
+        else{
+            return Equipment.create({Code:code,Name:name,
+                    Cost:cost,ModelNumber:modelnumber,SerialNumber:serialnumber,AgentSupplierId:agentCode,
+                    Location:location,Manufacturer:manufacturer,InstallationDate:installationdate,DepartmentCode:departmentCode})
+        }
+    }).then(r => res.redirect('/equipment'))
+    .catch(err => console.log("ERROR!!!!!!",err))
 
+}

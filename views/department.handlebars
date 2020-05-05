@@ -35,9 +35,7 @@
                                                     </td>
                                                     <td class="desc">{{ this.Location }}</td>
                                                     <td>{{ this.Engineers }}</td>
-                                                    <td>
-                                                        <sp an class="status--process">NONE</span>
-                                                    </td>
+                                                    <td>{{ this.Equipments }}</td>    
                                                 </tr>
                                                 <tr class="spacer"></tr>
                                             {{/each }}
@@ -71,7 +69,7 @@
                 <div class="login-form">
                         <div class="form-group">
                             <label class=" form-control-label">Code</label>
-                            <input type="number" name="Code" placeholder="Enter Code"  required class="form-control">
+                            <input type="text" name="Code" placeholder="Enter Code"  required class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Name</label>

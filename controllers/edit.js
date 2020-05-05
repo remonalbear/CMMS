@@ -1,5 +1,6 @@
 const AgentSupplier = require('../models/agent_supplier');
 const ClinicalEngineer = require('../models/clinical_engineer');
+const Equipment =require('../models/equipment')
 
 exports.editAgentSupplier=(req,res)=>{
     id=req.params.id
@@ -46,5 +47,31 @@ exports.editClinicalEngineer=(req,res) => {
     .catch(err => console.log("ERROR!!!!!!",err) )
  
  
+ }
+
+
+
+ exports.editEquipment=(req,res)=>{
+    code=req.params.id
+    Equipment.findByPk(code).then(equipment => { 
+        const eq = {
+              Code: equipment.Code,
+              Name: equipment.Name,
+              Cost: equipment.Cost,
+              InstallationDate: equipment.InstallationDate,
+              ModelNumber:equipment.ModelNumber,
+              SerialNumber:equipment.SerialNumber,
+              Manufacturer:equipment.Manufacturer,
+              Location:equipment.Location,
+              DepartmentCode:equipment.DepartmentCode,
+              AgentSupplierId:equipment.AgentSupplierId
+            }
+    
+        
+    res.render('editEquipment',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
+                                     Equipment:true,equipment:eq});
+ })
+    .catch(err => console.log("ERROR!!!!!!",err) )
+
  }
 

@@ -25,7 +25,7 @@ SerialNumber:{
     allowNull:false
 },
 InstallationDate:{
-    type:Sequelize.DATE,
+    type:Sequelize.TEXT,
     allowNull:false
 },
 Manufacturer:{
