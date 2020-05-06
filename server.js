@@ -16,6 +16,7 @@ const homeController=require('./routes/main');
 const addController=require('./routes/add');
 const deleteController=require('./routes/delete')
 const editController=require('./routes/edit')
+const reportController=require('./routes/report')
 
 
 
@@ -32,7 +33,7 @@ app.set('views','views');
 
 
 
-
+app.use(reportController);
 app.use(editController);
 app.use(deleteController);
 app.use(addController);
@@ -63,7 +64,7 @@ break_down.hasMany(maintenance);
 sequelize.sync()
 //sequelize.sync({force:true})
 .then(res => { 
-    app.listen(3000,() => {
+    app.listen(5000,() => {
         console.log('Running')
        })
       

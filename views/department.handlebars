@@ -35,7 +35,14 @@
                                                     </td>
                                                     <td class="desc">{{ this.Location }}</td>
                                                     <td>{{ this.Engineers }}</td>
-                                                    <td>{{ this.Equipments }}</td>    
+                                                    <td>{{ this.Equipments }}</td> 
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <a href="/report/department/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Engineers">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </a>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                                 <tr class="spacer"></tr>
                                             {{/each }}
