@@ -21,7 +21,6 @@ const reportController=require('./routes/report')
 
 
 
-
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
 
@@ -64,7 +63,7 @@ break_down.hasMany(maintenance);
 sequelize.sync()
 //sequelize.sync({force:true})
 .then(res => { 
-    app.listen(5000,() => {
+    app.listen(3000,() => {
         console.log('Running')
        })
       
@@ -72,3 +71,4 @@ sequelize.sync()
     .catch(err => {
       console.log("err:" ,err);
     })
+

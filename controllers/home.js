@@ -160,9 +160,23 @@ exports.workOrder=(req,res)=>{
 }
 
 exports.breakDown=(req,res)=>{
+    BreakDown.findAll().then(breakdowns => {
+        const bd = breakdowns.map(breakD => {
+                  return {
+                    Code:breakD.Code,
+                    Reason:breakD.Reason,
+                    Date:breakD.Date,
+                    EquipmentId:breakD.EquipmentId
+                  }
+                })
 
-
-    res.render('breakDown',{pageTitle:'breakDown',BreakDown:true});
+    res.render('breakDown',{pageTitle:'BreakDown',
+                                BreakDown:true,breakdowns:bd,
+                                hasBreakDown:bd.length>0});
+    }).catch(err => {
+        if(err)
+        res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get BreakDowns'})
+    })
 }
 
 exports.equipment=(req,res)=>{

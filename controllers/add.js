@@ -4,6 +4,8 @@ const AgentSupplier = require('../models/agent_supplier')
 const ClinicalEngineer=require('../models/clinical_engineer')
 const Equipment =require('../models/equipment')
 const SpareParts = require('../models/spare_part')
+const BreakDowns = require('../models/break_down')
+
 
 
 
@@ -168,6 +170,39 @@ exports.addSpareParts=(req,res)=>{
         }
         else
          return res.render('error',{layout:false,pageTitle:'Error',href:'/sparePart',message:'Sorry !!! Could Not Get this Agent'})
+        
+    })
+
+}
+
+
+
+exports.addBreakDown=(req,res)=>{
+    code=req.body.Code
+    reason=req.body.Reason
+    date=req.body.Date
+    equipmentId=req.body.EquipmentCode
+    var equID = null
+    Equipment.findOne({where:{Code:equipmentId}}).then(Equipment =>{
+        if(Equipment){
+            BreakDown.findByPk(code).then(breakD=>{
+                if(breakD){
+                    breakD.Code=code
+                    breakD.Reason=reason
+                    breakD.Date=date
+                    breakD.EquipmentCode=equipmentcode
+                    return breakD.save()
+                }
+        
+            BreakDowns.create({Code:code,Reason:reason,Date:date,EquipmentCode:equipmentId})
+            .then(res.redirect('/breakDown'))
+            .catch(err=> {
+                console.log("ERROR!!!!!!",err)
+                })
+            })
+        }
+        else
+         return res.render('error',{layout:false,pageTitle:'Error',href:'/breakPart',message:'Sorry !!! Could Not Get this Equipment'})
         
     })
 
