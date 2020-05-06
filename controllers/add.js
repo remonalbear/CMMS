@@ -110,36 +110,49 @@ exports.addEquipment=(req,res) => {
     agent=req.body.Agent
     var departmentCode=null
     var agentCode=null
-    Department.findOne({where:{Name:department}}).then(department => { departmentCode=department.Code})
-    AgentSupplier.findOne({where:{Id:agent}}).then(agent =>{
-        if(agent){
-            agentCode=agent.Id
-        }
-        else
-        console.log("ERROR!!!!!!",err)
+    Department.findOne({where:{Name:department}}).then(department => { 
+        if (department){
+            departmentCode=department.Code
+            AgentSupplier.findOne({where:{Id:agent}}).then(agent =>{
+                if(agent){
+                    agentCode=agent.Id
+                    Equipment.findByPk(code).then(equipment=>{
+                        if(equipment){
+                            equipment.Code=code
+                            equipment.Name=name
+                            equipment.Cost=cost
+                            equipment.ModelNumber=modelnumber
+                            equipment.InstallationDate=installationdate
+                            equipment.SerialNumber=serialnumber
+                            equipment.Manufacturer=manufacturer
+                            equipment.Location=location
+                            equipment.DepartmentCode=departmentCode
+                            equipment.AgentSupplierId=agentCode
+                            requipment.save().then(equipment => res.redirect('/equipment'))
+                        }
         
-    })
-    Equipment.findByPk(code).then(equipment=>{
-        if(equipment){
-            equipment.Code=code
-            equipment.Name=name
-            equipment.Cost=cost
-            equipment.ModelNumber=modelnumber
-            equipment.InstallationDate=installationdate
-            equipment.SerialNumber=serialnumber
-            equipment.Manufacturer=manufacturer
-            equipment.Location=location
-            equipment.DepartmentCode=departmentCode
-            equipment.AgentSupplierId=agentCode
-            return equipment.save()
+                        else
+                        {
+                            Equipment.create({Code:code,Name:name,
+                                    Cost:cost,ModelNumber:modelnumber,SerialNumber:serialnumber,AgentSupplierId:agentCode,
+                                    Location:location,Manufacturer:manufacturer,InstallationDate:installationdate,DepartmentCode:departmentCode})
+                                    .then(equipment => res.redirect('/equipment') )
+                        }
+                    })
+                }
+                else
+                  res.render('error',{layout:false,pageTitle:'Error',href:'/equipment',message:'Sorry !!! Could Not Get this Agent'})                
+            })
         }
         else{
-            return Equipment.create({Code:code,Name:name,
-                    Cost:cost,ModelNumber:modelnumber,SerialNumber:serialnumber,AgentSupplierId:agentCode,
-                    Location:location,Manufacturer:manufacturer,InstallationDate:installationdate,DepartmentCode:departmentCode})
+            res.render('error',{layout:false,pageTitle:'Error',href:'/equipment',message:'Sorry !!! Could Not Get this Department'})
         }
-    }).then(r => res.redirect('/equipment'))
-    .catch(err => console.log("ERROR!!!!!!",err))
+    }).catch(err => {
+        if(err)
+         res.render('error',{layout:false,pageTitle:'Error',href:'/sparePart',message:'Sorry !!! Could Not Add This Engineer '})
+
+          
+    })
 
 }
 
@@ -180,26 +193,26 @@ exports.addSpareParts=(req,res)=>{
 exports.addBreakDown=(req,res)=>{
     code=req.body.Code
     reason=req.body.Reason
-    date=req.body.Date
+    date=req.body.DATE
     equipmentId=req.body.EquipmentCode
     var equID = null
     Equipment.findOne({where:{Code:equipmentId}}).then(Equipment =>{
         if(Equipment){
-            BreakDown.findByPk(code).then(breakD=>{
+            BreakDowns.findByPk(code).then(breakD=>{
                 if(breakD){
                     breakD.Code=code
                     breakD.Reason=reason
-                    breakD.Date=date
-                    breakD.EquipmentCode=equipmentcode
+                    breakD.DATE=date
+                    breakD.EquipmentCode=equipmentId
                     return breakD.save()
                 }
         
-            BreakDowns.create({Code:code,Reason:reason,Date:date,EquipmentCode:equipmentId})
-            .then(res.redirect('/breakDown'))
-            .catch(err=> {
-                console.log("ERROR!!!!!!",err)
+                BreakDowns.create({Code:code,Reason:reason,DATE:date,EquipmentCode:equipmentId})
+                .then(res.redirect('/breakDown'))
+                .catch(err=> {
+                    console.log("ERROR!!!!!!",err)
+                    })
                 })
-            })
         }
         else
          return res.render('error',{layout:false,pageTitle:'Error',href:'/breakPart',message:'Sorry !!! Could Not Get this Equipment'})

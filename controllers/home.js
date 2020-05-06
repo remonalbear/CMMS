@@ -165,13 +165,13 @@ exports.breakDown=(req,res)=>{
                   return {
                     Code:breakD.Code,
                     Reason:breakD.Reason,
-                    Date:breakD.Date,
-                    EquipmentId:breakD.EquipmentId
+                    DATE:breakD.DATE,
+                    EquipmentId:breakD.EquipmentCode
                   }
                 })
 
     res.render('breakDown',{pageTitle:'BreakDown',
-                                BreakDown:true,breakdowns:bd,
+                                BreakDown:true,breakDowns:bd,
                                 hasBreakDown:bd.length>0});
     }).catch(err => {
         if(err)
