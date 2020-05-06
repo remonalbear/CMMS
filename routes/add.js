@@ -7,4 +7,5 @@ router.post('/agentSupplier/add',addController.addAgentSupplier)
 router.post('/clinicalEngineer/add',addController.addClinicalEngineer)
 router.post('/equipment/add',addController.addEquipment)
 router.post('/sparePart/add',addController.addSpareParts)
+router.post('/breakDown/add',addController.addBreakDown)
 module.exports=router;

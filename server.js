@@ -21,7 +21,6 @@ const reportController=require('./routes/report')
 
 
 
-
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
 
@@ -72,3 +71,4 @@ sequelize.sync()
     .catch(err => {
       console.log("err:" ,err);
     })
+
