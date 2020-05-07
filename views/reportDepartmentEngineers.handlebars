@@ -1,0 +1,44 @@
+<div class="main-content">
+    <div class="section__content section__content--p30"> 
+        <div class="container-fluid">
+            <div class="table-data__tool">
+                <h2> Department : {{ name }}</h2>
+                
+            </div>
+            <h3> Engineers:</h3>
+            </br>
+            <div class="table-responsive m-b-40">
+                <table class="table table-borderless table-data3">
+                    <thead>
+                        <tr>
+                            <th>Dssn</th>
+                            <th>Name</th>
+                            <th>Adress</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Age</th>
+                            <th>Work Hours</th>
+                        </tr>
+                    </thead>
+                   {{#if hasEngineers}} 
+                    <tbody>
+                     {{#each engineers}}
+                        <tr>
+                            <td>{{this.DSSN}}</td>
+                            <td>{{this.FName}} {{ this.LName}}</td>
+                            <td>{{this.Adress}}</td>
+                            <td>0{{this.Phone}}</td>
+                            <td>{{this.Email}}</td>
+                            <td>{{this.Age}}</td>
+                            <td>{{this.WorkHours}}</td>
+                        </tr>
+                       {{/each}} 
+                    </tbody>
+                   {{/if}} 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTAINER-->  
+

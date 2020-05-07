@@ -13,8 +13,8 @@ Reason:{
     type:Sequelize.TEXT,
     allowNull:false,
 },
-Date:{
-    type:Sequelize.DATE,
+DATE:{
+    type:Sequelize.TEXT,
     allowNull:false  
 }
 

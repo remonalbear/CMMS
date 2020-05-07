@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="section__content section__content--p30"> 
+        <div class="container-fluid">
+            <div class="table-data__tool">
+                <h2> Agent/Supplier: {{ name }}</h2>
+            </div>
+            <div class="table-responsive m-b-40">
+                <table class="table table-borderless table-data3">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Cost</th>
+                            <th>Model Number</th>
+                            <th>Serial Number</th>
+                            <th>Manufacturer</th>
+                            <th>Location</th>
+                            <th>Installation Date</th>
+                            <th>Department</th>    
+                        </tr>
+                    </thead>
+                   {{#if hasEquipments}} 
+                    <tbody>
+                     {{#each equipments}}
+                        <tr>
+                            <td>{{this.Code}}</td>
+                            <td>{{this.Name}}</td>
+                            <td>{{this.Cost}}</td>
+                            <td>{{this.ModelNumber}}</td>
+                            <td>{{this.SerialNumber}}</td>
+                            <td>{{this.Manufacturer}}</td>
+                            <td>{{this.Location}}</td>
+                            <td>{{this.InstallationDate}}</td>
+                            <td>{{this.Department}}</td>    
+                        </tr>
+                       {{/each}} 
+                    </tbody>
+                   {{/if}} 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTAINER-->  
+

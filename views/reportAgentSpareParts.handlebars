@@ -1,0 +1,34 @@
+<div class="main-content">
+    <div class="section__content section__content--p30"> 
+        <div class="container-fluid">
+            <div class="table-data__tool">
+                <h2>{{ name }}</h2>
+            </div>
+            <div class="table-responsive m-b-40">
+                <table class="table table-borderless table-data3">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Name</th>
+                            <th>Amount</th>
+
+                        </tr>
+                    </thead>
+                   {{#if hasSP}} 
+                    <tbody>
+                     {{#each spareParts}}
+                        <tr>
+                            <td>{{this.Code}}</td>
+                            <td>{{this.Name}}</td>
+                            <td>{{this.Amount}}</td>
+                        </tr>
+                       {{/each}} 
+                    </tbody>
+                   {{/if}} 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTAINER-->  
+

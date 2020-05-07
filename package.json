@@ -1,7 +1,7 @@
 {
   "name": "cmms",
   "version": "1.0.0",
-  "description": "",
+  "description": "Computerized Maintenance Management System Project",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,11 +10,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^4.0.4",
-    "handlebars": "^4.7.6",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.6"
-  }
+  },
+  "devDependencies": {
+    "handlebars": "^4.5.0",
+    "nodemon": "^2.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remonalbear/CMMS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/remonalbear/CMMS/issues"
+  },
+  "homepage": "https://github.com/remonalbear/CMMS#readme"
 }

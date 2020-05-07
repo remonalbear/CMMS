@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="page-wrapper" style="height: auto;" >
+                <div class="page-content--bge5" style="height: auto;">
+                    <div class="container" style="height: auto;">
+                        <div class="login-wrap">
+                            <div class="login-content">
+                                <div class="login-logo">
+                                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
+                                </div>
+                                <div class="login-form" style="height: auto;">
+                                    <form action="/sparePart/add" method="POST">
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Code</label>
+                                            <input type="text" required name="Code"  placeholder="New Code" value="{{ sparePart.Code}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Name</label>
+                                            <input type="text" required name="Name"  placeholder="New Name" value="{{sparePart.Name}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Amount</label>
+                                            <input type="text" required name="" placeholder="New Number" value="{{sparePart.Amount}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">AgentID</label>
+                                            <input type="text" required name="" placeholder="New AgentID" value="{{sparePart.AgentSupplierId}}" class="form-control">
+                                        </div>                                        
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                                
+                                    </form>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>        
+</div>

@@ -1,0 +1,68 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="page-wrapper" style="height: auto;" >
+                <div class="page-content--bge5" style="height: auto;">
+                    <div class="container" style="height: auto;">
+                        <div class="login-wrap">
+                            <div class="login-content">
+                                <div class="login-logo">
+                                    <a href="#">
+                                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
+                                </div>
+                                <div class="login-form" style="height: auto;">
+                                    <form action="/clinicalEngineer/add" method="POST">
+                                        <div class="form-group">
+                                            <label class=" form-control-label">DSSN</label>
+                                            <input type="text" required name="DSSN"  placeholder="New DSSN" value="{{ clinicalEngineer.DSSN}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">FName</label>
+                                            <input type="text" required name="FName"  placeholder="New First name" value="{{ clinicalEngineer.FName}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">LName</label>
+                                            <input type="text" required name="LName" placeholder="New Last name" value="{{ clinicalEngineer.LName}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Phone</label>
+                                            <input type="text" required name="Phone" placeholder="New Phone"  value="{{ clinicalEngineer.Phone}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Age</label>
+                                            <input type="text"  required name="Age" placeholder="New Age" value="{{ clinicalEngineer.Age}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Email</label>
+                                            <input type="email" required name="Email" placeholder="New Email" value="{{ clinicalEngineer.Email}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Address</label>
+                                            <input type="text" required name="Address" placeholder="New Address" value="{{ clinicalEngineer.Adress}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Work Hours</label>
+                                            <input type="text" required name="workHours" placeholder="New Work Hours" value="{{ clinicalEngineer.WorkHours}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Department</label>
+                                            <select name="Department"required id="select"  class="form-control" >
+                                                <option value="Radiology">Radiology</option>
+                                                <option value="OR">OR</option>
+                                                <option value="ICU">ICU</option>
+                                                <option value="CSSD">CSSD</option>
+                                            </select>
+                                        </div>                                        
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
+                                
+                                    </form>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>        
+</div>

@@ -35,6 +35,10 @@ const Clinical_enginner=sequelize.define('ClinicalEnginner',{
     WorkHours:{
         type:Sequelize.INTEGER,
         allowNull:true
+    },
+    Password:{
+        type:Sequelize.STRING,
+        allowNull:false
     }
 })
 
