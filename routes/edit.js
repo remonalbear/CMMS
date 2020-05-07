@@ -9,4 +9,9 @@ router.get('/equipment/edit/:id',editController.editEquipment);
 router.get('/sparePart/edit/:id',editController.editSparePart);
 router.get('/breakDown/edit/:id',editController.editBreakDown);
 
+
+
+
+
+
 module.exports=router;

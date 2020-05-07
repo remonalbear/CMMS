@@ -163,12 +163,12 @@ exports.workOrder=(req,res)=>{
                     DATE:workD.DATE,
                     EquipmentCode:workD.EquipmentCode,
                     Priority:workD.Priority,
-                    ClinicalEngineerDSSN:workD.ClinicalEngineerDSSN             
+                    ClinicalEnginnerDSSN:workD.ClinicalEnginnerDSSN             
                   }
                 })
 
     res.render('workOrder',{pageTitle:'WorkOrder',
-                                WorkOrder:true,WorkOrders:wd,
+                                WorkOrder:true,Workorders:wd,
                                 hasWorkOrder:wd.length>0});
     }).catch(err => {
         if(err)

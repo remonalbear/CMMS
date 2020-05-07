@@ -10,22 +10,19 @@
                                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
                                 </div>
                                 <div class="login-form" style="height: auto;">
-                                    <form action="/breakDown/add" method="POST">
-                                        <div class="form-group">
-                                            <label class=" form-control-label">Code</label>
-                                            <input type="text" required name="Code"  placeholder="New Code" value="{{ breakDown.Code}}" class="form-control">
-                                        </div>
+                                    <form action='/breakDown/add' method="POST">
+                                        <input type="text" hidden name="Code" value="{{ breakDown.Code}}">    
                                         <div class="form-group">
                                             <label class=" form-control-label">Reason</label>
                                             <input type="text" required name="Reason"  placeholder="New Reason" value="{{breakDown.Reason}}" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label class=" form-control-label">Date</label>
-                                            <input type="text" required name="Date" placeholder="New Date" value="{{breakDown.Date}}" class="form-control">
+                                            <input type="date" required name="DATE" placeholder="New Date" value="{{breakDown.DATE}}" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label class=" form-control-label">EquipmentCode</label>
-                                            <input type="text" required name="" placeholder="New EquipmentCode" value="{{breakDown.EquipmentCode}}" class="form-control">
+                                            <input type="text" required name="EquipmentCode" placeholder="New EquipmentCode" value="{{breakDown.EquipmentCode}}" class="form-control">
                                         </div>                                        
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
                                 

@@ -12,10 +12,7 @@
                                 </div>
                                 <div class="login-form" style="height: auto;">
                                     <form action="/clinicalEngineer/add" method="POST">
-                                        <div class="form-group">
-                                            <label class=" form-control-label">DSSN</label>
-                                            <input type="text" required name="DSSN"  placeholder="New DSSN" value="{{ clinicalEngineer.DSSN}}" class="form-control">
-                                        </div>
+                                        <input type="text" hidden required name="DSSN"  placeholder="New First name" value="{{ clinicalEngineer.DSSN}}" class="form-control">
                                         <div class="form-group">
                                             <label class=" form-control-label">FName</label>
                                             <input type="text" required name="FName"  placeholder="New First name" value="{{ clinicalEngineer.FName}}" class="form-control">

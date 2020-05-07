@@ -12,10 +12,7 @@
                                 </div>
                                 <div class="login-form">
                                     <form action="/agentSupplier/add" method="POST">
-                                        <div class="form-group">
-                                            <label class=" form-control-label">ID</label>
-                                            <input type="text" name="Id" required value="{{ agentSupplier.Id }}" class="form-control">
-                                        </div>
+                                      <input type="text" name="Id" hidden required value="{{ agentSupplier.Id }}" class="form-control">
                                         <div class="form-group">
                                             <label class=" form-control-label">Name</label>
                                             <input type="text" name="Name" required value="{{ agentSupplier.Name }}" class="form-control">

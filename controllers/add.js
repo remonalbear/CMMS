@@ -16,10 +16,10 @@ exports.addDepartment=(req,res)=>{
  name=req.body.Name
  location=req.body.Location
  Department.create({Code:code,Name:name,Location:location}).then(dep =>{
+ res.redirect('/department');
  }).catch(err=> {
     console.log("ERROR!!!!!!",err)
     })
-res.redirect('/department');
 
 
 }
@@ -130,7 +130,7 @@ exports.addEquipment=(req,res) => {
                             equipment.Location=location
                             equipment.DepartmentCode=departmentCode
                             equipment.AgentSupplierId=agentCode
-                            requipment.save().then(equipment => res.redirect('/equipment'))
+                            equipment.save().then(equipment => res.redirect('/equipment'))
                         }
         
                         else
@@ -173,20 +173,21 @@ exports.addSpareParts=(req,res)=>{
                     part.Name=name
                     part.Amount=amount
                     part.AgentSupplierId=agentId
-                    return part.save()
+                    part.save().then(p => res.redirect('/sparePart'))
+                }
+                else{
+                    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId})
+                    .then(res.redirect('/sparePart'))
                 }
         
-            SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId})
-            .then(res.redirect('/sparePart'))
-            .catch(err=> {
-                console.log("ERROR!!!!!!",err)
-                })
             })
         }
         else
          return res.render('error',{layout:false,pageTitle:'Error',href:'/sparePart',message:'Sorry !!! Could Not Get this Agent'})
         
-    })
+    }).catch(err=> {
+        console.log("ERROR!!!!!!",err)
+        })
 
 }
 
@@ -197,8 +198,6 @@ exports.addBreakDown=(req,res)=>{
     reason=req.body.Reason
     date=req.body.DATE
     equipmentId=req.body.EquipmentCode
-    console.log(equipmentId)
-    var equID = null
     Equipment.findOne({where:{Code:equipmentId}}).then(Equipment =>{
         if(Equipment){
             BreakDowns.findByPk(code).then(breakD=>{
@@ -207,7 +206,7 @@ exports.addBreakDown=(req,res)=>{
                     breakD.Reason=reason
                     breakD.DATE=date
                     breakD.EquipmentCode=equipmentId
-                    return breakD.save()
+                    breakD.save().then(res.redirect('/breakDown'))
                 }
         
                 BreakDowns.create({Code:code,Reason:reason,DATE:date,EquipmentCode:equipmentId})
@@ -224,9 +223,7 @@ exports.addBreakDown=(req,res)=>{
 
 }
 
-
 exports.addWorkOrder=(req,res) => {
-    code=req.body.Code
     cost=req.body.Cost
     date=req.body.DATE
     priority = req.body.Priority
@@ -234,43 +231,16 @@ exports.addWorkOrder=(req,res) => {
     engineerId=req.body.ClinicalEngineerDSSN
     var equId=null
     var engId=null
-    console.log(code)
-    console.log(cost)
-    console.log(date)
-    console.log(equipmentId)
-    console.log(engineerId)
-    console.log(priority)
-
-
     Equipment.findOne({where:{Code:equipmentId}}).then(equipment => { 
         if(equipment){
             equId=equipment.Code
             ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(clinicalengineer =>{
                 if(clinicalengineer){
                     engId = clinicalengineer.DSSN
-                    console.log(engId)
-                    WorkOrders.findByPk(code).then(workorder=>{
-                        if(equipment){
-                            workorder.Code=code
-                            workorder.DATE=date
-                            workorder.Cost=cost
-                            workorder.EquipmentCode = equId
-                            workorder.ClinicalEngineerDSSN = engId
-                            workorder.Priority = priority
-                            workorder.save().then(WorkOrder => res.redirect('/workOrder'))
-                            // return workorder.save()
-                            console.log(workorder.Code)
-                        }
-        
-                        else
-                        {
-                            console.log(code)
-                            WorkOrders.create({Code:code,DATE:date,
-                                    Cost:cost,EquipmentCode:equId,ClinicalEngineerDSSN:engId,Priority:priority})
-                                    .then(WorkOrder => res.redirect('/workOrder') )
+                    WorkOrders.create({DATE:date,
+                            Cost:cost,EquipmentCode:equId,ClinicalEnginnerDSSN:engId,Priority:priority})
+                            .then(WorkOrder => res.redirect('/workOrder') )
 
-                        }
-                    })
                 }
                 else
                   res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Get this Engineer'})                

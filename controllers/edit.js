@@ -23,7 +23,8 @@ exports.editAgentSupplier=(req,res)=>{
     res.render('editAgentSupplier',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
                                      AS:true,agentSupplier:as});
  })
-    .catch(err => console.log("ERROR!!!!!!",err) )
+    .catch(err => res.render('error',{layout:false,pageTitle:'Error',href:'/agentSupplier',message:'Sorry !!! Could Not Get this Agent'}))
+    
  
  
  }
@@ -49,16 +50,18 @@ exports.editClinicalEngineer=(req,res) => {
     res.render('editClinicalEngineer',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
                                      CE:true,clinicalEngineer:cs});
  })
-    .catch(err => console.log("ERROR!!!!!!",err) )
+ .catch(err => res.render('error',{layout:false,pageTitle:'Error',href:'/agentSupplier',message:'Sorry !!! Could Not Get this Engineer'}))
  
  
  }
 
 
 
+
+
  exports.editEquipment=(req,res)=>{
     code=req.params.id
-    Equipment.findByPk(code).then(equipment => { 
+    Equipment.findByPk(code).then(equipment => {
         const eq = {
               Code: equipment.Code,
               Name: equipment.Name,
@@ -104,7 +107,6 @@ exports.editClinicalEngineer=(req,res) => {
 exports.editBreakDown=(req,res)=>{
    code=req.params.id
    BreakDown.findByPk(code).then(breakDown =>{ 
-      console.log(code)
        const bd = {
          Code:breakDown.Code,
          Reason:breakDown.Reason,
@@ -114,7 +116,7 @@ exports.editBreakDown=(req,res)=>{
    
        
    res.render('editBreakDown',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
-                                                   BreakDown:true,breakDowns:bd});
+                                                   BreakDown:true,breakDown:bd});
 })
    .catch(err => console.log("ERROR!!!!!!",err) )
 

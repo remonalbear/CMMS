@@ -12,10 +12,7 @@
                                 </div>
                                 <div class="login-form" style="height: auto;">
                                     <form action="/equipment/add" method="POST">
-                                            <div class="form-group">
-                                                <label class=" form-control-label">Code</label>
-                                                <input type="text" required name="Code" placeholder="Enter Code" value="{{ equipment.Code }}" class="form-control">
-                                            </div>
+                                                <input type="text"  hidden required name="Code" placeholder="Enter Code" value="{{ equipment.Code }}" class="form-control">
                                             <div class="form-group">
                                                 <label class=" form-control-label">Name</label>
                                                 <input type="text"required name="Name" placeholder="Enter Name" value="{{ equipment.Name }}" class="form-control">
@@ -70,4 +67,4 @@
 
         </div>
     </div>        
-</div>
+</div>edit/:id

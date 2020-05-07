@@ -32,11 +32,11 @@
 
                                 <tr class="tr-shadow">
                                     <td>{{this.Code}}</td>
-                                    <td>{{this.Cost}}</td>
                                     <td>{{this.DATE}}</td>
+                                    <td>{{this.Cost}}</td>
                                     <td>{{this.Priority}}</td>
                                     <td>{{this.EquipmentCode}}</td>
-                                    <td>{{this.ClinicalEngineerDSSN}}</td>
+                                    <td>{{this.ClinicalEnginnerDSSN}}</td>
                                     <td>
                                        <div class="table-data-feature">
                                                 <a href="/workOrder/edit/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -79,9 +79,13 @@
                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
                 </div>
                 <div class="login-form">
+                       <div class="form-group">
+                            <label class=" form-control-label">EquipmentCode</label>
+                            <input type="text" required name="EquipmentCode" placeholder="Enter Code  " class="form-control">
+                        </div>
                         <div class="form-group">
-                            <label class=" form-control-label">Code</label>
-                            <input type="text" required name="Code" placeholder="Enter Code  " class="form-control">
+                            <label class=" form-control-label">ClinicalEngineerDSSN</label>
+                            <input type="text" required name="ClinicalEngineerDSSN" placeholder="Enter DSSN" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Date</label>
@@ -94,14 +98,6 @@
                         <div class="form-group">
                             <label class=" form-control-label">Priority</label>
                             <input type="text" required name="Priority" placeholder="Enter Priority  " class="form-control">
-                        </div>
-                       <div class="form-group">
-                            <label class=" form-control-label">EquipmentCode</label>
-                            <input type="text" required name="EquipmentCode" placeholder="Enter Code  " class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label class=" form-control-label">ClinicalEngineerDSSN</label>
-                            <input type="text" required name="ClinicalEngineerDSSN" placeholder="Enter DSSN" class="form-control">
                         </div>
                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
                     </form>  
