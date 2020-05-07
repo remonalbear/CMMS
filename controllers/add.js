@@ -5,6 +5,8 @@ const ClinicalEngineer=require('../models/clinical_engineer')
 const Equipment =require('../models/equipment')
 const SpareParts = require('../models/spare_part')
 const BreakDowns = require('../models/break_down')
+const WorkOrders = require('../models/work_order')
+
 
 
 
@@ -215,8 +217,59 @@ exports.addBreakDown=(req,res)=>{
                 })
         }
         else
-         return res.render('error',{layout:false,pageTitle:'Error',href:'/breakPart',message:'Sorry !!! Could Not Get this Equipment'})
+         return res.render('error',{layout:false,pageTitle:'Error',href:'/breakDown',message:'Sorry !!! Could Not Get this Equipment'})
         
+    })
+
+}
+
+
+exports.addWorkOrder=(req,res) => {
+    code=req.body.Code
+    cost=req.body.Cost
+    date=req.body.DATE
+    priority = req.body.Priority
+    equipmentId=req.body.EquipmentCode
+    engineerId=req.body.ClinicalEngineerDSSN
+    var equId=null
+    var engId=null
+    Equipment.findOne({where:{Code:equipmentId}}).then(Equipment => { 
+        if (Equipment){
+            equipment=Equipment.Code
+            ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(ClinicalEngineer =>{
+                if(ClinicalEngineer){
+                    EngineerCode=agent.Id
+                    WorkOrder.findByPk(code).then(WorkOrder=>{
+                        if(equipment){
+                            WorkOrder.Code=code
+                            WorkOrder.DATE=date
+                            WorkOrder.Cost=cost
+                            WorkOrder.EquipmentCode = equipment
+                            WorkOrder.ClinicalEngineerDSSN = EngineerCode
+                            WorkOrder.Priority = priority
+                            WorkOrder.save().then(WorkOrder => res.redirect('/workOrder'))
+                        }
+        
+                        else
+                        {
+                            WorkOrders.create({Code:code,DATE:date,
+                                    Cost:cost,ModelNumber:modelnumber,EquipmentCode:equipment,ClinicalEngineerDSSN:EngineerCode,Priority:priority})
+                                    .then(WorkOrder => res.redirect('/workOrder') )
+                        }
+                    })
+                }
+                else
+                  res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Get this Engineer'})                
+            })
+        }
+        else{
+            res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Get this Equipment'})
+        }
+    }).catch(err => {
+        if(err)
+         res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Add This Work Order '})
+
+          
     })
 
 }

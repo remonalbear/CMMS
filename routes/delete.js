@@ -7,6 +7,8 @@ router.get('/agentSupplier/delete/:id',deleteController.deleteAgentSupplier);
 router.get('/clinicalEngineer/delete/:id',deleteController.deleteClinicalEngineer);
 router.get('/equipment/delete/:id',deleteController.deleteEquipment);
 router.get('/sparePart/delete/:id',deleteController.deleteSparePart);
+router.get('/breakDown/delete/:id',deleteController.deleteBreakDown);
+
 
 
 module.exports=router;

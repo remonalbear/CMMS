@@ -60,10 +60,10 @@ maintenance.belongsTo(break_down);
 break_down.hasMany(maintenance);
 
 // synchronizing with database 
-sequelize.sync()
-//sequelize.sync({force:true})
+ sequelize.sync()
+// sequelize.sync({force:true})
 .then(res => { 
-    app.listen(3000,() => {
+    app.listen(9000,() => {
         console.log('Running')
        })
       
