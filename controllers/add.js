@@ -195,6 +195,7 @@ exports.addBreakDown=(req,res)=>{
     reason=req.body.Reason
     date=req.body.DATE
     equipmentId=req.body.EquipmentCode
+    console.log(equipmentId)
     var equID = null
     Equipment.findOne({where:{Code:equipmentId}}).then(Equipment =>{
         if(Equipment){

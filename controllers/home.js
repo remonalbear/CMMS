@@ -166,7 +166,7 @@ exports.breakDown=(req,res)=>{
                     Code:breakD.Code,
                     Reason:breakD.Reason,
                     DATE:breakD.DATE,
-                    EquipmentId:breakD.EquipmentCode
+                    EquipmentCode:breakD.EquipmentCode
                   }
                 })
 
