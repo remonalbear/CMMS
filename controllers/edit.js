@@ -2,6 +2,10 @@ const AgentSupplier = require('../models/agent_supplier');
 const ClinicalEngineer = require('../models/clinical_engineer');
 const Equipment =require('../models/equipment')
 const SparePart =require('../models/spare_part');
+const BreakDown =require('../models/break_down');
+const WorkOrder =require('../models/work_order');
+
+
 
 exports.editAgentSupplier=(req,res)=>{
     id=req.params.id
@@ -96,3 +100,24 @@ exports.editClinicalEngineer=(req,res) => {
 
 
 }
+
+exports.editBreakDown=(req,res)=>{
+   code=req.params.id
+   BreakDown.findByPk(code).then(breakDown =>{ 
+      console.log(code)
+       const bd = {
+         Code:breakDown.Code,
+         Reason:breakDown.Reason,
+         DATE:breakDown.DATE,
+         EquipmentCode:breakDown.EquipmentCode
+           }
+   
+       
+   res.render('editBreakDown',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
+                                                   BreakDown:true,breakDowns:bd});
+})
+   .catch(err => console.log("ERROR!!!!!!",err) )
+
+
+}
+

@@ -155,8 +155,28 @@ exports.agentSupplier=(req,res)=>{
 
 exports.workOrder=(req,res)=>{
 
+  WorkOrder.findAll().then(workorders => {
+        const wd = workorders.map(workD => {
+                  return {
+                    Code:workD.Code,
+                    Cost:workD.Cost,
+                    DATE:workD.DATE,
+                    EquipmentCode:workD.EquipmentCode,
+                    Priority:workD.Priority,
+                    ClinicalEngineerDSSN:workD.ClinicalEngineerDSSN             
+                  }
+                })
 
-    res.render('workOrder',{pageTitle:'WorkOrder',WO:true});
+    res.render('workOrder',{pageTitle:'WorkOrder',
+                                WorkOrder:true,WorkOrders:wd,
+                                hasWorkOrder:wd.length>0});
+    }).catch(err => {
+        if(err)
+          console.log(err)
+          res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get WorkOrders'})
+    })
+// res.render('workOrder',{pageTitle:'WorkOrder',WorkOrder:true});
+
 }
 
 exports.breakDown=(req,res)=>{
