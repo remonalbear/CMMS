@@ -224,6 +224,7 @@ exports.addBreakDown=(req,res)=>{
 }
 
 exports.addWorkOrder=(req,res) => {
+    code =req.body.Code
     cost=req.body.Cost
     date=req.body.DATE
     priority = req.body.Priority
@@ -237,14 +238,31 @@ exports.addWorkOrder=(req,res) => {
             ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(clinicalengineer =>{
                 if(clinicalengineer){
                     engId = clinicalengineer.DSSN
-                    WorkOrders.create({DATE:date,
+                    WorkOrders.findByPk(code).then(workorder=>{
+                        if(workorder){
+                            workorder.DATE=date
+                            workorder.Cost=cost
+                            workorder.EquipmentCode=equId
+                            workorder.ClinicalEngineerDSSN=engId
+                            workorder.Priority=priority
+                            workorder.save().then(workorder => res.redirect('/workOrder'))
+                        }
+                        else {
+                            WorkOrders.create({DATE:date,
                             Cost:cost,EquipmentCode:equId,ClinicalEnginnerDSSN:engId,Priority:priority})
-                            .then(WorkOrder => res.redirect('/workOrder') )
-
+                            .then(workorder => res.redirect('/workOrder') )
+                            }
+                   })
                 }
+            
+       
+
                 else
-                  res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Get this Engineer'})                
+                  res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Get this Engineer'})  
+                  
+                  
             })
+            
         }
         else{
             res.render('error',{layout:false,pageTitle:'Error',href:'/workOrder',message:'Sorry !!! Could Not Get this Equipment'})

@@ -8,6 +8,8 @@ router.get('/clinicalEngineer/edit/:id',editController.editClinicalEngineer);
 router.get('/equipment/edit/:id',editController.editEquipment);
 router.get('/sparePart/edit/:id',editController.editSparePart);
 router.get('/breakDown/edit/:id',editController.editBreakDown);
+router.get('/workOrder/edit/:id',editController.editWorkOrder);
+
 
 
 
