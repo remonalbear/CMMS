@@ -9,8 +9,8 @@ Code:{
     autoIncrement:true,
     primaryKey:true
 },
-Date:{
-    type:Sequelize.DATE,
+DATE:{
+    type:Sequelize.TEXT,
     allowNull:false
 },
 Cost:{

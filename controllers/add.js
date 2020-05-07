@@ -233,28 +233,41 @@ exports.addWorkOrder=(req,res) => {
     engineerId=req.body.ClinicalEngineerDSSN
     var equId=null
     var engId=null
-    Equipment.findOne({where:{Code:equipmentId}}).then(Equipment => { 
-        if (Equipment){
-            equipment=Equipment.Code
-            ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(ClinicalEngineer =>{
-                if(ClinicalEngineer){
-                    EngineerCode=agent.Id
-                    WorkOrder.findByPk(code).then(WorkOrder=>{
+    console.log(code)
+    console.log(cost)
+    console.log(date)
+    console.log(equipmentId)
+    console.log(engineerId)
+    console.log(priority)
+
+
+    Equipment.findOne({where:{Code:equipmentId}}).then(equipment => { 
+        if(equipment){
+            equId=equipment.Code
+            ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(clinicalengineer =>{
+                if(clinicalengineer){
+                    engId = clinicalengineer.DSSN
+                    console.log(engId)
+                    WorkOrders.findByPk(code).then(workorder=>{
                         if(equipment){
-                            WorkOrder.Code=code
-                            WorkOrder.DATE=date
-                            WorkOrder.Cost=cost
-                            WorkOrder.EquipmentCode = equipment
-                            WorkOrder.ClinicalEngineerDSSN = EngineerCode
-                            WorkOrder.Priority = priority
-                            WorkOrder.save().then(WorkOrder => res.redirect('/workOrder'))
+                            workorder.Code=code
+                            workorder.DATE=date
+                            workorder.Cost=cost
+                            workorder.EquipmentCode = equId
+                            workorder.ClinicalEngineerDSSN = engId
+                            workorder.Priority = priority
+                            workorder.save().then(WorkOrder => res.redirect('/workOrder'))
+                            // return workorder.save()
+                            console.log(workorder.Code)
                         }
         
                         else
                         {
+                            console.log(code)
                             WorkOrders.create({Code:code,DATE:date,
-                                    Cost:cost,ModelNumber:modelnumber,EquipmentCode:equipment,ClinicalEngineerDSSN:EngineerCode,Priority:priority})
+                                    Cost:cost,EquipmentCode:equId,ClinicalEngineerDSSN:engId,Priority:priority})
                                     .then(WorkOrder => res.redirect('/workOrder') )
+
                         }
                     })
                 }

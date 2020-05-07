@@ -31,12 +31,12 @@
                                {{#each Workorders }} 
 
                                 <tr class="tr-shadow">
-                                    <td>this.Code</td>
-                                    <td>this.Cost</td>
-                                    <td>this.DATE</td>
-                                    <td>this.Priority</td>
-                                    <td>this.EquipmentCode</td>
-                                    <td>this.ClinicalEngineerDSSN</td>
+                                    <td>{{this.Code}}</td>
+                                    <td>{{this.Cost}}</td>
+                                    <td>{{this.DATE}}</td>
+                                    <td>{{this.Priority}}</td>
+                                    <td>{{this.EquipmentCode}}</td>
+                                    <td>{{this.ClinicalEngineerDSSN}}</td>
                                     <td>
                                        <div class="table-data-feature">
                                                 <a href="/workOrder/edit/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -69,7 +69,7 @@
         <div class="modal-content">
           
           <div class="modal-body">
-            <form method="POST" action="/appointment/{{ id }}">
+            <form method="POST" action="/workOrder/add">
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -79,14 +79,13 @@
                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
                 </div>
                 <div class="login-form">
-                    <form action="" method="post">
                         <div class="form-group">
                             <label class=" form-control-label">Code</label>
                             <input type="text" required name="Code" placeholder="Enter Code  " class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Date</label>
-                            <input type="Date"  required name="Date" placeholder="Enter Date" class="form-control">
+                            <input type="Date"  required name="DATE" placeholder="Enter Date" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Cost</label>
