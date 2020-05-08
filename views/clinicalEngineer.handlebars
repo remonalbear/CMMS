@@ -10,7 +10,7 @@
               {{#each clinicalEngineers }}   
                 <div class="col-md-4">
                     <div class="card" style="width: auto;">
-                        <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
+                        <img class="card-img-top" src="images/{{this.Image}}" alt="Card image cap">
                         <div class="card-body">
                             <div class="card-text">DSSN: <span>{{ this.DSSN }}</span></div>
                             <div class="card-text">Name: <span>{{ this.FName }} {{ this.LName }}</span></div>
@@ -46,7 +46,7 @@
         <div class="modal-content">
           
           <div class="modal-body">
-            <form method="POST" action="/clinicalEngineer/add">
+            <form method="POST" action="/clinicalEngineer/add" enctype="multipart/form-data">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,6 +65,10 @@
                                 <div class="form-group">
                                     <label class=" form-control-label">LName</label>
                                     <input type="text" required name="LName" placeholder="Enter Last name" class="form-control">
+                                </div>
+                                  <div class="form-group">
+                                    <label class=" form-control-label">Photo</label>
+                                    <input type="file" required name="image" placeholder="Choose a photo" class="form-control" >
                                 </div>
                                 <div class="form-group">
                                     <label class=" form-control-label">Phone</label>

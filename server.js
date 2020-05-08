@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({extended:false}))
 
 const filestorage =multer.diskStorage ({
   destination:(req,file,cb) => {
-    cb(null,'images');
+    cb(null,'public/images');
   },
   filename:(req,file,cb) => {
-    cb(null,'_'+file.originalname);
+    cb(null,'image'+'_'+file.originalname);
   }
 })
 const filefilter = ( req ,file,cb) => {
@@ -42,16 +42,17 @@ if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimety
 }
 }
 
-app.use(multer({dest:'images',storage:filestorage,fileFilter:filefilter }).single('Image'));
+app.use(multer({storage:filestorage,fileFilter:filefilter}).single('image'));
+
 
 app.use(express.static(DirName+'/public/'));
-app.use(express.static(DirName+'/images'));
 app.engine('handlebars', exphbs({layoutsDir:'views/layouts/',defaultLayout:'main-layout',partialsDir:'views/includes/'}));
 app.set('view engine', 'handlebars');
 app.set('views','views');
 
 
 
+// app.use(multer({dest:'images/'}).single('image'))
 app.use(reportController);
 app.use(editController);
 app.use(deleteController);
@@ -83,7 +84,7 @@ break_down.hasMany(maintenance);
 sequelize.sync()
 //sequelize.sync({force:true})
 .then(res => { 
-    app.listen(30,() => {
+    app.listen(3000,() => {
         console.log('Running')
        })
       

@@ -49,8 +49,7 @@ exports.department=(req,res)=>{
 Department.findAll({
     include:[{model:ClinicalEngineer},{model:Equipment}]
     }).then(departments => {
-        const deps = departments.map(department => {
-            console.log(department)        
+        const deps = departments.map(department => {       
             return {
                         Name: department.Name,
                         Code: department.Code,
@@ -81,27 +80,22 @@ exports.maintenance=(req,res)=>{
 
 
 exports.clinicalEngineer=(req,res)=>{
-    ClinicalEngineer.findAll().then(clinicalEngineers=>{
+    ClinicalEngineer.findAll({include:[{model:Department}]}).then(clinicalEngineers=>{
         const clinicalengineers=clinicalEngineers.map(clinicalengineer => {     
             return{
                 DSSN:clinicalengineer.DSSN,
                 FName:clinicalengineer.FName,
                 LName:clinicalengineer.LName,
+                Image:clinicalengineer.Image,
                 Adress:clinicalengineer.Adress,
                 Phone:clinicalengineer.Phone,
                 Email:clinicalengineer.Email,
                 Age:clinicalengineer.Age,
                 WorkHours:clinicalengineer.WorkHours,
-                DepartmentCode:clinicalengineer.DepartmentCode
+                DepartmentCode:clinicalengineer.Department.Name
             }
 
         })
-        clinicalengineers.map(clinicalEngineer => {
-            Department.findOne({where:{Code:clinicalEngineer.DepartmentCode}}).then(department => {
-                clinicalEngineer.DepartmentCode=department.dataValues.Name
-        })
-            
-        }) 
         res.render('clinicalEngineer',{pageTitle:'clinicalEngineer',CE:true,
                                 clinicalEngineers:clinicalengineers,hasEngineers:clinicalengineers.length>0});
     })
@@ -208,6 +202,7 @@ exports.equipment=(req,res)=>{
                     Code: equipment.Code,
                     Name: equipment.Name,
                     Cost: equipment.Cost,
+                    Image:equipment.Image,
                     InstallationDate: equipment.InstallationDate,
                     ModelNumber:equipment.ModelNumber,
                     SerialNumber:equipment.SerialNumber,

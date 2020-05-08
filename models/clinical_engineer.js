@@ -20,6 +20,10 @@ const Clinical_enginner=sequelize.define('ClinicalEnginner',{
         type:Sequelize.BIGINT(20),
         allowNull:false,
     },
+    Image:{
+        type:Sequelize.STRING,
+        allowNull:false
+    },
     Age:{
         type:Sequelize.INTEGER,
         allowNull:false,

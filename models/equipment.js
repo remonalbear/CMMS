@@ -12,6 +12,10 @@ Name:{
     type:Sequelize.STRING,
     allowNull:false
 },
+Image:{
+    type:Sequelize.STRING,
+    allowNull:false
+},
 Cost:{
     type:Sequelize.BIGINT(12),
     allowNull:false

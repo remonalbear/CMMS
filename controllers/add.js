@@ -60,6 +60,7 @@ exports.addClinicalEngineer=(req,res)=>{
     address=req.body.Address
     phone=req.body.Phone
     email=req.body.Email
+    image=req.file.path.split('/')[2]
     age=req.body.Age
     workhours=req.body.workHours
     department=req.body.Department
@@ -83,14 +84,16 @@ exports.addClinicalEngineer=(req,res)=>{
             clinicalEngineer.Adress=address
             clinicalEngineer.Phone=phone
             clinicalEngineer.Email=email
+            clinicalEngineer.Image=image
             clinicalEngineer.Age=age
             clinicalEngineer.WorkHours=workhours
             clinicalEngineer.DepartmentCode=departmentCode
             return clinicalEngineer.save()
         }
         else{
+            
             return ClinicalEngineer.create({DSSN:dssn,FName:fname,
-                    LName:lname,Adress:address,Phone:phone,
+                    LName:lname,Adress:address,Phone:phone,Image:image,
                     Email:email,Age:age,WorkHours:workhours,
                     DepartmentCode:departmentCode,Password:pass})
         }
@@ -103,6 +106,7 @@ exports.addEquipment=(req,res) => {
     code=req.body.Code
     name=req.body.Name
     cost=req.body.Cost
+    image=req.file.path.split('/')[2]
     modelnumber=req.body.ModelNumber
     serialnumber=req.body.SerialNumber
     installationdate=req.body.InstallationDate
@@ -123,6 +127,7 @@ exports.addEquipment=(req,res) => {
                             equipment.Code=code
                             equipment.Name=name
                             equipment.Cost=cost
+                            equipment.Image=image
                             equipment.ModelNumber=modelnumber
                             equipment.InstallationDate=installationdate
                             equipment.SerialNumber=serialnumber
@@ -135,7 +140,7 @@ exports.addEquipment=(req,res) => {
         
                         else
                         {
-                            Equipment.create({Code:code,Name:name,
+                            Equipment.create({Code:code,Name:name,Image:image,
                                     Cost:cost,ModelNumber:modelnumber,SerialNumber:serialnumber,AgentSupplierId:agentCode,
                                     Location:location,Manufacturer:manufacturer,InstallationDate:installationdate,DepartmentCode:departmentCode})
                                     .then(equipment => res.redirect('/equipment') )
