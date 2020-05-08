@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path')
 const exphbs=require('express-handlebars');
 const bodyParser=require('body-parser');
+const multer =require('multer');
 const DirName=require('./util/path');
 const sequelize=require('./util/db')
 const clinical_engineer=require('./models/clinical_engineer');
@@ -24,8 +25,27 @@ const reportController=require('./routes/report')
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
 
-app.use(express.static(DirName+'/public/'));
+const filestorage =multer.diskStorage ({
+  destination:(req,file,cb) => {
+    cb(null,'images');
+  },
+  filename:(req,file,cb) => {
+    cb(null,'_'+file.originalname);
+  }
+})
+const filefilter = ( req ,file,cb) => {
+if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg'  )
+{
+  cb(null,true);
+} else{
+ cb(null,false);
+}
+}
 
+app.use(multer({dest:'images',storage:filestorage,fileFilter:filefilter }).single('Image'));
+
+app.use(express.static(DirName+'/public/'));
+app.use(express.static(DirName+'/images'));
 app.engine('handlebars', exphbs({layoutsDir:'views/layouts/',defaultLayout:'main-layout',partialsDir:'views/includes/'}));
 app.set('view engine', 'handlebars');
 app.set('views','views');
