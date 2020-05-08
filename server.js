@@ -82,9 +82,9 @@ break_down.hasMany(maintenance);
 
 // synchronizing with database 
 sequelize.sync()
-//sequelize.sync({force:true})
+// sequelize.sync({force:true})
 .then(res => { 
-    app.listen(3000,() => {
+    app.listen(30,() => {
         console.log('Running')
        })
       

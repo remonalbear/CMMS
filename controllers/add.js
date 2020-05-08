@@ -180,7 +180,9 @@ exports.addSpareParts=(req,res)=>{
     name=req.body.Name
     amount=req.body.Amount
     agentId=req.body.AgentSupplierId
+    image=req.file.path.split('/')[2]
     var AgentId = null
+    console.log(image)
     AgentSupplier.findOne({where:{Id:agentId}}).then(agent =>{
         if(agent){
             SpareParts.findByPk(code).then(part=>{
@@ -189,10 +191,11 @@ exports.addSpareParts=(req,res)=>{
                     part.Name=name
                     part.Amount=amount
                     part.AgentSupplierId=agentId
+                    part.Image=image
                     part.save().then(p => res.redirect('/sparePart'))
                 }
                 else{
-                    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId})
+                    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId,Image:image})
                     .then(res.redirect('/sparePart'))
                 }
         

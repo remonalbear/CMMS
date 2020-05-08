@@ -12,6 +12,12 @@ Name:{
     type:Sequelize.STRING,
     allowNull:false
 },
+
+Image:{
+    type:Sequelize.STRING,
+    allowNull:false
+},
+
 Amount:{
     type:Sequelize.INTEGER,
     allowNull:false

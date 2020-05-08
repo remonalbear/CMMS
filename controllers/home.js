@@ -113,6 +113,7 @@ exports.sparePart=(req,res)=>{
                     Code:sparepart.Code,
                     Name:sparepart.Name,
                     Amount:sparepart.Amount,
+                    Image:sparepart.Image,
                     AgentSupplierId:sparepart.AgentSupplier.dataValues.Id,
                     AgentSupplierName:sparepart.AgentSupplier.dataValues.Name
                   }
