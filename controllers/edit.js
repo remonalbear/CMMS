@@ -123,3 +123,26 @@ exports.editBreakDown=(req,res)=>{
 
 }
 
+exports.editWorkOrder=(req,res)=>{
+   code = req.params.id
+   WorkOrder.findByPk(code).then(workOrder=>{
+      const wd = {
+         Code:workOrder.Code,
+         Cost:workOrder.Cost,
+         DATE:workOrder.DATE,
+         EquipmentCode:workOrder.EquipmentCode,
+         Priority:workOrder.Priority,
+         ClinicalEnginnerDSSN:workOrder.ClinicalEnginnerDSSN 
+
+      }
+
+   res.render('editWorkOrder',{layout:'main-layout.handlebars',pageTitle:'Edit',
+                                       WorkOrder:true,workOrder:wd});
+
+
+
+   })
+
+     .catch(err=>console.log("errorrrrr",err))
+
+}

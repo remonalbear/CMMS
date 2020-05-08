@@ -3,6 +3,8 @@ const ClinicalEngineer=require('../models/clinical_engineer')
 const Equipment =require('../models/equipment')
 const SparePart=require('../models/spare_part')
 const BreakDown=require('../models/break_down')
+const WorkOrder=require('../models/work_order')
+
 
 exports.deleteAgentSupplier=(req,res)=>{
     id=req.params.id
@@ -57,4 +59,13 @@ exports.deleteAgentSupplier=(req,res)=>{
      .catch(err => console.log("ERROR!!!!!!",err) )
  }
 
+ exports.deleteWorkOrder=(req,res)=>{
+    code=req.params.id
+    WorkOrder.findByPk(code).then(workorder=>{ 
+    console.log(code)
+     workorder.destroy()
+     res.redirect('/workOrder')
+ })
+     .catch(err => console.log("ERROR!!!!!!",err) )
+ }
 

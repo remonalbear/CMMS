@@ -1,0 +1,52 @@
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="page-wrapper" style="height: auto;" >
+                <div class="page-content--bge5" style="height: auto;">
+                    <div class="container" style="height: auto;">
+                        <div class="login-wrap">
+                            <div class="login-content">
+                                <div class="login-logo">
+                                    <a href="#">
+                                    <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
+                                </div>
+                                <div class="login-form" style="height: auto;">
+                                    <form action="/workOrder/add" method="POST">
+                                        <input type="text" hidden required name="Code"  placeholder="New Code" value="{{ workOrder.Code}}" class="form-control">
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Date</label>
+                                            <input type="date" required name="DATE"  placeholder="New Datee" value="{{ workOrder.DATE}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Cost</label>
+                                            <input type="text" required name="Cost" placeholder="New Cost" value="{{ workOrder.Cost}}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Equipment Code</label>
+                                            <input type="text" required name="EquipmentCode" placeholder="New Equipment Code"  value="{{ workOrder.EquipmentCode }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">clinical Engineer DSSN</label>
+                                            <input type="text"  required name="ClinicalEngineerDSSN" placeholder="New DSSN" value="{{ workOrder.ClinicalEngineerDSSN }}" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class=" form-control-label">Priority</label>
+                                            <select name="Priority"required id="select"  class="form-control" >
+                                                <option value="Low">Low</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="High">High</option>
+                                            </select>
+                                        </div>                                        
+                                        <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Edit</button>
+                                
+                                    </form>  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+
+        </div>
+    </div>        
+</div>
