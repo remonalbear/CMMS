@@ -11,7 +11,7 @@
                                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>        
                                 </div>
                                 <div class="login-form" style="height: auto;">
-                                    <form action="/clinicalEngineer/add" method="POST">
+                                    <form action="/clinicalEngineer/add" method="POST" enctype="multipart/form-data">
                                         <input type="text" hidden required name="DSSN"  placeholder="New First name" value="{{ clinicalEngineer.DSSN}}" class="form-control">
                                         <div class="form-group">
                                             <label class=" form-control-label">FName</label>
@@ -21,6 +21,10 @@
                                             <label class=" form-control-label">LName</label>
                                             <input type="text" required name="LName" placeholder="New Last name" value="{{ clinicalEngineer.LName}}" class="form-control">
                                         </div>
+                                          {{!-- <div class="form-group">
+                                            <label class=" form-control-label">Photo</label>
+                                            <input type="file"  name="image" placeholder="New Last name" value="{{ clinicalEngineer.Image}}" class="form-control">
+                                        </div> --}}
                                         <div class="form-group">
                                             <label class=" form-control-label">Phone</label>
                                             <input type="text" required name="Phone" placeholder="New Phone"  value="{{ clinicalEngineer.Phone}}" class="form-control">

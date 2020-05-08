@@ -65,40 +65,51 @@ exports.addClinicalEngineer=(req,res)=>{
     workhours=req.body.workHours
     department=req.body.Department
     var departmentCode=null
-    Department.findOne({where:{Name:department}}).then(department => { departmentCode=department.Code})
     if(req.body.Password)   
-        bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(req.body.Password, salt, (err, hash) => {
-        pass=hash 
+            pass=hash 
         });
-            
-        });
+        
+    });
+    
+    
+    
+    Department.findOne({where:{Name:department}}).then(department => { 
+        if (department){
 
-
-
-    ClinicalEngineer.findByPk(dssn).then(clinicalEngineer=>{
-        if(clinicalEngineer){
-            clinicalEngineer.DSSN=dssn
-            clinicalEngineer.FName=fname
-            clinicalEngineer.LName=lname
-            clinicalEngineer.Adress=address
-            clinicalEngineer.Phone=phone
-            clinicalEngineer.Email=email
-            clinicalEngineer.Image=image
-            clinicalEngineer.Age=age
-            clinicalEngineer.WorkHours=workhours
-            clinicalEngineer.DepartmentCode=departmentCode
-            return clinicalEngineer.save()
+            departmentCode=department.Code
+            ClinicalEngineer.findByPk(dssn).then(clinicalEngineer=>{
+                if(clinicalEngineer){
+                    clinicalEngineer.DSSN=dssn
+                    clinicalEngineer.FName=fname
+                    clinicalEngineer.LName=lname
+                    clinicalEngineer.Adress=address
+                    clinicalEngineer.Phone=phone
+                    clinicalEngineer.Email=email
+                    clinicalEngineer.Image=image
+                    clinicalEngineer.Age=age
+                    clinicalEngineer.WorkHours=workhours
+                    clinicalEngineer.DepartmentCode=departmentCode
+                    clinicalEngineer.save().then(r => res.redirect('/clinicalEngineer'))
+                }
+                else{
+                    
+                    ClinicalEngineer.create({DSSN:dssn,FName:fname,
+                            LName:lname,Adress:address,Phone:phone,Image:image,
+                            Email:email,Age:age,WorkHours:workhours,
+                            DepartmentCode:departmentCode,Password:pass
+                        }).then(r => res.redirect('/clinicalEngineer'))
+                }
+            })
         }
         else{
-            
-            return ClinicalEngineer.create({DSSN:dssn,FName:fname,
-                    LName:lname,Adress:address,Phone:phone,Image:image,
-                    Email:email,Age:age,WorkHours:workhours,
-                    DepartmentCode:departmentCode,Password:pass})
+            res.render('error',{layout:false,pageTitle:'Error',href:'/clinicalEngineer',message:'Sorry !!! Could Not Get this Department'})                
+
         }
-    }).then(r => res.redirect('/clinicalEngineer'))
-    .catch(err => console.log("ERROR!!!!!!",err))
+    })
+    .catch(err =>res.render('error',{layout:false,pageTitle:'Error',href:'/equipment',message:'Sorry !!! Could Not Get Engineers'})                
+    )
 
 }
 

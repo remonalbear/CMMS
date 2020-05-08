@@ -169,7 +169,6 @@ exports.workOrder=(req,res)=>{
           console.log(err)
           res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get WorkOrders'})
     })
-// res.render('workOrder',{pageTitle:'WorkOrder',WorkOrder:true});
 
 }
 
