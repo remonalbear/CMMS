@@ -537,6 +537,7 @@ section {
     padding: 0 40px;
     font-size: 15px;
     color: #fff;
+    margin-left: 1080px;
 }
 
 .au-btn-load:hover {
@@ -4133,6 +4134,7 @@ section {
 
 .dot--blue {
     background: #00b5e9;
+
 }
 
 .dot--green {

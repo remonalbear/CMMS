@@ -14,14 +14,16 @@
                         <div class="card-body">
                             <div class="card-text">Code: <span>{{ this.Code }}</span></div>
                             <div class="card-text">Name: <span>{{ this.Name }}</span></div>
-                            <div class="card-text">Cost: <span>{{ this.Cost }}</span></div>
-                            <div class="card-text">Model Number: <span>{{ this.ModelNumber }}</span></div>
+                            <div class="card-text">Model: <span>{{ this.Model}}</span></div>
                             <div class="card-text">Serial Number: <span>{{ this.SerialNumber }}</span></div>
-                            <div class="card-text">Manufacturer: <span>{{ this.Manufacturer}}</span></div>
+                            {{!-- <div class="card-text">Manufacturer: <span>{{ this.Manufacturer}}</span></div> --}}
                             <div class="card-text">Location: <span>{{ this.Location }}</span></div>
-                            <div class="card-text">Installation Date: <span>{{ this.InstallationDate }}</span></div>
                             <div class="card-text">Department: <span>{{ this.DepartmentCode }}</span></div>
-                            <div class="card-text">Agent: <span>{{ this.AgentSupplierId }}</span></div>
+                            {{!-- <div class="card-text">Installation Date: <span>{{ this.InstallationDate }}</span></div> --}}
+                            {{!-- <div class="card-text">Agent: <span>{{ this.AgentSupplierId }}</span></div> --}}
+                            {{!-- <div class="card-text">Cost: <span>{{ this.Cost }}</span></div> --}}
+                            <div class="card-text">PM: <span>{{ this.PM }}</span></div>
+
                         </div>
                         <div class="table-data-feature">
                             <a href="/equipment/edit/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit" >
@@ -29,6 +31,9 @@
                             </a>
                             <a href="/equipment/delete/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                 <i class="zmdi zmdi-delete"></i>
+                            </a>
+                             <a href="/report/equipmet/installation/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                <i class="zmdi zmdi-more"></i>
                             </a>
                         </div>
                     </div>
@@ -48,7 +53,6 @@
           
           <div class="modal-body">
             <form method="POST" action="/equipment/add" enctype="multipart/form-data">
-
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -65,8 +69,20 @@
                             <input type="text"required name="Name" placeholder="Enter Name" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label class=" form-control-label">Model</label>
+                            <input type="text" required name="Model" placeholder="Enter Model Name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Serial Number</label>
+                            <input type="text"required name="SerialNumber" placeholder="Enter Serial Number" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class=" form-control-label">Manufacturer</label>
+                            <input type="text" required name="Manufacturer" placeholder="Enter Manufacturer" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label class=" form-control-label">Photo</label>
-                            <input type="file"required name="image" placeholder="Enter Name" class="form-control">
+                            <input type="file"  name="image" placeholder="Enter Name" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Cost</label>
@@ -77,16 +93,12 @@
                             <input type="date"required name="InstallationDate" placeholder="Enter Installation Date" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class=" form-control-label">Model Number</label>
-                            <input type="number" required name="ModelNumber" placeholder="Enter Model Number" class="form-control">
+                            <label class=" form-control-label">Arrival Date</label>
+                            <input type="date"required name="ArrivalDate" placeholder="Enter Arrival Date" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label class=" form-control-label">Serial Number</label>
-                            <input type="number"required name="SerialNumber" placeholder="Enter Serial Number" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label class=" form-control-label">Manufacturer</label>
-                            <input type="text" required name="Manufacturer" placeholder="Enter Manufacturer" class="form-control">
+                            <label class=" form-control-label">Warranty Date</label>
+                            <input type="date"required name="WarrantyDate" placeholder="Enter Warranty Date" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Location</label>
@@ -97,6 +109,14 @@
                             <input type="text" required name="Agent" placeholder="Enter Agent Code" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label class=" form-control-label">PM</label>
+                            <select name="PM"required id="select" class="form-control">
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="Annualy">Annualy</option> 
+
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label class=" form-control-label">Department</label>
                             <select name="Department"required id="select" class="form-control">
                                     <option value="OR">OR</option>
@@ -104,6 +124,10 @@
                                     <option value="ICU">ICU</option>
                                     <option value="CSSD">CSSD</option>
                             </select>
+                        </div>
+                         <div class="form-group">
+                            <label class=" form-control-label">Notes</label>
+                            <textarea type="text"  name="Notes" placeholder="Any Notes" class="form-control"></textarea>
                         </div>
 
                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>

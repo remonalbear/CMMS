@@ -9,8 +9,8 @@ const WorkOrder=require('../models/work_order')
 exports.deleteAgentSupplier=(req,res)=>{
     id=req.params.id
     AgentSupplier.findByPk(id).then(agentSupplier =>{ 
-     agentSupplier.destroy()
-     res.redirect('/agentSupplier')
+     agentSupplier.destroy().then(res.redirect('/agentSupplier'))
+     
  })
      .catch(err => console.log("ERROR!!!!!!",err) )
  
@@ -21,10 +21,10 @@ exports.deleteAgentSupplier=(req,res)=>{
  exports.deleteClinicalEngineer=(req,res)=>{
     dssn=req.params.id
     ClinicalEngineer.findByPk(dssn).then(clinicalEngineer =>{ 
-     clinicalEngineer.destroy()
-     res.redirect('/clinicalEngineer')
+     clinicalEngineer.destroy().then( res.redirect('/clinicalEngineer'))
+    
  })
-     .catch(err => console.log("ERROR!!!!!!",err) )
+    .catch(err => console.log("ERROR!!!!!!",err) )
  
  
  }
@@ -33,19 +33,19 @@ exports.deleteAgentSupplier=(req,res)=>{
  exports.deleteEquipment=(req,res)=>{
     code=req.params.id
     Equipment.findByPk(code).then(equipment =>{ 
-     equipment.destroy()
-     res.redirect('/equipment')
+     equipment.destroy().then(res.redirect('/equipment'))
+     
  })
-     .catch(err => console.log("ERROR!!!!!!",err) )
+    .catch(err => console.log("ERROR!!!!!!",err) )
  }
 
  exports.deleteSparePart=(req,res)=>{
     code=req.params.id
     SparePart.findByPk(code).then(sparepart=>{ 
-     sparepart.destroy()
-     res.redirect('/sparePart')
+    sparepart.destroy().then(res.redirect('/sparePart'))
+        
  })
-     .catch(err => console.log("ERROR!!!!!!",err) )
+    .catch(err => console.log("ERROR!!!!!!",err) )
  }
 
 
@@ -53,19 +53,19 @@ exports.deleteAgentSupplier=(req,res)=>{
     code=req.params.id
     BreakDown.findByPk(code).then(breakdown=>{ 
     console.log(code)
-     breakdown.destroy()
-     res.redirect('/breakDown')
+     breakdown.destroy().then(res.redirect('/breakDown'))
+     
  })
-     .catch(err => console.log("ERROR!!!!!!",err) )
+    .catch(err => console.log("ERROR!!!!!!",err) )
  }
 
  exports.deleteWorkOrder=(req,res)=>{
     code=req.params.id
     WorkOrder.findByPk(code).then(workorder=>{ 
     console.log(code)
-     workorder.destroy()
-     res.redirect('/workOrder')
+     workorder.destroy().then( res.redirect('/workOrder'))
+    
  })
-     .catch(err => console.log("ERROR!!!!!!",err) )
+    .catch(err => console.log("ERROR!!!!!!",err) )
  }
 

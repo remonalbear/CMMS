@@ -117,14 +117,23 @@ exports.addEquipment=(req,res) => {
     code=req.body.Code
     name=req.body.Name
     cost=req.body.Cost
-    image=req.file.path.split('/')[2]
-    modelnumber=req.body.ModelNumber
+    if(req.body.edit){
+        image=req.body.Image.split('/')[2]
+    }
+    else{
+        image=req.file.path.split('/')[2]
+    }
+    model=req.body.Model
     serialnumber=req.body.SerialNumber
     installationdate=req.body.InstallationDate
+    arrivaldate=req.body.ArrivalDate
+    warrantydate=req.body.WarrantyDate
     manufacturer=req.body.Manufacturer
     location=req.body.Location
     department=req.body.Department
     agent=req.body.Agent
+    pm=req.body.PM
+    notes=req.body.Notes
     var departmentCode=null
     var agentCode=null
     Department.findOne({where:{Name:department}}).then(department => { 
@@ -139,7 +148,11 @@ exports.addEquipment=(req,res) => {
                             equipment.Name=name
                             equipment.Cost=cost
                             equipment.Image=image
-                            equipment.ModelNumber=modelnumber
+                            equipment.Model=model
+                            equipment.PM=pm
+                            equipment.ArrivalDate=arrivaldate
+                            equipment.WarrantyDate=warrantydate
+                            equipment.Notes=notes
                             equipment.InstallationDate=installationdate
                             equipment.SerialNumber=serialnumber
                             equipment.Manufacturer=manufacturer
@@ -151,8 +164,8 @@ exports.addEquipment=(req,res) => {
         
                         else
                         {
-                            Equipment.create({Code:code,Name:name,Image:image,
-                                    Cost:cost,ModelNumber:modelnumber,SerialNumber:serialnumber,AgentSupplierId:agentCode,
+                            Equipment.create({Code:code,Name:name,Image:image,ArrivalDate:arrivaldate,WarrantyDate:warrantydate,PM:pm,
+                                    Cost:cost,Model:model,SerialNumber:serialnumber,AgentSupplierId:agentCode,Notes:notes,
                                     Location:location,Manufacturer:manufacturer,InstallationDate:installationdate,DepartmentCode:departmentCode})
                                     .then(equipment => res.redirect('/equipment') )
                         }

@@ -61,23 +61,36 @@ exports.editClinicalEngineer=(req,res) => {
 
  exports.editEquipment=(req,res)=>{
     code=req.params.id
+    console.log("here")
     Equipment.findByPk(code).then(equipment => {
         const eq = {
               Code: equipment.Code,
               Name: equipment.Name,
               Cost: equipment.Cost,
               InstallationDate: equipment.InstallationDate,
-              ModelNumber:equipment.ModelNumber,
+              WarrantyDate: equipment.WarrantyDate,
+              ArrivalDate: equipment.InstallationDate,
+              Model:equipment.Model,
               SerialNumber:equipment.SerialNumber,
               Manufacturer:equipment.Manufacturer,
               Location:equipment.Location,
+              Notes:equipment.Notes,
+              PM:equipment.PM,
               DepartmentCode:equipment.DepartmentCode,
               AgentSupplierId:equipment.AgentSupplierId
             }
+   if(eq.PM =="Annualy"){
+      res.render('editEquipment',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
+                                       Equipment:true,equipment:eq,A:true});
+
+   }else{
+      res.render('editEquipment',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
+            Equipment:true,equipment:eq,M:true});
+   }     
+   // res.render('editEquipment',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
+   //                                    Equipment:true,equipment:eq});  
     
         
-    res.render('editEquipment',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
-                                     Equipment:true,equipment:eq});
  })
     .catch(err => console.log("ERROR!!!!!!",err) )
 

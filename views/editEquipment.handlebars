@@ -12,7 +12,9 @@
                                 </div>
                                 <div class="login-form" style="height: auto;">
                                     <form action="/equipment/add" method="POST">
-                                                <input type="text"  hidden required name="Code" placeholder="Enter Code" value="{{ equipment.Code }}" class="form-control">
+                                            <input type="text"  hidden  name="Image" value="{{ equipment.Image }}" >
+                                            <input type="text"  hidden  name="edit" value="edit" >
+                                            <input type="text"  hidden  name="Code" value="{{ equipment.Code }}" >
                                             <div class="form-group">
                                                 <label class=" form-control-label">Name</label>
                                                 <input type="text"required name="Name" placeholder="Enter Name" value="{{ equipment.Name }}" class="form-control">
@@ -23,15 +25,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Installation Date</label>
-                                                <input type="date"required name="InstallationDate" placeholder="Enter Installation Date" value="{{ equipment.InstallationDate }}" class="form-control">
+                                                <input type="date" required name="InstallationDate" placeholder="Enter Installation Date" value="{{ equipment.InstallationDate }}" class="form-control">
                                             </div>
                                             <div class="form-group">
-                                                <label class=" form-control-label">Model Number</label>
-                                                <input type="number" required name="ModelNumber" value="{{ equipment.ModelNumber}}" placeholder="Enter Model Number" class="form-control">
+                                                <label class=" form-control-label">Arrival Date</label>
+                                                <input type="date" required name="ArrivalDate" placeholder="Enter Arrival Date"  value="{{ equipment.ArrivalDate }}"  class="form-control">
                                             </div>
+                                             <div class="form-group">
+                                                <label class=" form-control-label">Warranty Date</label>
+                                                <input type="date" required name="WarrantyDate" placeholder="Enter Warranty Date"   value="{{ equipment.WarrantyDate }}"  class="form-control">
+                                             </div>
+                                             <div class="form-group">
+                                                <label class=" form-control-label">Model </label>
+                                                <input type="text" required name="Model" value="{{ equipment.Model}}" placeholder="Enter Model Number" class="form-control">
+                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Serial Number</label>
-                                                <input type="number"required name="SerialNumber" value="{{ equipment.SerialNumber }}" placeholder="Enter Serial Number" class="form-control">
+                                                <input type="text"required name="SerialNumber" value="{{ equipment.SerialNumber }}" placeholder="Enter Serial Number" class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label class=" form-control-label">Manufacturer</label>
@@ -54,6 +64,18 @@
                                                         <option value="CSSD">CSSD</option>
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <label class=" form-control-label">PM</label>
+                                                <select name="PM"required id="select" class="form-control">
+                                                        <option value="Monthly" {{#if M}} selected {{/if}} >Monthly</option>
+                                                        <option value="Annualy" {{#if A}} selected {{/if}}>Annualy</option> 
+
+                                                </select>
+                                            </div>     
+                                            <div class="form-group">
+                                                <label class=" form-control-label">Notes</label>
+                                                <input type="text"  name="Notes" placeholder="Any Notes" value="{{ equipment.Notes}}" class="form-control">
+                                            </div>                                       
                                                             
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
                                 

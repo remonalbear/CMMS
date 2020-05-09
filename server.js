@@ -12,6 +12,7 @@ const agent_supplier=require('./models/agent_supplier');
 const equipment=require('./models/equipment');
 const work_order=require('./models/work_order');
 const break_down=require('./models/break_down');
+const dialy_inspection=require('./models/dialy_inspection');
 const maintenance=require('./models/maintenance');
 const homeController=require('./routes/main');
 const addController=require('./routes/add');
@@ -79,12 +80,15 @@ break_down.belongsTo(equipment);
 equipment.hasMany(break_down);
 maintenance.belongsTo(break_down);
 break_down.hasMany(maintenance);
-
+dialy_inspection.belongsTo(equipment);
+equipment.hasMany(dialy_inspection);
+dialy_inspection.belongsTo(clinical_engineer);
+clinical_engineer.hasMany(dialy_inspection)
 // synchronizing with database 
 sequelize.sync()
-// sequelize.sync({force:true})
+//sequelize.sync({force:true})
 .then(res => { 
-    app.listen(30,() => {
+    app.listen(3000,() => {
         console.log('Running')
        })
       

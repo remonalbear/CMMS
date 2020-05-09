@@ -27,7 +27,7 @@ exports.signIn=(req,res) => {
            if(clinicalengineer){
             bcrypt.compare(pass, clinicalengineer.Password).then(result => {
                 if(result)
-                 res.redirect('/home');  
+                 res.redirect('/engineer/dialyInspection');  
                 else
                  res.redirect('/')    
                 })
@@ -42,6 +42,20 @@ exports.signIn=(req,res) => {
 
 exports.home=(req,res) =>{
     res.render('home',{pageTitle:'Home',Home:true});
+}
+exports.dialyInspectionEngineer=(req,res) =>{
+    res.render('dialyInspectionForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
+    DI:true})
+}
+
+exports.dialyInspectionEngineerPost=(req,res) =>{
+ console.log(req.body)
+ res.end()
+}
+
+exports.ppmEngineer=(req,res) =>{
+    console.log("ppm")
+
 }
 
 
@@ -65,8 +79,10 @@ Department.findAll({
                             hasDepartment:deps.length>0});
                     
 }).catch(err => {
-    if(err)    
+    if(err){
+        console.log(err)    
         res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Departments'})
+     }
     })
 
 
@@ -202,12 +218,16 @@ exports.equipment=(req,res)=>{
                     Code: equipment.Code,
                     Name: equipment.Name,
                     Cost: equipment.Cost,
+                    PM:equipment.PM,
                     Image:equipment.Image,
                     InstallationDate: equipment.InstallationDate,
-                    ModelNumber:equipment.ModelNumber,
+                    ArrivalDate:equipment.ArrivalDate,
+                    WarrantyDate:equipment.WarrantyDate,
+                    Model:equipment.Model,
                     SerialNumber:equipment.SerialNumber,
                     Manufacturer:equipment.Manufacturer,
                     Location:equipment.Location,
+                    Notes:equipment.Notes,
                     DepartmentCode:equipment.Department.dataValues.Name,
                     AgentSupplierId:equipment.AgentSupplier.dataValues.Name
                   }

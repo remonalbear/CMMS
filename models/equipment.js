@@ -14,21 +14,29 @@ Name:{
 },
 Image:{
     type:Sequelize.STRING,
-    allowNull:false
+    allowNull:true
 },
 Cost:{
     type:Sequelize.BIGINT(12),
     allowNull:false
 },
-ModelNumber:{
-    type:Sequelize.BIGINT(25),
+Model:{
+    type:Sequelize.STRING,
     allowNull:false
 },
 SerialNumber:{
-    type:Sequelize.BIGINT(25),
+    type:Sequelize.STRING,
     allowNull:false
 },
 InstallationDate:{
+    type:Sequelize.TEXT,
+    allowNull:false
+},
+ArrivalDate:{
+    type:Sequelize.TEXT,
+    allowNull:false
+},
+WarrantyDate:{
     type:Sequelize.TEXT,
     allowNull:false
 },
@@ -39,6 +47,14 @@ Manufacturer:{
 Location:{
     type:Sequelize.STRING,
     allowNull:false
+},
+PM:{
+    type:Sequelize.STRING,
+    allowNull:false
+},
+Notes:{
+    type:Sequelize.TEXT,
+    allowNull:true
 }
 
 

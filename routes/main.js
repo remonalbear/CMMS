@@ -16,6 +16,9 @@ router.get('/sparePart',homeController.sparePart)
 router.get('/clinicalEngineer',homeController.clinicalEngineer)
 router.get('/maintenance',homeController.maintenance)
 router.get('/home',homeController.home)
+router.get('/engineer/dialyInspection',homeController.dialyInspectionEngineer)
+router.post('/engineer/dialyInspection',homeController.dialyInspectionEngineerPost)
+router.get('/engineer/ppm',homeController.ppmEngineer)
 router.post('/signIn',homeController.signIn);
 router.get('/',homeController.homeSignIn);
 

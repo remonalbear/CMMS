@@ -146,3 +146,47 @@ exports.agentEquipmentsReport=(req,res)=>{
         res.render('error',{layout:false,pageTitle:'Error',message:'Sorry!!  Error happend while getting Equipments For This Agent',href:'/report/department/enginers/'+code})
     })
 }
+
+
+
+exports.equipmentInstallationReport=(req,res)=>{
+    id=req.params.Id
+    var date = Date(Date.now()).toString().split('GMT')[0]; 
+    Equipment.findOne({where:{Code:id},include:[{model:AgentSupplier},{model:Department}]}).then(equipment => {
+        if(equipment){
+            const eq = {
+                Code: equipment.Code,
+                Name: equipment.Name,
+                Cost: equipment.Cost,
+                InstallationDate: equipment.InstallationDate,
+                WarrantyDate: equipment.WarrantyDate,
+                ArrivalDate: equipment.InstallationDate,
+                Model:equipment.Model,
+                SerialNumber:equipment.SerialNumber,
+                Manufacturer:equipment.Manufacturer,
+                Location:equipment.Location,
+                Notes:equipment.Notes,
+                PM:equipment.PM,
+                Department:equipment.Department.Name,
+                Agent:equipment.AgentSupplier.Name
+              }
+
+              res.render('installationReport',{layout:'equipmentReportLayout',pageTitle:'Equipments',
+                  code:id,equipment:eq,Date:date,ID:true})
+        }
+        else
+        res.render('error',{layout:false,pageTitle:'Error',message:'Sorry!!  Error happend while getting Data for This Equipment ',href:'/report/department/enginers/'+code})
+
+
+    })
+
+
+
+}
+
+
+
+exports.equipmentDialyInspectionReport=(req,res) => {
+
+   
+}

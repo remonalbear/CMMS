@@ -7,6 +7,8 @@ router.get('/report/department/equipments/:code',reportController.departmentEqui
 router.get('/report/department/engineers/:code',reportController.departmentEngineersReport);
 router.get('/report/agent/spareParts/:Id',reportController.agentSparePartsReport);
 router.get('/report/agent/equipments/:Id',reportController.agentEquipmentsReport);
+router.get('/report/equipmet/installation/:Id',reportController.equipmentInstallationReport);
+router.get('/report/equipment/dailyInspection/:Id',reportController.equipmentDialyInspectionReport);
 
 
 

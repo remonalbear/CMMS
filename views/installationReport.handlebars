@@ -1,0 +1,88 @@
+<div class="container">
+            <div class="card-body card-block">
+                <div class="login-content">
+
+                    <div class="login-logo">
+                        <a href="#">
+                        <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+                    </div>
+                    <h3 class="title-3 m-b-30">
+                        <i class="zmdi zmdi-account-calendar"></i>Installation Report</h3>
+                    <div class="card-body">
+                        <div class="card-text"><strong>Date/Time:</strong> {{Date}} </div>
+                        <div class="card-text"><strong>Device:</strong> {{ equipment.Name}}</div>
+                        <div class="card-text"><strong>Model:</strong> {{equipment.Model}}</div>
+                         <div class="card-text"><strong>Department:</strong> {{equipment.Department}}</div>
+                        <div class="card-text"><strong>Location:</strong> {{equipment.Location}}</div>
+                    </div>
+                    <div class="row">
+                        <!-- table 1 DATA-->
+                        <div class="col-lg-6">
+                            <div class="top-campaign">
+                                <h3 class="title-3 m-b-30">Details</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-top-campaign">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Note:  </strong><span style="color:#0056b3">{{equipment.Notes}}</span> </td>
+                                                <td hidden>//</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Serial:  </strong> <span style="color:#0056b3">{{ equipment.SerialNumber}}</span></td>
+                                                <td hidden>//</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Manufacturer:  </strong><span style="color:#0056b3"> {{ equipment.Manufacturer}}</span> </td>
+                                                <td hidden>//</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Agent:  </strong> <span style="color:#0056b3">  {{ equipment.Agent}}</span></td>
+                                                <td hidden>//</td>
+                                            </tr>   
+                                        </thead>
+                                    </table>
+                                </div>  
+                            </div>
+                        </div>
+                        <!-- table 2 DATA-->
+                        <div class="col-lg-6">
+                            <div class="top-campaign">
+                                <h3 class="title-3 m-b-30">Purchase Info</h3>
+                                <div class="table-responsive">
+                                    <table class="table table-top-campaign">
+                                        <thead>
+                                            <tr>
+                                                <td><strong>Arrival Date: </strong>  <span style="color:#0056b3"> {{ equipment.ArrivalDate}}</span></td>
+                                                <td hidden> //</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Installation Date: </strong> <span style="color:#0056b3"> {{ equipment.InstallationDate}}</span> </td>
+                                                <td hidden>//</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Warranty Date: </strong>  <span style="color:#0056b3"> {{equipment.WarrantyDate}}</span></td>
+                                                <td hidden>//</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Purchase price: </strong> <span style="color:#0056b3"> {{ equipment.Cost}} L.E</span> </td>
+                                                <td hidden>L.E</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>PM schedule </strong>  <strong style="color:#0056b3">{{equipment.PM}}</strong> </td>
+                                                <td hidden> //</td>
+                                                
+                                            </tr>   
+                                        </thead>
+                                    </table>
+                                </div>   
+                            </div>
+                            <!-- END USER DATA-->
+                        </div>
+
+                    </div> 
+                </div>
+            </div> 
+        </div>
+        
+    </div> 
+    

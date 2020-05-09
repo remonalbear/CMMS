@@ -36,7 +36,7 @@
 
 </head>
 
-<body class="animsition">
+<body class="animsition" >
     <div class="page-wrapper">
         
         <!-- MENU SIDEBAR-->
@@ -49,17 +49,21 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                <li class="has-sub">
-                    <a href="/department">
-                <i class="fas fa-copy"></i>Department</a>
+                    <a href="/equipment">
+                <i class="fas fa-copy"></i>Equipments</a>
                 </li>            
-                <li class="{{#if Equipment }}active{{/if}} has-sub">
-                    <a href="/report/department/equipments/{{ code }}">
-                        <i class="fas fa-copy"></i>Equipments</a>
+                <li class="{{#if ID }}active{{/if}} has-sub">
+                    <a href="/report/equipment/installation/{{ code }}">
+                        <i class="fas fa-copy"></i>Installtion</a>
                 </li>                        
-                <li class="{{#if CE }}active{{/if}} has-sub">
-                    <a class="js-arrow" href="/report/department/engineers/{{ code }}">
-                        <i class="fas fa-copy"></i>Clinical Engineers</a>
-                </li>        
+                <li class="{{#if PPM }}active{{/if}} has-sub">
+                    <a class="js-arrow" href="/report/equipment/ppm/{{ code }}">
+                        <i class="fas fa-copy"></i>PPM</a>
+                </li> 
+                <li class="{{#if DI }}active{{/if}} has-sub">
+                    <a class="js-arrow" href="/report/equipment/dailyInspection/{{ code }}">
+                        <i class="fas fa-copy"></i>Daily Inspection</a>
+                </li>         
                     </ul>
                 </nav>
             </div>
