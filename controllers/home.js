@@ -7,9 +7,7 @@ const Equipment =require('../models/equipment');
 const Maintenance =require('../models/maintenance');
 const SparePart =require('../models/spare_part');
 const WorkOrder=require('../models/work_order');
-
-
-
+const DailyInspection = require('../models/dialy_inspection');
 
 exports.homeSignIn=(req,res) => {
     res.render('homeSignIn',{layout:false});
@@ -44,14 +42,133 @@ exports.home=(req,res) =>{
     res.render('home',{pageTitle:'Home',Home:true});
 }
 exports.dialyInspectionEngineer=(req,res) =>{
+ 
     res.render('dialyInspectionForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
     DI:true})
 }
 
 exports.dialyInspectionEngineerPost=(req,res) =>{
  console.log(req.body)
- res.end()
+ code = req.body.Code
+ date = req.body.DATE
+ q1 = req.body.Q1
+ q2 = req.body.Q2
+ q3 = req.body.Q3
+ q4 = req.body.Q4
+ q5 = req.body.Q5
+ q6 = req.body.Q6
+ q7 = req.body.Q7
+ q8 = req.body.Q8
+ equipmentId = req.body.EquipmentCode
+ engineerId=req.body.ClinicalEngineerDSSN
+ var equId=null
+ var engId=null
+ Equipment.findOne({where:{Code:equipmentId}}).then(equipment => { 
+     if(equipment){
+         equId=equipment.Code
+         ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(clinicalengineer =>{
+             if(clinicalengineer){
+                 engId = clinicalengineer.DSSN
+                 DailyInspection.findByPk(code).then(daily=>{
+                     if(daily){
+                         daily.DATE=date
+                         if(q1 == "on")
+                             {
+                                 q1 = "on"
+                             }
+                         else 
+                             {
+                                 q1 = "off"
+                             }
+                         if(q2 == "on")
+                             {
+                                 q2 = "on"
+                             }
+                         else 
+                             {
+                                 q2 = "off"
+                             }
+                         if(q3 == "on")
+                             {
+                                 q3 = "on"
+                             }
+                         else 
+                             {
+                                 q3 = "off"
+                             }
+                         if(q4 == "on")
+                             {
+                                 q4 = "on"
+                             }
+                         else 
+                             {
+                                 q4 = "off"
+                             }
+                         if(q5 == "on")
+                             {
+                                 q5 = "on"
+                             }
+                         else 
+                             {
+                                 q5 = "off"
+                             }
+                         if(q6 == "on")
+                             {
+                                 q6 = "on"
+                             }
+                         else 
+                             {
+                                 q6 = "off"
+                             }
+                         if(q7 == "on")
+                             {
+                                 q7 = "on"
+                             }
+                         else 
+                             {
+                                 q7 = "off"
+                             }
+
+                         if(q8 == "on")
+                             {
+                                 q8 = "on"
+                             }
+                         else 
+                             {
+                                 q8 = "off"
+                             }
+                         daily.save().then(dailyinspection => res.redirect('/dailyInspection'))
+                     }
+                     else {
+                         DailyInspections.create({DATE:date,Q1:q1,Q2:q2,Q3:q3,Q4:q4,Q5:q5,Q6:q6,Q7:q7,Q8:q8,EquipmentCode:equId,ClinicalEnginnerDSSN:engId})
+                         .then(dailyinspection => res.redirect('/dailyInspection') )
+                         console.log(DailyInspections)
+                         }
+                })
+             }
+         
+    
+
+             else
+               res.render('error',{layout:false,pageTitle:'Error',href:'/dailyInspection',message:'Sorry !!! Could Not Get this Engineer'})  
+               
+               
+         })
+         
+     }
+     else{
+         res.render('error',{layout:false,pageTitle:'Error',href:'/dailyInspection',message:'Sorry !!! Could Not Get this Equipment'})
+     }
+ }).catch(err => {
+     if(err)
+      res.render('error',{layout:false,pageTitle:'Error',href:'/dailyInspection',message:'Sorry !!! Could Not Add This Report '})
+
+       
+ })
+
 }
+
+
 
 exports.ppmEngineer=(req,res) =>{
     console.log("ppm")
