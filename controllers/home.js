@@ -59,8 +59,8 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
  q6 = req.body.Q6
  q7 = req.body.Q7
  q8 = req.body.Q8
- equipmentId = req.body.EquipmentCode
- engineerId=req.body.ClinicalEngineerDSSN
+ equipmentId = req.body.Device
+ engineerId=req.body.Engineer
  var equId=null
  var engId=null
  Equipment.findOne({where:{Code:equipmentId}}).then(equipment => { 
@@ -69,7 +69,7 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
          ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(clinicalengineer =>{
              if(clinicalengineer){
                  engId = clinicalengineer.DSSN
-                 DailyInspection.findByPk(code).then(daily=>{
+                 
                      if(daily){
                          daily.DATE=date
                          if(q1 == "on")
@@ -137,31 +137,31 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
                              {
                                  q8 = "off"
                              }
-                         daily.save().then(dailyinspection => res.redirect('/dailyInspection'))
+                         daily.save().then(dailyinspection => res.redirect('/engineer/dailyInspection'))
                      }
                      else {
                          DailyInspections.create({DATE:date,Q1:q1,Q2:q2,Q3:q3,Q4:q4,Q5:q5,Q6:q6,Q7:q7,Q8:q8,EquipmentCode:equId,ClinicalEnginnerDSSN:engId})
-                         .then(dailyinspection => res.redirect('/dailyInspection') )
+                         .then(dailyinspection => res.redirect('/engineer/dailyInspection') )
                          console.log(DailyInspections)
                          }
-                })
+              
              }
          
     
 
              else
-               res.render('error',{layout:false,pageTitle:'Error',href:'/dailyInspection',message:'Sorry !!! Could Not Get this Engineer'})  
+               res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dailyInspection',message:'Sorry !!! Could Not Get this Engineer'})  
                
                
          })
          
      }
      else{
-         res.render('error',{layout:false,pageTitle:'Error',href:'/dailyInspection',message:'Sorry !!! Could Not Get this Equipment'})
+         res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dailyInspection',message:'Sorry !!! Could Not Get this Equipment'})
      }
  }).catch(err => {
      if(err)
-      res.render('error',{layout:false,pageTitle:'Error',href:'/dailyInspection',message:'Sorry !!! Could Not Add This Report '})
+      res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dailyInspection',message:'Sorry !!! Could Not Add This Report '})
 
        
  })
