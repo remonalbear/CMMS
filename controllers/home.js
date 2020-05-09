@@ -61,108 +61,40 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
  q8 = req.body.Q8
  equipmentId = req.body.Device
  engineerId=req.body.Engineer
- var equId=null
- var engId=null
- Equipment.findOne({where:{Code:equipmentId}}).then(equipment => { 
+
+ q1 = q1 == "on" ? "on": "off"
+ q2 = q2 == "on" ? "on": "off"
+ q3 = q3 == "on" ? "on": "off"
+ q4 = q4 == "on" ? "on": "off"
+ q5 = q5 == "on" ? "on": "off"
+ q6 = q6 == "on" ? "on": "off"
+ q7 = q7 == "on" ? "on": "off"
+ q8 = q8 == "on" ? "on": "off"
+
+ 
+     
+
+ 
+ Equipment.findByPk(equipmentId).then(equipment => { 
      if(equipment){
-         equId=equipment.Code
-         ClinicalEngineer.findOne({where:{DSSN:engineerId}}).then(clinicalengineer =>{
+         ClinicalEngineer.findByPk(engineerId).then(clinicalengineer =>{
              if(clinicalengineer){
-                 engId = clinicalengineer.DSSN
-                 
-                     if(daily){
-                         daily.DATE=date
-                         if(q1 == "on")
-                             {
-                                 q1 = "on"
-                             }
-                         else 
-                             {
-                                 q1 = "off"
-                             }
-                         if(q2 == "on")
-                             {
-                                 q2 = "on"
-                             }
-                         else 
-                             {
-                                 q2 = "off"
-                             }
-                         if(q3 == "on")
-                             {
-                                 q3 = "on"
-                             }
-                         else 
-                             {
-                                 q3 = "off"
-                             }
-                         if(q4 == "on")
-                             {
-                                 q4 = "on"
-                             }
-                         else 
-                             {
-                                 q4 = "off"
-                             }
-                         if(q5 == "on")
-                             {
-                                 q5 = "on"
-                             }
-                         else 
-                             {
-                                 q5 = "off"
-                             }
-                         if(q6 == "on")
-                             {
-                                 q6 = "on"
-                             }
-                         else 
-                             {
-                                 q6 = "off"
-                             }
-                         if(q7 == "on")
-                             {
-                                 q7 = "on"
-                             }
-                         else 
-                             {
-                                 q7 = "off"
-                             }
-
-                         if(q8 == "on")
-                             {
-                                 q8 = "on"
-                             }
-                         else 
-                             {
-                                 q8 = "off"
-                             }
-                         daily.save().then(dailyinspection => res.redirect('/engineer/dailyInspection'))
-                     }
-                     else {
-                         DailyInspections.create({DATE:date,Q1:q1,Q2:q2,Q3:q3,Q4:q4,Q5:q5,Q6:q6,Q7:q7,Q8:q8,EquipmentCode:equId,ClinicalEnginnerDSSN:engId})
-                         .then(dailyinspection => res.redirect('/engineer/dailyInspection') )
-                         console.log(DailyInspections)
-                         }
-              
-             }
-         
-    
-
-             else
-               res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dailyInspection',message:'Sorry !!! Could Not Get this Engineer'})  
-               
-               
-         })
-         
+                    DailyInspection.create({DATE:date,Q1:q1,Q2:q2,Q3:q3,Q4:q4,Q5:q5,Q6:q6,Q7:q7,Q8:q8,EquipmentCode:equipmentId,ClinicalEnginnerDSSN:engineerId})
+                        .then(dailyinspection => res.redirect('/engineer/dialyInspection') )
+            }
+            else{
+                res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dialyInspection',message:'Sorry !!! Could Not Get this Engineer'})
+            } 
+         })   
      }
      else{
-         res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dailyInspection',message:'Sorry !!! Could Not Get this Equipment'})
+         res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dialyInspection',message:'Sorry !!! Could Not Get this Equipment'})
      }
  }).catch(err => {
-     if(err)
-      res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dailyInspection',message:'Sorry !!! Could Not Add This Report '})
-
+     if(err){
+         console.log(err)
+      res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/dialyInspection',message:'Sorry !!! Could Not Add This Report '})
+     }
        
  })
 

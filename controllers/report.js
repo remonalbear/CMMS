@@ -3,6 +3,7 @@ AgentSupplier=require('../models/agent_supplier')
 ClinicalEngineer=require('../models/clinical_engineer')
 Department=require('../models/department')
 SparePart=require('../models/spare_part')
+DialyInspection=require('../models/dialy_inspection')
 
 exports.departmentEquipmentsReport=(req,res) => {
 code=req.params.code
@@ -187,6 +188,65 @@ exports.equipmentInstallationReport=(req,res)=>{
 
 
 exports.equipmentDialyInspectionReport=(req,res) => {
+    id=req.params.Id
+    var name=null
+    var model =null
+    Equipment.findByPk(id).then(eq => {
+        name=eq.Name
+        model=eq.Model
+        DialyInspection.findAll({where:{EquipmentCode:id},include:[{model:Equipment},{model:ClinicalEngineer}]})
+        .then(reports => {
+            const reps=reports.map(report => {
+                return{
+                    Code:report.Code,
+                    DATE:report.DATE,
+                    Engineer:report.ClinicalEnginner.FName +' '+ report.ClinicalEnginner.LName ,
+                    Equipment:report.Equipment.Name,
+                    EquipmentModel:report.Equipment.Model
+                }
+            })
 
-   
+            res.render('dialyinspectionTable',{layout:'equipmentReportLayout',pageTitle:'Dialy Inspection',
+                    code:id,DI:true,reports:reps,hasReports:reps.length>0,name:name,model:model })   
+        } )
+    }).catch( err => {
+        if(err)
+        {
+            console.log(err)
+            res.render('error',{layout:false,pageTitle:'Error',message:'Sorry!!  Error happend while getting Dialy Inspection Reports for This Equipment ',href:'/equipment'})
+        }
+    })
+}
+
+
+exports.dialyInspectionReport = (req,res) =>{
+ code=req.params.code
+ DialyInspection.findOne({where:{Code:code},include:[{model:ClinicalEngineer},{model:Equipment}]}).then(report =>{
+    const rep = {
+        DATE:report.DATE,
+        Engineer:report.ClinicalEnginner.FName+' '+report.ClinicalEnginner.LName,
+        EquipmentName:report.Equipment.Name,
+        EquipmentCode:report.Equipment.Code,
+        EquipmentModel:report.Equipment.Model,
+        Q1:report.Q1,
+        Q2:report.Q2,
+        Q3:report.Q3,
+        Q4:report.Q4,
+        Q5:report.Q5,
+        Q6:report.Q6,
+        Q7:report.Q7,
+        Q8:report.Q8,
+
+    }
+    rep.Q1 = rep.Q1 == "on" ? true: false
+    rep.Q2 = rep.Q2 == "on" ? true: false
+    rep.Q3 = rep.Q3 == "on" ? true: false
+    rep.Q4 = rep.Q4 == "on" ? true: false
+    rep.Q5 = rep.Q5 == "on" ? true: false
+    rep.Q6 = rep.Q6 == "on" ? true: false
+    rep.Q7 = rep.Q7 == "on" ? true: false
+    rep.Q8 = rep.Q8 == "on" ? true: false   
+    res.render('dialyinspection',{layout:'equipmentReportLayout',pageTitle:'Dialy Inspection',
+        code:rep.EquipmentCode,DI:true,report:rep })  
+ })
 }
