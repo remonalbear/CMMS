@@ -12,7 +12,7 @@ const PPMQuestions =require('../models/ppm_questions')
 const PPM =require('../models/ppm')
 
 exports.homeSignIn=(req,res) => {
-    res.render('homeSignIn',{layout:false});
+    res.render('newHome',{layout:false});
 }
 
 
