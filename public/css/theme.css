@@ -12,7 +12,7 @@ Primary use:	Open Source
 
 * body
     + Header / header
-	+ Page Content / .page-content .name-page
+	+ Page Content / .page-content .nastatistic__item statistic__item--bluestatistic__item statistic__item--blueme-page
         + Section Layouts / section .name-section
         ...
 	+ Footer / footer
@@ -40,6 +40,12 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 /*                   GENERIC                           */
 /*-----------------------------------------------------*/
 /* ----- Normalize ----- */
+
+body{
+    width: 100%;
+    height: 100%
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -4915,6 +4921,24 @@ section {
     -ms-flex-pack: justify;
     justify-content: space-between;
 }
+.mb-4 {
+    color: #ffffff;
+    margin-bottom: 1.5rem !important; }
+.mb-6 {
+    color: #d99e14;
+    margin-bottom: 1.5rem !important; }
+.subheading {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ffffff;
+  display: inline-block;
+  margin-bottom: 20px;
+  font-weight: 600; }
+.mt-5 {
+
+    margin-right: 1000px;
+    margin-top: 15rem !important; }
 
 .welcome2-inner .welcome2-greeting {
     width: -webkit-calc(100% - 500px);
@@ -4990,6 +5014,7 @@ section {
     color: #4272d7;
 }
 
+
 @media (min-width: 992px) and (max-width: 1199px) {
     .statistic__item h2 {
         font-size: 22px;
@@ -5010,34 +5035,38 @@ section {
 }
 
 .statistic__item .icon {
-    display: inline-block;
-    position: absolute;
-    bottom: -50px;
-    right: -7px;
-}
-
-.statistic__item .icon i {
-    font-size: 180px;
-    color: #808080;
-    opacity: .2;
-    line-height: 1;
-    vertical-align: baseline;
+    display: center;
+    position: center;
+    margin-left: 150px;
 }
 
 .statistic__item--green {
+    height:380px;
     background: #00b26f;
 }
 
 .statistic__item--orange {
+    height:380px;
     background: #ff8300;
 }
 
 .statistic__item--blue {
+    height:380px;
     background: #00b5e9;
 }
+.statistic__item--violet {
+    height:380px;
+    background: #f442fa;
+}
+
 
 .statistic__item--red {
+    height:380px;
     background: #fa4251;
+}
+.statistic__item--blue2 { 
+    height:380px;
+    background: #070580;
 }
 
 /* ----- Statistic 2 ----- */

@@ -19,6 +19,9 @@ router.get('/home',homeController.home)
 router.get('/engineer/dialyInspection',homeController.dialyInspectionEngineer)
 router.post('/engineer/dialyInspection',homeController.dialyInspectionEngineerPost)
 router.get('/engineer/ppm',homeController.ppmEngineer)
+router.post('/engineer/ppm/equipment',homeController.ppmEngineerPost)
+router.post('/engineer/ppmEquipment',homeController.ppmEngineerEquipmentPost)
+router.get('/engineer/ppm/:code',homeController.ppmEngineerEquipment)
 router.post('/signIn',homeController.signIn);
 router.get('/',homeController.homeSignIn);
 
