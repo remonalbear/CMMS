@@ -138,9 +138,26 @@ Department.findAll({
 }
 
 exports.maintenance=(req,res)=>{
+    Maintenance.findAll().then(maintenances => {
+        const m = maintenances.map(main => {
+                  return {
+                    Id:main.Id,
+                    StartDate:main.StartDate,
+                    EndDate:main.EndDate,
+                    BreakDownCode:main.BreakDownCode,
+                    Description:main.Description             
+                  }
+                })
 
+    res.render('maintenance',{pageTitle:'Maintenance',
+                                Maintenance:true,Maintenances:m,
+                                hasMaintenance:m.length>0});
+    }).catch(err => {
+        if(err)
+          console.log(err)
+          res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not get any maintenance'})
+    })
 
-    res.render('maintenance',{pageTitle:'Maintenance',Maintenance:true});
 }
 
 

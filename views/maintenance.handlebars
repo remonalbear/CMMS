@@ -17,36 +17,40 @@
                         <table class="table table-data2">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>description</th>
-                                    <th>engineers</th>
-                                    <th>equipments</th>
+                                    <th>Id</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Break Down ID</th>
+                                    <th>Description</th>
                                     <th></th>
                                 </tr>
                             </thead>
+                            {{#if hasMaintenance}} 
                             <tbody>
-                                <tr class="tr-shadow">
-                                    <td>Lori Lynch</td>
-                                    <td>
-                                        <span class="block-email">lori@example.com</span>
-                                    </td>
-                                    <td class="desc">Samsung S8 Black</td>
-                                    <td>2018-09-27 02:12</td>
-                                    
-                                    <td>
-                                        <div class="table-data-feature">
-                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </a>
-                                            <a class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <i class="zmdi zmdi-delete"></i>
-                                            </a>
+                               {{#each Maintenances }} 
 
-                                        </div>
+                                <tr class="tr-shadow">
+                                    <td>{{this.Id}}</td>
+                                    <td>{{this.StartDate}}</td>
+                                    <td>{{this.EndDate}}</td>
+                                    <td>{{this.BreakDownCode}}</td>
+                                    <td>{{this.Description}}</td>
+                                    <td>
+                                       <div class="table-data-feature">
+                                                <a href="/maintenance/edit/{{ this.Id }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </a>
+                                                <a href="/maintenance/delete/{{ this.Id }}" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </a>        
+
+                                            </div>
                                     </td>
                                 </tr>
                                 <tr class="spacer"></tr>
-                            </tbody>
+                              {{/each}} 
+                             </tbody>
+                           {{/if}} 
                         </table>
                     </div>
                     <!-- END DATA TABLE -->
@@ -63,7 +67,7 @@
         <div class="modal-content">
           
           <div class="modal-body">
-            <form method="POST" action="/appointment/{{ id }}">
+            <form method="POST" action="/maintenance/add">
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -74,12 +78,20 @@
                 </div>
                 <div class="login-form">
                         <div class="form-group">
-                            <label class=" form-control-label">ID</label>
-                            <input type="text"  placeholder="Enter ID" class="form-control">
+                            <label class=" form-control-label">Break Down Code</label>
+                            <input type="text" required name="BreakDownID" placeholder="Enter Code  " class="form-control">
                         </div>
-                        <div class="form-group">
+                           <div class="form-group">
+                            <label class=" form-control-label">Start Date</label>
+                            <input type="date" required name="StartDate" placeholder="Enter Start Date " class="form-control">
+                        </div>
+                           <div class="form-group">
+                            <label class=" form-control-label">End Date</label>
+                            <input type="date" required name="EndDate" placeholder="Enter End Date  " class="form-control">
+                        </div>
+                           <div class="form-group">
                             <label class=" form-control-label">Description</label>
-                            <input type="text"  placeholder="Enter Description" class="form-control">
+                            <input type="text" required name="Description" placeholder="Enter Description " class="form-control">
                         </div>
                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
                 </div>

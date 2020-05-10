@@ -4,6 +4,8 @@ const Equipment =require('../models/equipment')
 const SparePart =require('../models/spare_part');
 const BreakDown =require('../models/break_down');
 const WorkOrder =require('../models/work_order');
+const Maintenance =require('../models/maintenance');
+
 
 
 
@@ -151,6 +153,30 @@ exports.editWorkOrder=(req,res)=>{
 
    res.render('editWorkOrder',{layout:'main-layout.handlebars',pageTitle:'Edit',
                                        WorkOrder:true,workOrder:wd});
+
+
+
+   })
+
+     .catch(err=>console.log("errorrrrr",err))
+
+}
+
+
+exports.editMaintenance=(req,res)=>{
+   id = req.params.id
+   Maintenance.findByPk(id).then(maintenance=>{
+      const m = {
+         Id:maintenance.Id,
+         StartDate:maintenance.StartDate,
+         EndDate:maintenance.EndDate,
+         BreakDownID:maintenance.BreakDownID,
+         Description:maintenance.Description 
+         
+      }
+
+   res.render('editMaintenance',{layout:'main-layout.handlebars',pageTitle:'Edit',
+                                       Maintenance:true,maintenance:m});
 
 
 

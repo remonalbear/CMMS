@@ -9,5 +9,7 @@ router.post('/equipment/add',addController.addEquipment)
 router.post('/sparePart/add',addController.addSpareParts)
 router.post('/breakDown/add',addController.addBreakDown)
 router.post('/workOrder/add',addController.addWorkOrder)
+router.post('/maintenance/add',addController.addMaintenance)
+
 
 module.exports=router;

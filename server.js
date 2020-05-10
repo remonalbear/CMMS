@@ -88,7 +88,7 @@ clinical_engineer.hasMany(dialy_inspection)
 sequelize.sync()
 // sequelize.sync({force:true})
 .then(res => { 
-    app.listen(3000,() => {
+    app.listen(30,() => {
         console.log('Running')
        })
       

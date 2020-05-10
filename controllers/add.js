@@ -6,6 +6,8 @@ const Equipment =require('../models/equipment')
 const SpareParts = require('../models/spare_part')
 const BreakDowns = require('../models/break_down')
 const WorkOrders = require('../models/work_order')
+const Maintenance = require('../models/maintenance')
+
 
 
 
@@ -305,5 +307,43 @@ exports.addWorkOrder=(req,res) => {
 
           
     })
+
+}
+
+
+exports.addMaintenance=(req,res)=>{
+    code=req.body.Id
+    startdate=req.body.StartDate
+    enddate=req.body.EndDate
+    breakdowncode=req.body.BreakDownID
+    description=req.body.Description
+    console.log(breakdowncode)
+    console.log(code)
+    var breakdown = null
+    BreakDowns.findOne({where:{Code:breakdowncode}}).then(breakdown =>{
+        if(breakdown){
+            Maintenance.findByPk(code).then(main=>{
+                if(main){
+                    main.StartDate=startdate
+                    main.EndDate=enddate
+                    main.BreakDownCode=breakdowncode
+                    main.Description=description
+                    main.save().then(p => res.redirect('/maintenance'))
+                    console.log(main.BreakDownID)
+                }
+                else{
+                    Maintenance.create({StartDate:startdate,EndDate:enddate,BreakDownCode:breakdowncode,Description:description})
+                    .then(res.redirect('/maintenance'))
+                }
+        
+            })
+        }
+        else
+         return res.render('error',{layout:false,pageTitle:'Error',href:'/maintenance',message:'Sorry !!! Could Not Get this Break down'})
+         console.log(err)
+        
+    }).catch(err=> {
+        console.log("ERROR!!!!!!",err)
+        })
 
 }
