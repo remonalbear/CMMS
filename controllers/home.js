@@ -8,6 +8,8 @@ const Maintenance =require('../models/maintenance');
 const SparePart =require('../models/spare_part');
 const WorkOrder=require('../models/work_order');
 const DailyInspection = require('../models/dialy_inspection');
+const PPMQuestions =require('../models/ppm_questions')
+const PPM =require('../models/ppm')
 
 exports.homeSignIn=(req,res) => {
     res.render('homeSignIn',{layout:false});
@@ -48,7 +50,6 @@ exports.dialyInspectionEngineer=(req,res) =>{
 }
 
 exports.dialyInspectionEngineerPost=(req,res) =>{
- console.log(req.body)
  code = req.body.Code
  date = req.body.DATE
  q1 = req.body.Q1
@@ -103,10 +104,78 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
 
 
 exports.ppmEngineer=(req,res) =>{
-    console.log("ppm")
+
+    res.render('deviceForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
+        PPM:true})
 
 }
+exports.ppmEngineerPost=(req,res) =>{
+    code=req.body.code
+    res.redirect('/engineer/ppm/'+code);
+}
 
+exports.ppmEngineerEquipment =(req,res) => {
+    code=req.params.code
+    PPMQuestions.findOne({where:{EquipmentCode:code}}).then(ppm => {
+        const Ppm={
+            Q1:ppm.Q1,
+            Q2:ppm.Q2,
+            Q3:ppm.Q3,
+            Q4:ppm.Q4,
+            Q5:ppm.Q5
+        }
+
+        res.render('ppmForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
+            PPM:true,ppm:Ppm})
+    })
+}
+exports.ppmEngineerEquipmentPost=(req,res) =>{
+    date=req.body.DATE
+    equipmentId=req.body.Device
+    engineerId=req.body.Engineer
+    q1 = req.body.Q1
+    q2 = req.body.Q2
+    q3 = req.body.Q3
+    q4 = req.body.Q4
+    q5 = req.body.Q5
+    n1 = req.body.N1
+    n2 = req.body.N2
+    n3 = req.body.N3
+    n4 = req.body.N4
+    n5 = req.body.N5
+    q1 = q1 == "on" ? "on": "off"
+    q2 = q2 == "on" ? "on": "off"
+    q3 = q3 == "on" ? "on": "off"
+    q4 = q4 == "on" ? "on": "off"
+    q5 = q5 == "on" ? "on": "off"
+
+    Equipment.findByPk(equipmentId).then(equipment => { 
+        if(equipment){
+            ClinicalEngineer.findByPk(engineerId).then(clinicalengineer =>{
+                if(clinicalengineer){
+                       PPM.create({DATE:date,Q1:q1,Q2:q2,Q3:q3,Q4:q4,Q5:q5,N1:n1,N2:n2,N3:n3,N4:n4,N5:n5,EquipmentCode:equipmentId,ClinicalEnginnerDSSN:engineerId})
+                           .then(dailyinspection => res.redirect('/engineer/ppm') )
+               }
+               else{
+                   res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/ppm',message:'Sorry !!! Could Not Get this Engineer'})
+               } 
+            })   
+        }
+        else{
+            res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/ppm',message:'Sorry !!! Could Not Get this Equipment'})
+        }
+    }).catch(err => {
+        if(err){
+            console.log(err)
+         res.render('error',{layout:false,pageTitle:'Error',href:'/engineer/ppm',message:'Sorry !!! Could Not Add This Report '})
+        }
+          
+    })
+   
+
+
+
+}
 
 exports.department=(req,res)=>{
 Department.findAll({

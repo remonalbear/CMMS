@@ -13,6 +13,8 @@ const equipment=require('./models/equipment');
 const work_order=require('./models/work_order');
 const break_down=require('./models/break_down');
 const dialy_inspection=require('./models/dialy_inspection');
+const ppm_questions=require('./models/ppm_questions')
+const ppm=require('./models/ppm')
 const maintenance=require('./models/maintenance');
 const homeController=require('./routes/main');
 const addController=require('./routes/add');
@@ -84,9 +86,14 @@ dialy_inspection.belongsTo(equipment);
 equipment.hasMany(dialy_inspection);
 dialy_inspection.belongsTo(clinical_engineer);
 clinical_engineer.hasMany(dialy_inspection)
+ppm.belongsTo(equipment);
+equipment.hasMany(ppm);
+ppm.belongsTo(clinical_engineer);
+clinical_engineer.hasMany(ppm)
+
 // synchronizing with database 
 sequelize.sync()
-// sequelize.sync({force:true})
+//sequelize.sync({force:true})
 .then(res => { 
     app.listen(3000,() => {
         console.log('Running')

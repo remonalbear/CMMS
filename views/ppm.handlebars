@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="card-body card-block">
+        <div class="login-content">
+            <div class="login-logo">
+                <a href="#">
+                <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
+            </div>
+            <h3 class="title-3 m-b-30">
+            <i class="zmdi zmdi-account-calendar"></i>PPM</h3>
+            <div class="card-body">
+                  <div class="card-text">Date:  {{ report.DATE}}</div>
+                <div class="card-text">Device: {{ report.EquipmentName}} ,   Model: {{ report.EquipmentModel}}</div>
+                <div class="card-text">Engineer: {{ report.Engineer}}</div>
+            </div>
+            
+            <div class="top-campaign">
+                <div class="table-responsive">
+                    <table class="table table-top-campaign">
+                        <thead>
+                                    <tr>
+                                        <td> Questions</td>
+                                        <td>Y/N</td>
+                                        <td>Comments</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{questions.Q1}}</td>
+                                        <td>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox" {{#if report.Q1}} checked {{/if}} disabled>
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{ report.N1}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{questions.Q2}}</td>
+                                        <td>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox" {{#if report.Q2}} checked {{/if}} disabled>
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{report.N2}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{questions.Q3}}</td>
+                                        <td>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox" {{#if report.Q3}} checked {{/if}} disabled>
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{report.N3}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{questions.Q4}}</td>
+                                        <td>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox" {{#if report.Q4}} checked {{/if}} disabled>
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{report.N4}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td> {{questions.Q5}}</td>
+                                        <td>
+                                            <label class="au-checkbox">
+                                                <input type="checkbox" {{#if report.Q1}} checked {{/if}} disabled>
+                                                <span class="au-checkmark"></span>
+                                            </label>
+                                        </td>
+                                        <td>{{report.N5}}</td>
+                                    </tr>
+                                </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
