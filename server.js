@@ -66,6 +66,8 @@ app.use((req,res)=>{
 })
 
 
+ppm_questions.belongsTo(equipment,{foreignKey:'EquipmentCode'})
+equipment.hasOne(ppm_questions,{foreignKey:'EquipmentCode'})
 clinical_engineer.belongsTo(department);
 department.hasMany(clinical_engineer);
 work_order.belongsTo(clinical_engineer);
@@ -90,12 +92,14 @@ ppm.belongsTo(equipment);
 equipment.hasMany(ppm);
 ppm.belongsTo(clinical_engineer);
 clinical_engineer.hasMany(ppm)
+maintenance.belongsTo(clinical_engineer)
+clinical_engineer.hasMany(maintenance)
 
 // synchronizing with database 
 sequelize.sync()
 //sequelize.sync({force:true})
 .then(res => { 
-    app.listen(30,() => {
+    app.listen(3000,() => {
         console.log('Running')
        })
       

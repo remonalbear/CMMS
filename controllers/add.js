@@ -313,12 +313,11 @@ exports.addWorkOrder=(req,res) => {
 
 exports.addMaintenance=(req,res)=>{
     code=req.body.Id
+    dssn=req.body.DSSN
     startdate=req.body.StartDate
     enddate=req.body.EndDate
     breakdowncode=req.body.BreakDownID
     description=req.body.Description
-    console.log(breakdowncode)
-    console.log(code)
     var breakdown = null
     BreakDowns.findOne({where:{Code:breakdowncode}}).then(breakdown =>{
         if(breakdown){
@@ -328,11 +327,11 @@ exports.addMaintenance=(req,res)=>{
                     main.EndDate=enddate
                     main.BreakDownCode=breakdowncode
                     main.Description=description
+                    main.ClinicalEngineerDSSN=dssn
                     main.save().then(p => res.redirect('/maintenance'))
-                    console.log(main.BreakDownID)
                 }
                 else{
-                    Maintenance.create({StartDate:startdate,EndDate:enddate,BreakDownCode:breakdowncode,Description:description})
+                    Maintenance.create({StartDate:startdate,EndDate:enddate,ClinicalEngineerDSSN:dssn,BreakDownCode:breakdowncode,Description:description})
                     .then(res.redirect('/maintenance'))
                 }
         

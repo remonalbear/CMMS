@@ -3,9 +3,10 @@ const sequelize=require('../util/db.js');
 
 
 const Ppm_questions=sequelize.define('PpmQuestions',{
-EquipmentCode:{
+Code:{
     type:Sequelize.INTEGER,
     allowNull:false,
+    autoIncrement:true,
     primaryKey:true,
 },
 Q1:{

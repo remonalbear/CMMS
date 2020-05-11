@@ -10,11 +10,11 @@ Id:{
     primaryKey:true
 },
 StartDate:{
-    type:Sequelize.DATE,
+    type:Sequelize.STRING,
     allowNull:false
 },
 EndDate:{
-    type:Sequelize.DATE,
+    type:Sequelize.STRING,
     allowNull:false
 },
 Description:{

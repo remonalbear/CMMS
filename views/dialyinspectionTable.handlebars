@@ -2,7 +2,7 @@
     <div class="section__content section__content--p30"> 
         <div class="container-fluid">
             <div class="table-data__tool">
-                <h2> Equipment Name: {{ name }} ,Model:{{ model}}</h2>
+                <h2> {{#if name}} Equipment Name: {{ name }} ,Model:{{ model}}{{/if }}</h2>
             </div>
             <div class="table-responsive m-b-40">
                 <table class="table table-borderless table-data3">
@@ -11,6 +11,7 @@
                             <th>Code</th>
                             <th>Date</th>
                             <th>Engineer</th>
+                  {{#if eq}}<th>Equipment</th>{{/if}}
                             <th></th>
 
                         </tr>
@@ -22,9 +23,10 @@
                             <td>{{this.Code}}</td>
                             <td>{{this.DATE}}</td>
                             <td>{{this.Engineer}}</td>
+                  {{#if this.eq}}<td>{{this.Equipment}}</td>{{/if}}
                             <td>
                                 <div class="table-data-feature">      
-                                    <a href="/report/dialyInspection/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                    <a href="/report/dialyInspection/{{ this.Code }}{{#if this.eq}}?report=true{{/if}}" class="item" data-toggle="tooltip" data-placement="top" title="More">
                                         <i class="zmdi zmdi-more"></i>
                                     </a>
                                 </div>

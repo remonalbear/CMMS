@@ -8,7 +8,7 @@ const Maintenance =require('../models/maintenance');
 const SparePart =require('../models/spare_part');
 const WorkOrder=require('../models/work_order');
 const DailyInspection = require('../models/dialy_inspection');
-const PPMQuestions =require('../models/ppm_questions')
+const PpmQuestions =require('../models/ppm_questions')
 const PPM =require('../models/ppm')
 
 exports.homeSignIn=(req,res) => {
@@ -116,7 +116,7 @@ exports.ppmEngineerPost=(req,res) =>{
 
 exports.ppmEngineerEquipment =(req,res) => {
     code=req.params.code
-    PPMQuestions.findOne({where:{EquipmentCode:code}}).then(ppm => {
+    PpmQuestions.findOne({where:{EquipmentCode:code}}).then(ppm => {
         const Ppm={
             Q1:ppm.Q1,
             Q2:ppm.Q2,
@@ -379,7 +379,85 @@ exports.equipment=(req,res)=>{
 }
 
 
+exports.installation=(req,res)=>{
+    Equipment.findAll({
+        include:[{model:Department},{model:AgentSupplier}]
+        }).then(equipments => {
+        const eq = equipments.map(equipment => {
+                  return {
+                    Code: equipment.Code,
+                    Name: equipment.Name,
+                    Cost: equipment.Cost,
+                    PM:equipment.PM,
+                    Image:equipment.Image,
+                    InstallationDate: equipment.InstallationDate,
+                    ArrivalDate:equipment.ArrivalDate,
+                    WarrantyDate:equipment.WarrantyDate,
+                    Model:equipment.Model,
+                    SerialNumber:equipment.SerialNumber,
+                    Manufacturer:equipment.Manufacturer,
+                    Location:equipment.Location,
+                    Notes:equipment.Notes,
+                    DepartmentCode:equipment.Department.dataValues.Name,
+                    AgentSupplierId:equipment.AgentSupplier.dataValues.Name
+                  }
+                })
+        res.render('installationTable',{pageTitle:'Installation',Reports:true,
+                                reports:eq,hasReports:eq.length>0});
+    }).catch( err => {
+        if(err)
+         res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Reports'})
+        })
+}
 
+exports.ppm=(req,res) =>{
+PPM.findAll({include:[{model:Equipment,include:[{model:PpmQuestions}]},{model:ClinicalEngineer}]}).then(reports => {
+    const reps=reports.map(report =>{
+        return {
+        Code:report.Code,
+        DATE:report.DATE,
+        Engineer:report.ClinicalEnginner.FName+' '+report.ClinicalEnginner.LName,
+        EquipmentName:report.Equipment.Name,
+        EquipmentCode:report.Equipment.Code,
+        EquipmentModel:report.Equipment.Model,
+        Qs:report.Equipment.PpmQuestion,
+        Q1: report.Q1 == "on" ? true: false,
+        Q2: report.Q2 == "on" ? true: false,
+        Q3: report.Q3 == "on" ? true: false,
+        Q4: report.Q4 == "on" ? true: false,
+        Q5: report.Q5 == "on" ? true: false,
+        N1:report.N1,
+        N2:report.N2,
+        N3:report.N3,
+        N4:report.N4,
+        N5:report.N5
+        }
+    })
+    res.render('ppmReportTable',{pageTitle:'PPM',
+        Reports:true,reports:reps,hasReports:reps.length>0,rep:true })   
+    
+})
+}
+
+exports.dailyInspection=(req,res)=>{
+ DailyInspection.findAll({include:[{model:Equipment},{model:ClinicalEngineer}]})
+ .then(reports => {
+    const reps=reports.map(report => {
+        return{
+            Code:report.Code,
+            DATE:report.DATE,
+            Engineer:report.ClinicalEnginner.FName +' '+ report.ClinicalEnginner.LName ,
+            Equipment:report.Equipment.Name,
+            eq:true,
+            EquipmentModel:report.Equipment.Model
+        }
+
+ })
+ res.render('dialyinspectionTable',{pageTitle:'Dialy Inspection',
+    Reports:true,eq:true,reports:reps,hasReports:reps.length>0 })  
+})
+
+}
 
 
 

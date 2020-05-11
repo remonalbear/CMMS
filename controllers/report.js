@@ -154,6 +154,9 @@ exports.agentEquipmentsReport=(req,res)=>{
 
 exports.equipmentInstallationReport=(req,res)=>{
     id=req.params.Id
+    layout=req.query.report ? 'main-layout' :'equipmentReportLayout' 
+    Id=req.query.report ? false : true
+    Reports=req.query.report ? true : false
     var date = Date(Date.now()).toString().split('GMT')[0]; 
     Equipment.findOne({where:{Code:id},include:[{model:AgentSupplier},{model:Department}]}).then(equipment => {
         if(equipment){
@@ -174,8 +177,8 @@ exports.equipmentInstallationReport=(req,res)=>{
                 Agent:equipment.AgentSupplier.Name
               }
 
-              res.render('installationReport',{layout:'equipmentReportLayout',pageTitle:'Equipments',
-                  code:id,equipment:eq,Date:date,ID:true})
+              res.render('installationReport',{layout:layout,pageTitle:'Installation',
+                  code:id,equipment:eq,Date:date,ID:Id,Reports:Reports})
         }
         else
             res.render('error',{layout:false,pageTitle:'Error',message:'Sorry!!  Error happend while getting Data for This Equipment ',href:'/report/department/enginers/'+code})
@@ -223,6 +226,9 @@ exports.equipmentDialyInspectionReport=(req,res) => {
 
 exports.dialyInspectionReport = (req,res) =>{
  code=req.params.code
+ layout=req.query.report ? 'main-layout' :'equipmentReportLayout' 
+ di=req.query.report ? false : true
+ Reports=req.query.report ? true : false
  DialyInspection.findOne({where:{Code:code},include:[{model:ClinicalEngineer},{model:Equipment}]}).then(report =>{
     const rep = {
         DATE:report.DATE,
@@ -248,8 +254,8 @@ exports.dialyInspectionReport = (req,res) =>{
     rep.Q6 = rep.Q6 == "on" ? true: false
     rep.Q7 = rep.Q7 == "on" ? true: false
     rep.Q8 = rep.Q8 == "on" ? true: false   
-    res.render('dialyinspection',{layout:'equipmentReportLayout',pageTitle:'Dialy Inspection',
-        code:rep.EquipmentCode,DI:true,report:rep })  
+    res.render('dialyinspection',{layout:layout,pageTitle:'Dialy Inspection',
+        code:rep.EquipmentCode,DI:di,report:rep,Reports:Reports })  
  })
 }
 
@@ -274,7 +280,7 @@ exports.equipmentPpmReport=(req,res) => {
                 }
             })
 
-            res.render('ppmTable',{layout:'equipmentReportLayout',pageTitle:'Dialy Inspection',
+            res.render('ppmTable',{layout:'equipmentReportLayout',pageTitle:'PPM',
                     code:id,PPM:true,reports:reps,hasReports:reps.length>0,name:name,model:model })   
         } )
     }).catch( err => {
@@ -289,6 +295,9 @@ exports.equipmentPpmReport=(req,res) => {
 
 exports.PpmReport = (req,res) =>{
     code=req.params.code
+    layout=req.query.report ? 'main-layout' :'equipmentReportLayout' 
+    ppm=req.query.report ? false : true
+    Reports=req.query.report ? true : false
     PPM.findOne({where:{Code:code},include:[{model:ClinicalEngineer},{model:Equipment}]}).then(report =>{
        const rep = {
            DATE:report.DATE,
@@ -321,8 +330,8 @@ exports.PpmReport = (req,res) =>{
                Q4:questions.Q4,
                Q5:questions.Q5,
            }
-           res.render('ppm',{layout:'equipmentReportLayout',pageTitle:'Dialy Inspection',
-               code:rep.EquipmentCode,PPM:true,report:rep ,questions:q})  
+           res.render('ppm',{layout:layout,pageTitle:'PPM',
+               code:rep.EquipmentCode,PPM:ppm,Reports:Reports,report:rep ,questions:q})  
        })
     })
    }
