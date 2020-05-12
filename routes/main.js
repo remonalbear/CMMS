@@ -25,6 +25,7 @@ router.get('/engineer/ppm',homeController.ppmEngineer)
 router.post('/engineer/ppm/equipment',homeController.ppmEngineerPost)
 router.post('/engineer/ppmEquipment/:Code',homeController.ppmEngineerEquipmentPost)
 router.get('/engineer/workOrder',homeController.workorder)
+router.get('/engineer/workOrder/description/:code',homeController.workorderDescription)
 router.get('/engineer/ppm/:code',homeController.ppmEngineerEquipment)
 router.post('/signIn',homeController.signIn);
 router.get('/',homeController.homeSignIn);

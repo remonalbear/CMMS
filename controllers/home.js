@@ -486,7 +486,25 @@ WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
 
 }
 
+exports.workorderDescription=(req,res)=>{
+    code=req.params.code
+    WorkOrder.findOne({where:{Code:code},include:[{model:Equipment}]}).then(order => {
+        var order={
+            Code:order.Code,
+            EquipmentName:order.Equipment.Name,
+            EquipmentModel:order.Equipment.Model,
+            EquipmentCode:order.Equipment.Code,
+            Priority:order.Priority,
+            Cost:order.Cost,
+            StartDate:order.StartDate,
+            EndDate:order.EndDate,
+            Description:order.Description
 
+        }
+        res.render('workOrderDetails',{layout:'clinicalEngineerLayout',pageTitle:'Work Order',
+                WO:true,order:order})
+    })
+}
 
 
 
