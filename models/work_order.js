@@ -9,7 +9,15 @@ Code:{
     autoIncrement:true,
     primaryKey:true
 },
-DATE:{
+StartDate:{
+    type:Sequelize.TEXT,
+    allowNull:false
+},
+EndDate:{
+    type:Sequelize.TEXT,
+    allowNull:false
+},
+Description:{
     type:Sequelize.TEXT,
     allowNull:false
 },

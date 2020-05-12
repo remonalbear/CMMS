@@ -18,7 +18,8 @@
                             <thead>
                                 <tr>
                                     <th>Code</th>
-                                    <th>Date</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
                                     <th>Cost</th>
                                     <th>Priority</th>
                                     <th>EquipmentCode</th>
@@ -32,9 +33,10 @@
 
                                 <tr class="tr-shadow">
                                     <td>{{this.Code}}</td>
-                                    <td>{{this.DATE}}</td>
+                                    <td>{{this.StartDate}}</td>
+                                    <td>{{this.EndDate}}</td>
                                     <td>{{this.Cost}}</td>
-                                    <td>{{this.Priority}}</td>
+                                    <td {{#if this.med}} class="desc" {{/if}}><span {{#if this.high}}class="status--denied"{{/if}} {{#if this.low}}class="status--process" {{/if}}>{{this.Priority}}</span></td>
                                     <td>{{this.EquipmentCode}}</td>
                                     <td>{{this.ClinicalEnginnerDSSN}}</td>
                                     <td>
@@ -79,6 +81,10 @@
                     <img src="images/icon/logo-mini.png" alt="Cool Admin" /> <strong>MMS</strong></a>
                 </div>
                 <div class="login-form">
+                        <div class="form-group">
+                            <label class=" form-control-label">Desciption</label>
+                            <input type="text" required name="Description" placeholder="Enter Description  " class="form-control">
+                        </div>
                        <div class="form-group">
                             <label class=" form-control-label">EquipmentCode</label>
                             <input type="text" required name="EquipmentCode" placeholder="Enter Code  " class="form-control">
@@ -89,7 +95,11 @@
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Date</label>
-                            <input type="Date"  required name="DATE" placeholder="Enter Date" class="form-control">
+                            <input type="Date"  required name="StartDATE" placeholder="Enter Start Date" class="form-control">
+                        </div>
+                         <div class="form-group">
+                            <label class=" form-control-label">Date</label>
+                            <input type="Date"  required name="EndDATE" placeholder="Enter End Date" class="form-control">
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Cost</label>

@@ -5,6 +5,7 @@ const bodyParser=require('body-parser');
 const multer =require('multer');
 const DirName=require('./util/path');
 const sequelize=require('./util/db')
+const session=require('express-session');
 const clinical_engineer=require('./models/clinical_engineer');
 const spare_parts=require('./models/spare_part');
 const department=require('./models/department');
@@ -27,7 +28,7 @@ const reportController=require('./routes/report')
 
 const app = express();
 app.use(bodyParser.urlencoded({extended:false}))
-
+app.use(session({secret:'anysecret',resave:false,saveUninitialized:false}));
 const filestorage =multer.diskStorage ({
   destination:(req,file,cb) => {
     cb(null,'public/images');
@@ -62,7 +63,7 @@ app.use(deleteController);
 app.use(addController);
 app.use(homeController);
 app.use((req,res)=>{
-  res.render('error',{layout:false,href:'/home',pageTitle:'404 Error',message:'404 Sorry !!! Could Not Get This Page'})
+  res.render('error',{layout:false,href:'/',pageTitle:'404 Error',message:'404 Sorry !!! Could Not Get This Page'})
 })
 
 

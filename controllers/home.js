@@ -10,6 +10,7 @@ const WorkOrder=require('../models/work_order');
 const DailyInspection = require('../models/dialy_inspection');
 const PpmQuestions =require('../models/ppm_questions')
 const PPM =require('../models/ppm')
+const moment=require('moment')
 
 exports.homeSignIn=(req,res) => {
     res.render('newHome',{layout:false});
@@ -26,8 +27,10 @@ exports.signIn=(req,res) => {
        ClinicalEngineer.findOne({where:{Email:email}}).then(clinicalengineer => {
            if(clinicalengineer){
             bcrypt.compare(pass, clinicalengineer.Password).then(result => {
-                if(result)
+                if(result){
+                 req.session.DSSN=clinicalengineer.DSSN
                  res.redirect('/engineer/dialyInspection');  
+                }
                 else
                  res.redirect('/')    
                 })
@@ -44,7 +47,6 @@ exports.home=(req,res) =>{
     res.render('home',{pageTitle:'Home',Home:true});
 }
 exports.dialyInspectionEngineer=(req,res) =>{
- 
     res.render('dialyInspectionForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
     DI:true})
 }
@@ -61,7 +63,8 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
  q7 = req.body.Q7
  q8 = req.body.Q8
  equipmentId = req.body.Device
- engineerId=req.body.Engineer
+ engineerId=req.session.DSSN
+
 
  q1 = q1 == "on" ? "on": "off"
  q2 = q2 == "on" ? "on": "off"
@@ -104,7 +107,6 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
 
 
 exports.ppmEngineer=(req,res) =>{
-
     res.render('deviceForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
         PPM:true})
 
@@ -126,13 +128,13 @@ exports.ppmEngineerEquipment =(req,res) => {
         }
 
         res.render('ppmForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
-            PPM:true,ppm:Ppm})
+            PPM:true,ppm:Ppm,Code:code})
     })
 }
 exports.ppmEngineerEquipmentPost=(req,res) =>{
     date=req.body.DATE
-    equipmentId=req.body.Device
-    engineerId=req.body.Engineer
+    equipmentId=req.params.Code
+    engineerId=req.session.DSSN
     q1 = req.body.Q1
     q2 = req.body.Q2
     q3 = req.body.Q3
@@ -306,9 +308,14 @@ exports.workOrder=(req,res)=>{
                   return {
                     Code:workD.Code,
                     Cost:workD.Cost,
-                    DATE:workD.DATE,
+                    StartDate:workD.StartDate,
+                    EndDate:workD.EndDate,
+                    med:workD.Priority=='Medium'?true:false,
+                    high:workD.Priority=='High'?true:false,
+                    low:workD.Priority=='Low'?true:false,
                     EquipmentCode:workD.EquipmentCode,
                     Priority:workD.Priority,
+                    Description:workD.Description,
                     ClinicalEnginnerDSSN:workD.ClinicalEnginnerDSSN             
                   }
                 })
@@ -455,6 +462,26 @@ exports.dailyInspection=(req,res)=>{
  })
  res.render('dialyinspectionTable',{pageTitle:'Dialy Inspection',
     Reports:true,eq:true,reports:reps,hasReports:reps.length>0 })  
+})
+
+}
+
+
+exports.workorder=(req,res) =>{
+    dssn=req.session.DSSN
+WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
+    var events=orders.map(order => {
+        return{
+            title:order.Description,
+            color:order.Priority == 'Low' ? 'green' :order.Priority == 'High' ? 'red': 'blue' ,
+            start:(order.StartDate.split('-')[0]+'-'+order.StartDate.split('-')[2]+'-'+order.StartDate.split('-')[1])+' '+'00:00:00Z',
+            end:(order.EndDate.split('-')[0]+'-'+order.EndDate.split('-')[2]+'-'+order.EndDate.split('-')[1])+' '+'23:00:00Z',
+            url:'/engineer/workOrder/description/'+order.Code
+        }
+
+    })
+
+    res.render('calender',{layout:false,WO:true,events:events,pageTitle:'calender'})
 })
 
 }

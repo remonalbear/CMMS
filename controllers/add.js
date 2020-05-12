@@ -260,7 +260,9 @@ exports.addBreakDown=(req,res)=>{
 exports.addWorkOrder=(req,res) => {
     code =req.body.Code
     cost=req.body.Cost
-    date=req.body.DATE
+    startdate=req.body.StartDATE
+    enddate=req.body.EndDATE
+    description=req.body.Description
     priority = req.body.Priority
     equipmentId=req.body.EquipmentCode
     engineerId=req.body.ClinicalEngineerDSSN
@@ -274,7 +276,9 @@ exports.addWorkOrder=(req,res) => {
                     engId = clinicalengineer.DSSN
                     WorkOrders.findByPk(code).then(workorder=>{
                         if(workorder){
-                            workorder.DATE=date
+                            workorder.StartDATE=startdate
+                            workorder.EndDATE=enddate
+                            workorder.Description=description
                             workorder.Cost=cost
                             workorder.EquipmentCode=equId
                             workorder.ClinicalEngineerDSSN=engId
@@ -282,7 +286,7 @@ exports.addWorkOrder=(req,res) => {
                             workorder.save().then(workorder => res.redirect('/workOrder'))
                         }
                         else {
-                            WorkOrders.create({DATE:date,
+                            WorkOrders.create({StartDate:startdate,EndDate:enddate,Description:description,
                             Cost:cost,EquipmentCode:equId,ClinicalEnginnerDSSN:engId,Priority:priority})
                             .then(workorder => res.redirect('/workOrder') )
                             }

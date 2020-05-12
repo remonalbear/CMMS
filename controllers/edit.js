@@ -144,7 +144,9 @@ exports.editWorkOrder=(req,res)=>{
       const wd = {
          Code:workOrder.Code,
          Cost:workOrder.Cost,
-         DATE:workOrder.DATE,
+         StartDate:workOrder.StartDate,
+         EndDate:workOrder.EndDate,
+         Description:workOrder.Description,
          EquipmentCode:workOrder.EquipmentCode,
          Priority:workOrder.Priority,
          ClinicalEnginnerDSSN:workOrder.ClinicalEnginnerDSSN 
