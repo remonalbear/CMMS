@@ -95,6 +95,8 @@ ppm.belongsTo(clinical_engineer);
 clinical_engineer.hasMany(ppm)
 maintenance.belongsTo(clinical_engineer)
 clinical_engineer.hasMany(maintenance)
+spare_parts.belongsTo(equipment)
+equipment.hasMany(spare_parts)
 
 // synchronizing with database 
 sequelize.sync()

@@ -62,7 +62,12 @@ exports.addClinicalEngineer=(req,res)=>{
     address=req.body.Address
     phone=req.body.Phone
     email=req.body.Email
-    image=req.file.path.split('/')[2]
+    if(req.body.edit){
+        image=req.body.Image
+    }
+    else{
+        image=req.file.path.split('/')[2]
+    }
     age=req.body.Age
     workhours=req.body.workHours
     department=req.body.Department
@@ -195,9 +200,13 @@ exports.addSpareParts=(req,res)=>{
     name=req.body.Name
     amount=req.body.Amount
     agentId=req.body.AgentSupplierId
-    image=req.file.path.split('/')[2]
-    var AgentId = null
-    console.log(image)
+    equipmentCode=req.body.EquipmentCode
+    if(req.body.edit){
+        image=req.body.Image
+    }
+    else{
+        image=req.file.path.split('/')[2]
+    }
     AgentSupplier.findOne({where:{Id:agentId}}).then(agent =>{
         if(agent){
             SpareParts.findByPk(code).then(part=>{
@@ -206,11 +215,12 @@ exports.addSpareParts=(req,res)=>{
                     part.Name=name
                     part.Amount=amount
                     part.AgentSupplierId=agentId
+                    part.EquipmentCode=equipmentCode
                     part.Image=image
                     part.save().then(p => res.redirect('/sparePart'))
                 }
                 else{
-                    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId,Image:image})
+                    SpareParts.create({Code:code,Name:name,Amount:amount,AgentSupplierId:agentId,Image:image,EquipmentCode:equipmentCode})
                     .then(res.redirect('/sparePart'))
                 }
         
@@ -220,7 +230,7 @@ exports.addSpareParts=(req,res)=>{
          return res.render('error',{layout:false,pageTitle:'Error',href:'/sparePart',message:'Sorry !!! Could Not Get this Agent'})
         
     }).catch(err=> {
-        console.log("ERROR!!!!!!",err)
+        res.render('error',{layout:false,pageTitle:'Error',href:'/sparePart',message:'Sorry !!! Could Not Gey rhis page'})
         })
 
 }

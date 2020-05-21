@@ -13,6 +13,8 @@
                                 <div class="login-form" style="height: auto;">
                                     <form action="/clinicalEngineer/add" method="POST" enctype="multipart/form-data">
                                         <input type="text" hidden required name="DSSN"  placeholder="New First name" value="{{ clinicalEngineer.DSSN}}" class="form-control">
+                                            <input type="text"  hidden  name="Image" value="{{ clinicalEngineer.Image }}" >
+                                            <input type="text"  hidden  name="edit" value="edit" >
                                         <div class="form-group">
                                             <label class=" form-control-label">FName</label>
                                             <input type="text" required name="FName"  placeholder="New First name" value="{{ clinicalEngineer.FName}}" class="form-control">

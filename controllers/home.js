@@ -260,7 +260,7 @@ exports.clinicalEngineer=(req,res)=>{
 }
 
 exports.sparePart=(req,res)=>{
-    SparePart.findAll({include:[{model:AgentSupplier}]}).then(sparepart => {
+    SparePart.findAll({include:[{model:AgentSupplier},{model:Equipment}]}).then(sparepart => {
         const sp = sparepart.map(sparepart => {
                   return {
                     Code:sparepart.Code,
@@ -268,7 +268,11 @@ exports.sparePart=(req,res)=>{
                     Amount:sparepart.Amount,
                     Image:sparepart.Image,
                     AgentSupplierId:sparepart.AgentSupplier.dataValues.Id,
-                    AgentSupplierName:sparepart.AgentSupplier.dataValues.Name
+                    AgentSupplierName:sparepart.AgentSupplier.dataValues.Name,
+                    EquipmentCode:sparepart.Equipment.dataValues.Code,
+                    EquipmentName:sparepart.Equipment.dataValues.Name
+
+
                   }
                 })
     res.render('sparePart',{pageTitle:'SpareParts',SP:true,SpareParts:sp,
@@ -413,7 +417,7 @@ exports.installation=(req,res)=>{
                                 reports:eq,hasReports:eq.length>0});
     }).catch( err => {
         if(err)
-         res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Reports'})
+         res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Reports'})
         })
 }
 
@@ -443,6 +447,9 @@ PPM.findAll({include:[{model:Equipment,include:[{model:PpmQuestions}]},{model:Cl
     res.render('ppmReportTable',{pageTitle:'PPM',
         Reports:true,reports:reps,hasReports:reps.length>0,rep:true })   
     
+}).catch(err => {
+    res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Reports'})
+
 })
 }
 
@@ -462,13 +469,16 @@ exports.dailyInspection=(req,res)=>{
  })
  res.render('dialyinspectionTable',{pageTitle:'Dialy Inspection',
     Reports:true,eq:true,reports:reps,hasReports:reps.length>0 })  
+}).catch(err => {
+    res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Report'})
+
 })
 
 }
 
 
 exports.workorder=(req,res) =>{
-    dssn=req.session.DSSN
+dssn=req.session.DSSN
 WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
     var events=orders.map(order => {
         return{
@@ -482,6 +492,9 @@ WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
     })
 
     res.render('calender',{layout:false,WO:true,events:events,pageTitle:'calender'})
+}).catch(err => {
+    res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Orders'})
+
 })
 
 }
@@ -503,6 +516,9 @@ exports.workorderDescription=(req,res)=>{
         }
         res.render('workOrderDetails',{layout:'clinicalEngineerLayout',pageTitle:'Work Order',
                 WO:true,order:order})
+    }).catch(err => {
+        res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Work Orders'})
+
     })
 }
 

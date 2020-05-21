@@ -45,7 +45,8 @@ exports.editClinicalEngineer=(req,res) => {
               WorkHours:clinicalEngineer.WorkHours,
               Email:clinicalEngineer.Email,
               Department:clinicalEngineer.Department,
-              Age:clinicalEngineer.Age
+              Age:clinicalEngineer.Age,
+              Image:clinicalEngineer.Image
             }
     
         
@@ -107,9 +108,10 @@ exports.editClinicalEngineer=(req,res) => {
              Name: sparePart.Name,
              Code: sparePart.Code,
              Amount:sparePart.Amount,
-             AgentSupplierId:sparePart.AgentSupplierId
+             Image:sparePart.Image,
+             AgentSupplierId:sparePart.AgentSupplierId,
+             EquipmentCode:sparePart.EquipmentCode
            }
-   
        
    res.render('editSparePart',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
                                     SP:true,sparePart:sp});

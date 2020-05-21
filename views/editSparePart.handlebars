@@ -12,6 +12,8 @@
                                 <div class="login-form" style="height: auto;">
                                     <form action="/sparePart/add" method="POST">
                                             <input type="text" hidden required name="Code"  placeholder="New Code" value="{{ sparePart.Code}}" class="form-control">
+                                            <input type="text"  hidden  name="Image" value="{{ sparePart.Image }}" >
+                                            <input type="text"  hidden  name="edit" value="edit" >
                                         <div class="form-group">
                                             <label class=" form-control-label">Name</label>
                                             <input type="text" required name="Name"  placeholder="New Name" value="{{sparePart.Name}}" class="form-control">
@@ -20,8 +22,12 @@
                                             <label class=" form-control-label">Amount</label>
                                             <input type="text" required name="Amount" placeholder="New Number" value="{{sparePart.Amount}}" class="form-control">
                                         </div>
+                                      <div class="form-group">
+                                            <label class=" form-control-label">Equipment Code</label>
+                                            <input type="text" required name="EquipmentCode" placeholder="New Equipment" value="{{sparePart.EquipmentCode}}" class="form-control">
+                                        </div> 
                                         <div class="form-group">
-                                            <label class=" form-control-label">AgentID</label>
+                                            <label class=" form-control-label">Agent ID</label>
                                             <input type="text" required name="AgentSupplierId" placeholder="New AgentID" value="{{sparePart.AgentSupplierId}}" class="form-control">
                                         </div>                                        
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>
