@@ -22,7 +22,7 @@ const Clinical_enginner=sequelize.define('ClinicalEnginner',{
     },
     Image:{
         type:Sequelize.STRING,
-        allowNull:false
+        allowNull:true
     },
     Age:{
         type:Sequelize.INTEGER,
