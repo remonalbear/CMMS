@@ -66,7 +66,10 @@ exports.addClinicalEngineer=(req,res)=>{
         image=req.body.Image
     }
     else{
-        image=req.file.path.split('/')[2]
+        image=req.file.path.split('/').pop()
+        if (!image)
+            image=req.file.path.split('\\').pop()
+
     }
     age=req.body.Age
     workhours=req.body.workHours
@@ -125,10 +128,12 @@ exports.addEquipment=(req,res) => {
     name=req.body.Name
     cost=req.body.Cost
     if(req.body.edit){
-        image=req.body.Image.split('/')[2]
+        image=req.body.Image.split('/').pop()
     }
     else{
-        image=req.file.path.split('/')[2]
+        image=req.file.path.split('/').pop()
+        if (!image)
+            image=req.file.path.split('\\').pop()
     }
     model=req.body.Model
     serialnumber=req.body.SerialNumber
@@ -205,8 +210,11 @@ exports.addSpareParts=(req,res)=>{
         image=req.body.Image
     }
     else{
-        image=req.file.path.split('/')[2]
-    }
+        image=req.file.path.split('/').pop()
+        if (!image)
+            image=req.file.path.split('\\').pop()
+        console.log(image)
+       }
     AgentSupplier.findOne({where:{Id:agentId}}).then(agent =>{
         if(agent){
             SpareParts.findByPk(code).then(part=>{
