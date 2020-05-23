@@ -14,7 +14,7 @@ Name:{
 },
 Image:{
     type:Sequelize.STRING,
-    allowNull:false
+    allowNull:true
 },
 
 Amount:{
