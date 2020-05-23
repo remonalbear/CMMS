@@ -23,7 +23,7 @@ Equipment.findAll({where:{DepartmentCode:code},include:[{model:AgentSupplier}]})
               Name: equipment.Name,
               Cost: equipment.Cost,
               InstallationDate: equipment.InstallationDate,
-              ModelNumber:equipment.ModelNumber,
+              Model:equipment.Model,
               SerialNumber:equipment.SerialNumber,
               Manufacturer:equipment.Manufacturer,
               Location:equipment.Location,
