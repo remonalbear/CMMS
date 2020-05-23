@@ -47,6 +47,7 @@ exports.home=(req,res) =>{
     res.render('home',{pageTitle:'Home',Home:true});
 }
 exports.dialyInspectionEngineer=(req,res) =>{
+    engineerId=req.session.DSSN
     Equipment.findAll({include:[{model:Department}]}).then(equipments => {
         const eqs=equipments.map(equipment => {
             return{
@@ -55,8 +56,15 @@ exports.dialyInspectionEngineer=(req,res) =>{
                 Department:equipment.Department.Name
             }
         })
+        ClinicalEngineer.findByPk(engineerId).then(engineer => {
+            const Engineer ={
+                Image:engineer.Image,
+                FName:engineer.FName,
+                LName:engineer.LName
+            }
         res.render('dialyInspectionForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
-        DI:true,equipments:eqs})
+        DI:true,equipments:eqs,Engineer:Engineer})
+        })
     })
 }
 
@@ -116,6 +124,7 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
 
 
 exports.ppmEngineer=(req,res) =>{
+    engineerId=req.session.DSSN
     PpmQuestions.findAll({include:[{model:Equipment,include:[{model:Department}]}]}).then(reports=>{
         const eqs=reports.map(report => {
             return {
@@ -124,8 +133,15 @@ exports.ppmEngineer=(req,res) =>{
                 Department:report.Equipment.Department.Name
             }
         })
-        res.render('deviceForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
-            PPM:true,equipments:eqs})
+        ClinicalEngineer.findByPk(engineerId).then(engineer => {
+            const Engineer ={
+                Image:engineer.Image,
+                FName:engineer.FName,
+                LName:engineer.LName
+            }
+            res.render('deviceForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
+                PPM:true,equipments:eqs,Engineer:Engineer})
+        })
     })
 
 }
@@ -136,6 +152,7 @@ exports.ppmEngineerPost=(req,res) =>{
 
 exports.ppmEngineerEquipment =(req,res) => {
     code=req.params.code
+    engineerId=req.session.DSSN
     PpmQuestions.findOne({where:{EquipmentCode:code}}).then(ppm => {
         const Ppm={
             Q1:ppm.Q1,
@@ -144,9 +161,16 @@ exports.ppmEngineerEquipment =(req,res) => {
             Q4:ppm.Q4,
             Q5:ppm.Q5
         }
+        ClinicalEngineer.findByPk(engineerId).then(engineer => {
+            const Engineer ={
+                Image:engineer.Image,
+                FName:engineer.FName,
+                LName:engineer.LName
+            }
 
         res.render('ppmForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
-            PPM:true,ppm:Ppm,Code:code})
+            PPM:true,ppm:Ppm,Code:code,Engineer:Engineer})
+        })
     })
 }
 exports.ppmEngineerEquipmentPost=(req,res) =>{
@@ -227,25 +251,56 @@ Department.findAll({
 }
 
 exports.maintenance=(req,res)=>{
-    Maintenance.findAll().then(maintenances => {
+    Maintenance.findAll({include:[{model:BreakDown,include:[{model:Equipment,include:[{model:Department}]}]},{model:ClinicalEngineer}]}).then(maintenances => {
         const m = maintenances.map(main => {
                   return {
                     Id:main.Id,
                     StartDate:main.StartDate,
                     EndDate:main.EndDate,
-                    BreakDownCode:main.BreakDownCode,
+                    BreakDownCode:main.BreakDown.Code,
+                    EquipmentName:main.BreakDown.Equipment.Name,
+                    EquipmentCode:main.BreakDown.Equipment.Code,
+                    EquipmentImage:main.BreakDown.Equipment.Image,
+                    ClinicalEngineer:main.ClinicalEnginner.FName+' '+main.ClinicalEnginner.LName,
+                    ClinicalEngineerImage:main.ClinicalEnginner.Image,
+                    Department:main.BreakDown.Equipment.Department.Name,
                     Description:main.Description             
                   }
+                    
                 })
+    BreakDown.findAll({include:[{model:Equipment}]}).then(breakDowns => {
+        const bd=breakDowns.map(breakDown => {
+            return {
+                Code:breakDown.Code,
+                Date:breakDown.DATE,
+                EquipmentName:breakDown.Equipment.Name,
+                EquipmentCode:breakDown.Equipment.Code,
+                Reason:breakDown.Reason
+            }
 
-    res.render('maintenance',{pageTitle:'Maintenance',
-                                Maintenance:true,Maintenances:m,
-                                hasMaintenance:m.length>0});
+        })
+     
+    ClinicalEngineer.findAll().then(clinicalEngineers => {
+        const en=clinicalEngineers.map(clinicalEngineer => {
+            return {
+                FName:clinicalEngineer.FName,
+                LName:clinicalEngineer.LName,
+                DSSN:clinicalEngineer.DSSN
+            }
+        })
+        res.render('maintenance',{pageTitle:'Maintenance',
+                                    Maintenance:true,Maintenances:m,
+                                    hasMaintenance:m.length>0,Engineers:en,breakDowns:bd});
+    })    
+    })
+
+
     }).catch(err => {
         if(err)
           console.log(err)
           res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not get any maintenance'})
     })
+
 
 }
 
@@ -293,8 +348,26 @@ exports.sparePart=(req,res)=>{
 
                   }
                 })
-    res.render('sparePart',{pageTitle:'SpareParts',SP:true,SpareParts:sp,
-                                                    hasPart:sp.length>0});
+        Equipment.findAll({include:[{model:Department}]}).then(equipments => {
+            const eq = equipments.map(equipment => {
+                return{
+                    Code:equipment.Code,
+                    Name:equipment.Name,
+                    DepartmentName:equipment.Department.Name
+                }
+            })
+        AgentSupplier.findAll().then(agents => {
+            const ag = agents.map(agent => {
+                return {
+                    Name:agent.Name,
+                    Id:agent.Id
+                }
+            })
+        res.render('sparePart',{pageTitle:'SpareParts',SP:true,SpareParts:sp,
+                                hasPart:sp.length>0,Equipments:eq,Agents:ag});
+        })    
+        })             
+
 }).catch( err=> {
     if (err)
      console.log(err)
@@ -326,7 +399,7 @@ exports.agentSupplier=(req,res)=>{
 
 exports.workOrder=(req,res)=>{
 
-  WorkOrder.findAll().then(workorders => {
+  WorkOrder.findAll({include:[{model:ClinicalEngineer},{model:Equipment}]}).then(workorders => {
         const wd = workorders.map(workD => {
                   return {
                     Code:workD.Code,
@@ -336,16 +409,38 @@ exports.workOrder=(req,res)=>{
                     med:workD.Priority=='Medium'?true:false,
                     high:workD.Priority=='High'?true:false,
                     low:workD.Priority=='Low'?true:false,
-                    EquipmentCode:workD.EquipmentCode,
+                    EquipmentCode:workD.Equipment.Code,
+                    EquipmentName:workD.Equipment.Name,
+                    EquipmentImage:workD.Equipment.Image,
                     Priority:workD.Priority,
                     Description:workD.Description,
-                    ClinicalEnginnerDSSN:workD.ClinicalEnginnerDSSN             
+                    ClinicalEnginner:workD.ClinicalEnginner.FName+' '+workD.ClinicalEnginner.LName,
+                    ClinicalEnginnerImage:workD.ClinicalEnginner.Image             
                   }
                 })
 
-    res.render('workOrder',{pageTitle:'WorkOrder',
-                                WorkOrder:true,Workorders:wd,
-                                hasWorkOrder:wd.length>0});
+        ClinicalEngineer.findAll().then(clinicalEngineers => {
+            const en=clinicalEngineers.map(clinicalEngineer => {
+                return {
+                    FName:clinicalEngineer.FName,
+                    LName:clinicalEngineer.LName,
+                    DSSN:clinicalEngineer.DSSN
+                }
+            })
+        Equipment.findAll({include:[{model:Department}]}).then(equipments => {
+            const eq = equipments.map(equipment => {
+                return{
+                    Code:equipment.Code,
+                    Name:equipment.Name,
+                    DepartmentName:equipment.Department.Name
+                }
+            }) 
+            res.render('workOrder',{pageTitle:'WorkOrder',
+                                        WorkOrder:true,Workorders:wd,
+                                        hasWorkOrder:wd.length>0,Engineers:en,Equipments:eq});
+        })    
+        })       
+
     }).catch(err => {
         if(err)
           console.log(err)
@@ -355,13 +450,16 @@ exports.workOrder=(req,res)=>{
 }
 
 exports.breakDown=(req,res)=>{
-    BreakDown.findAll().then(breakdowns => {
+    BreakDown.findAll({include:[{model:Equipment,include:[{model:Department}]}]}).then(breakdowns => {
         const bd = breakdowns.map(breakD => {
                   return {
                     Code:breakD.Code,
                     Reason:breakD.Reason,
                     DATE:breakD.DATE,
-                    EquipmentCode:breakD.EquipmentCode
+                    EquipmentCode:breakD.EquipmentCode,
+                    EquipmentName:breakD.Equipment.Name,
+                    EquipmentImage:breakD.Equipment.Image,
+                    Department:breakD.Equipment.Department.Name
                   }
                 })
 
@@ -397,8 +495,17 @@ exports.equipment=(req,res)=>{
                     AgentSupplierId:equipment.AgentSupplier.dataValues.Name
                   }
                 })
+
+            AgentSupplier.findAll().then(agents => {
+                const ag = agents.map(agent => {
+                    return {
+                        Name:agent.Name,
+                        Id:agent.Id
+                    }
+                })        
         res.render('equipment',{pageTitle:'Equipment',Equipment:true,
-                                equipments:eq,hasEquipments:eq.length>0});
+                                equipments:eq,hasEquipments:eq.length>0,Agents:ag});
+            })               
     }).catch( err => {
         if(err)
          res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get Equipments'})
@@ -503,14 +610,23 @@ WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
         return{
             title:order.Description,
             color:order.Priority == 'Low' ? 'green' :order.Priority == 'High' ? 'red': 'blue' ,
-            start:(order.StartDate.split('-')[0]+'-'+order.StartDate.split('-')[2]+'-'+order.StartDate.split('-')[1])+' '+'00:00:00Z',
-            end:(order.EndDate.split('-')[0]+'-'+order.EndDate.split('-')[2]+'-'+order.EndDate.split('-')[1])+' '+'23:00:00Z',
+            start:(order.StartDate.split('-')[0]+'-'+order.StartDate.split('-')[1]+'-'+order.StartDate.split('-')[2])+' '+'00:00:00Z',
+            end:(order.EndDate.split('-')[0]+'-'+order.EndDate.split('-')[1]+'-'+order.EndDate.split('-')[2])+' '+'23:00:00Z',
             url:'/engineer/workOrder/description/'+order.Code
         }
 
     })
 
-    res.render('calender',{layout:false,WO:true,events:events,pageTitle:'calender'})
+    ClinicalEngineer.findByPk(engineerId).then(engineer => {
+        const Engineer ={
+            Image:engineer.Image,
+            FName:engineer.FName,
+            LName:engineer.LName
+        }
+        console.log(events)
+    res.render('calender',{layout:false,WO:true,events:events,pageTitle:'calender',Engineer:Engineer})
+    })
+
 }).catch(err => {
     res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Orders'})
 
@@ -520,6 +636,7 @@ WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
 
 exports.workorderDescription=(req,res)=>{
     code=req.params.code
+    engineerId=req.session.DSSN
     WorkOrder.findOne({where:{Code:code},include:[{model:Equipment}]}).then(order => {
         var order={
             Code:order.Code,
@@ -533,8 +650,15 @@ exports.workorderDescription=(req,res)=>{
             Description:order.Description
 
         }
+        ClinicalEngineer.findByPk(engineerId).then(engineer => {
+            const Engineer ={
+                Image:engineer.Image,
+                FName:engineer.FName,
+                LName:engineer.LName
+            }
         res.render('workOrderDetails',{layout:'clinicalEngineerLayout',pageTitle:'Work Order',
-                WO:true,order:order})
+                WO:true,order:order,Engineer,Engineer})
+        })    
     }).catch(err => {
         res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Work Orders'})
 

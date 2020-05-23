@@ -20,7 +20,8 @@
                                     <th>Code</th>
                                     <th>Reason</th>
                                     <th>Date</th>
-                                    <th>EquipmentCode</th>
+                                    <th>Department</th>
+                                    <th>Equipment</th>
                                 </tr>
                             </thead>
                            {{#if hasBreakDown}} 
@@ -30,7 +31,8 @@
                                     <td>{{this.Code}}</td>
                                     <td>{{this.Reason}}</td>
                                     <td>{{this.DATE}}</td>
-                                    <td>{{this.EquipmentCode}}</td>
+                                    <td>{{this.Department}}</td>
+                                    <td> <img src="images/{{this.EquipmentImage}}" style="height: 50px; width:50px; border-radius: 50%;" >  {{this.EquipmentName}}-{{this.EquipmentCode}}</td>
                                     <td>
                                         <div class="table-data-feature">
                                                 <a href="/breakDown/edit/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">

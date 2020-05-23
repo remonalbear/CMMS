@@ -85,6 +85,7 @@ exports.editClinicalEngineer=(req,res) => {
               Location:equipment.Location,
               Notes:equipment.Notes,
               PM:equipment.PM,
+              Image:equipment.Image,
               DepartmentCode:equipment.DepartmentCode,
               AgentSupplierId:equipment.AgentSupplierId,
               OR:equipment.Department.Name =='OR' ? true : false,
@@ -184,8 +185,9 @@ exports.editMaintenance=(req,res)=>{
          Id:maintenance.Id,
          StartDate:maintenance.StartDate,
          EndDate:maintenance.EndDate,
-         BreakDownID:maintenance.BreakDownID,
-         Description:maintenance.Description 
+         BreakDownCode:maintenance.BreakDownCode,
+         Description:maintenance.Description,
+         ClinicalEnginnerDSSN:maintenance.ClinicalEnginnerDSSN
          
       }
 
