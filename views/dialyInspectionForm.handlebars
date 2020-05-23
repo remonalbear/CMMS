@@ -22,7 +22,11 @@
                                     <label for="text-input"  class=" form-control-label">Device:</label>
                                 </div>
                                 <div class="col col-sm-3">
-                                    <input type="text" required name="Device" placeholder="Enter Device Code" class="form-control">
+                                       <select name="Device"required id="select" class="form-control">
+                                        {{#each equipments}}
+                                            <option value="{{this.Code}}">{{this.Name}} {{this.Code}} {{this.Department}}</option>
+                                        {{/each}}
+                                    </select>
                                 </div>
                             </div>
 

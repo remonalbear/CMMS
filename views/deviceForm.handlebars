@@ -12,10 +12,14 @@
                                 </div>
                                 <div class="login-form">
                                     <form action="/engineer/ppm/equipment" method="POST">
-                                        <div class="form-group">
-                                            <label class=" form-control-label">Device Code</label>
-                                            <input type="text" name="code" required class="form-control">
-                                        </div>
+                                <div class="form-group">
+                                    <label class=" form-control-label">Equipment</label>
+                                    <select name="Code"required id="select" class="form-control">
+                                        {{#each equipments}}
+                                            <option value="{{this.Code}}">{{this.Name}} {{this.Code}} {{this.Department}}</option>
+                                        {{/each}}
+                                    </select>
+                                </div>
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ppm</button>
                                     </form>  
                                 </div>

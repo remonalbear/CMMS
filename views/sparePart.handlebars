@@ -62,7 +62,11 @@
                         </div>
                           <div class="form-group">
                             <label class=" form-control-label">Equipment Code</label>
-                            <input type="text" name="EquipmentCode" required placeholder="Enter Equipment Code" class="form-control">
+                            <select name="EquipmentCode"required id="select" class="form-control">
+                                {{#each Equipments}}
+                                    <option value="{{this.Code}}">{{this.Name}} {{this.Code}} {{this.DepartmentName}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Amount</label>
@@ -70,7 +74,11 @@
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Agent Id</label>
-                            <input type="text" name="AgentSupplierId" required placeholder="Enter Agent Id" class="form-control">
+                           <select name="AgentSupplierId"required id="select" class="form-control">
+                                {{#each Agents}}
+                                    <option value="{{this.Id}}">{{this.Name}} {{this.Id}} </option>
+                                {{/each}}
+                            </select>
                         </div>
                          <div class="form-group">
                             <label class=" form-control-label">Photo</label>

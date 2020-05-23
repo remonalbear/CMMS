@@ -66,7 +66,12 @@ exports.addClinicalEngineer=(req,res)=>{
         image=req.body.Image
     }
     else{
-        image=req.file.path.split('/')[2]
+        image=req.file.path.split('\\')
+        if (image.length>1)
+            image=req.file.path.split('\\').pop()
+        else    
+            image=req.file.path.split('/').pop()
+
     }
     age=req.body.Age
     workhours=req.body.workHours
@@ -125,10 +130,14 @@ exports.addEquipment=(req,res) => {
     name=req.body.Name
     cost=req.body.Cost
     if(req.body.edit){
-        image=req.body.Image.split('/')[2]
+        image=req.body.Image
     }
     else{
-        image=req.file.path.split('/')[2]
+        image=req.file.path.split('\\')
+        if (image.length>1)
+            image=req.file.path.split('\\').pop()
+        else    
+            image=req.file.path.split('/').pop()
     }
     model=req.body.Model
     serialnumber=req.body.SerialNumber
@@ -205,8 +214,13 @@ exports.addSpareParts=(req,res)=>{
         image=req.body.Image
     }
     else{
-        image=req.file.path.split('/')[2]
-    }
+        image=req.file.path.split('\\')
+        if (image.length>1)
+            image=req.file.path.split('\\').pop()
+        else    
+            image=req.file.path.split('/').pop()
+           
+       }
     AgentSupplier.findOne({where:{Id:agentId}}).then(agent =>{
         if(agent){
             SpareParts.findByPk(code).then(part=>{
@@ -341,11 +355,11 @@ exports.addMaintenance=(req,res)=>{
                     main.EndDate=enddate
                     main.BreakDownCode=breakdowncode
                     main.Description=description
-                    main.ClinicalEngineerDSSN=dssn
+                    main.ClinicalEnginnerDSSN=dssn
                     main.save().then(p => res.redirect('/maintenance'))
                 }
                 else{
-                    Maintenance.create({StartDate:startdate,EndDate:enddate,ClinicalEngineerDSSN:dssn,BreakDownCode:breakdowncode,Description:description})
+                    Maintenance.create({StartDate:startdate,EndDate:enddate,ClinicalEnginnerDSSN:dssn,BreakDownCode:breakdowncode,Description:description})
                     .then(res.redirect('/maintenance'))
                 }
         
