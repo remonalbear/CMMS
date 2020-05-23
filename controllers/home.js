@@ -47,8 +47,17 @@ exports.home=(req,res) =>{
     res.render('home',{pageTitle:'Home',Home:true});
 }
 exports.dialyInspectionEngineer=(req,res) =>{
-    res.render('dialyInspectionForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
-    DI:true})
+    Equipment.findAll({include:[{model:Department}]}).then(equipments => {
+        const eqs=equipments.map(equipment => {
+            return{
+                Name:equipment.Name,
+                Code:equipment.Code,
+                Department:equipment.Department.Name
+            }
+        })
+        res.render('dialyInspectionForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
+        DI:true,equipments:eqs})
+    })
 }
 
 exports.dialyInspectionEngineerPost=(req,res) =>{
@@ -107,12 +116,21 @@ exports.dialyInspectionEngineerPost=(req,res) =>{
 
 
 exports.ppmEngineer=(req,res) =>{
-    res.render('deviceForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
-        PPM:true})
+    PpmQuestions.findAll({include:[{model:Equipment,include:[{model:Department}]}]}).then(reports=>{
+        const eqs=reports.map(report => {
+            return {
+                Name:report.Equipment.Name,
+                Code:report.Equipment.Code,
+                Department:report.Equipment.Department.Name
+            }
+        })
+        res.render('deviceForm',{layout:'clinicalEngineerLayout',pageTitle:'Dialy Inspection',
+            PPM:true,equipments:eqs})
+    })
 
 }
 exports.ppmEngineerPost=(req,res) =>{
-    code=req.body.code
+    code=req.body.Code
     res.redirect('/engineer/ppm/'+code);
 }
 

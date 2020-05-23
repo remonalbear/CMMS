@@ -35,7 +35,7 @@ exports.editAgentSupplier=(req,res)=>{
 
 exports.editClinicalEngineer=(req,res) => {
     dssn=req.params.id
-    ClinicalEngineer.findByPk(dssn).then(clinicalEngineer => { 
+    ClinicalEngineer.findOne({where:{DSSN:dssn},include:[{model:Department}]}).then(clinicalEngineer => { 
         const cs = {
               FName: clinicalEngineer.FName,
               LName: clinicalEngineer.LName,
@@ -44,17 +44,23 @@ exports.editClinicalEngineer=(req,res) => {
               Phone:clinicalEngineer.Phone,
               WorkHours:clinicalEngineer.WorkHours,
               Email:clinicalEngineer.Email,
-              Department:clinicalEngineer.Department,
               Age:clinicalEngineer.Age,
-              Image:clinicalEngineer.Image
+              Image:clinicalEngineer.Image,
+              OR:clinicalEngineer.Department.Name =='OR' ? true : false,
+              CSSD:clinicalEngineer.Department.Name =='CSSD' ? true:false,
+              ICU:clinicalEngineer.Department.Name=='ICU' ? true:false,
+              Radiology:clinicalEngineer.Department.Name == 'Radiology' ? true:false
             }
     
-        
+    console.log(cs)    
     res.render('editClinicalEngineer',{layout:'main-layout.handlebars' ,pageTitle:'Edit',
                                      CE:true,clinicalEngineer:cs});
  })
- .catch(err => res.render('error',{layout:false,pageTitle:'Error',href:'/agentSupplier',message:'Sorry !!! Could Not Get this Engineer'}))
- 
+ .catch(err => 
+   {
+   console.log(err)
+   res.render('error',{layout:false,pageTitle:'Error',href:'/agentSupplier',message:'Sorry !!! Could Not Get this Engineer'})
+   })
  
  }
 
@@ -65,7 +71,7 @@ exports.editClinicalEngineer=(req,res) => {
  exports.editEquipment=(req,res)=>{
     code=req.params.id
     console.log("here")
-    Equipment.findByPk(code).then(equipment => {
+    Equipment.findOne({where:{Code:code},include:[{model:Department}]}).then(equipment => {
         const eq = {
               Code: equipment.Code,
               Name: equipment.Name,
@@ -80,7 +86,11 @@ exports.editClinicalEngineer=(req,res) => {
               Notes:equipment.Notes,
               PM:equipment.PM,
               DepartmentCode:equipment.DepartmentCode,
-              AgentSupplierId:equipment.AgentSupplierId
+              AgentSupplierId:equipment.AgentSupplierId,
+              OR:equipment.Department.Name =='OR' ? true : false,
+              CSSD:equipment.Department.Name =='CSSD' ? true:false,
+              ICU:equipment.Department.Name=='ICU' ? true:false,
+              Radiology:equipment.Department.Name == 'Radiology' ? true:false
             }
    if(eq.PM =="Annualy"){
       res.render('editEquipment',{layout:'main-layout.handlebars' ,pageTitle:'Edit',

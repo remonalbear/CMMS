@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "handlebars": "^4.5.0",
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.4"
   },
   "repository": {
     "type": "git",
