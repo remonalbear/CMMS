@@ -9,26 +9,21 @@
                     <thead>
                         <tr>
                             <th>Code</th>
-                            <th>Date</th>
-                            <th>Engineer</th>
-                            <th></th>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Agent</th>
 
                         </tr>
                     </thead>
-                   {{#if hasReports}} 
+                   {{#if hasSpareParts}} 
                     <tbody>
-                     {{#each reports}}
+                     {{#each spareParts}}
                         <tr>
                             <td>{{this.Code}}</td>
-                            <td>{{this.DATE}}</td>
-                            <td>{{this.Engineer}}</td>
-                            <td>
-                                <div class="table-data-feature">      
-                                    <a href="/report/ppm/{{ this.Code }}" class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                        <i class="zmdi zmdi-more"></i>
-                                    </a>
-                                </div>
-                            </td>
+                            <td>{{this.Name}}</td>
+                            <td>{{this.Amount}}</td>
+                            <td>{{this.AgentName}}</td>
+
 
                         </tr>
                        {{/each}} 

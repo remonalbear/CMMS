@@ -437,7 +437,7 @@ exports.workOrder=(req,res)=>{
             }) 
             res.render('workOrder',{pageTitle:'WorkOrder',
                                         WorkOrder:true,Workorders:wd,
-                                        hasWorkOrder:wd.length>0,Engineers:en,Equipments:eq});
+                                        hasWorkOrder:wd.length>0,WO:true,Engineers:en,Equipments:eq});
         })    
         })       
 
@@ -462,10 +462,18 @@ exports.breakDown=(req,res)=>{
                     Department:breakD.Equipment.Department.Name
                   }
                 })
+        Equipment.findAll({include:[{model:Department}]}).then(equipments => {
+            const eqs = equipments.map(equipment => {
+                return{
+                    Name:equipment.Name,
+                    Code:equipment.Code,
+                    Department:equipment.Department.Name
+                }
+            })
+        res.render('breakDown',{pageTitle:'BreakDown',BreakDown:true,breakDowns:bd,
+                                    hasBreakDown:bd.length>0,Equipments:eqs});
+        })
 
-    res.render('breakDown',{pageTitle:'BreakDown',
-                                BreakDown:true,breakDowns:bd,
-                                hasBreakDown:bd.length>0});
     }).catch(err => {
         if(err)
         res.render('error',{layout:false,pageTitle:'Error',href:'/home',message:'Sorry !!! Could Not Get BreakDowns'})
@@ -623,7 +631,7 @@ WorkOrder.findAll({where:{ClinicalEnginnerDSSN:dssn}}).then(orders => {
             FName:engineer.FName,
             LName:engineer.LName
         }
-        console.log(events)
+        
     res.render('calender',{layout:false,WO:true,events:events,pageTitle:'calender',Engineer:Engineer})
     })
 

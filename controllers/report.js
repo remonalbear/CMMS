@@ -4,6 +4,8 @@ ClinicalEngineer=require('../models/clinical_engineer')
 Department=require('../models/department')
 SparePart=require('../models/spare_part')
 DialyInspection=require('../models/dialy_inspection')
+BreakDown=require('../models/break_down')
+Maintenance=require('../models/maintenance')
 PPM =require('../models/ppm')
 PPMQuestions=require('../models/ppm_questions')
 
@@ -335,3 +337,71 @@ exports.PpmReport = (req,res) =>{
        })
     })
    }
+
+
+exports.equipmentBreakDownReport=(req,res)=>{
+code=req.params.Id
+var name=null
+var model =null
+Equipment.findByPk(code).then(eq => {
+    name=eq.Name
+    model=eq.Model
+    BreakDown.findAll({where:{EquipmentCode:code}}).then(breakdowns => {
+        const bds=breakdowns.map(breakdown => {
+            return {
+                Code:breakdown.Code,
+                Reason:breakdown.Reason,
+                Date:breakdown.DATE
+            }
+        })
+        res.render('equipmentBreakDowns',{layout:'equipmentReportLayout',pageTitle:'Break Downs',
+            code:code,BD:true,breakDowns:bds,hasBreakDowns:bds.length>0,name:name,model:model })   
+    })
+})
+}
+
+exports.equipmentMaintenaceReport=(req,res) => {
+    code=req.params.Id
+    var name=null
+    var model =null
+    Equipment.findByPk(code).then(eq => {
+        name=eq.Name
+        model=eq.Model
+        Maintenance.findAll({include:[{model:BreakDown,where:{EquipmentCode:code}}]}).then(maintenances => {
+            const ms=maintenances.map(maintenance => {
+                return {
+                    Id:maintenance.Id,
+                    Description:maintenance.Description,
+                    StartDate:maintenance.StartDate,
+                    EndDate:maintenance.EndDate,
+                    BreakDownCode:maintenance.BreakDown.Code,
+                    BreakDownReason:maintenance.BreakDown.Reason
+                }
+            })
+            res.render('equipmentMaintenance',{layout:'equipmentReportLayout',pageTitle:'Maintenances',
+                code:code,M:true,maintenance:ms,hasMaintenances:ms.length>0,name:name,model:model })   
+        })
+    })
+}
+
+exports.equipmentSparePartsReport=(req,res) => {
+code=req.params.Id
+var name=null
+var model =null
+Equipment.findByPk(code).then(eq => {
+    name=eq.Name
+    model=eq.Model
+    SparePart.findAll({where:{EquipmentCode:code},include:[{model:AgentSupplier}]}).then(spareParts => {
+        const sps=spareParts.map(sparePart => {
+            return {
+                Code:sparePart.Code,
+                Name:sparePart.Name,
+                Amount:sparePart.Amount,
+                AgentName:sparePart.AgentSupplier.Name
+            }
+        })
+        res.render('equipmentSpareParts',{layout:'equipmentReportLayout',pageTitle:'Break Downs',
+            code:code,SP:true,spareParts:sps,hasSpareParts:sps.length>0,name:name,model:model })   
+    })
+})
+}
