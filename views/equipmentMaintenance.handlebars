@@ -1,0 +1,42 @@
+<div class="main-content">
+    <div class="section__content section__content--p30"> 
+        <div class="container-fluid">
+            <div class="table-data__tool">
+                <h2><img src="images/{{image}}" style="height: 50px; width:50px; border-radius: 50%;" > {{#if name}} Equipment Name: {{ name }} , Model: {{ model}}{{/if}}</h2>
+            </div>
+            <div class="table-responsive m-b-40">
+                <table class="table table-borderless table-data3">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Description</th>
+                            <th>Breakdown Code</th>
+                            <th>Breakdown Reason</th>
+                            
+
+                        </tr>
+                    </thead>
+                   {{#if hasMaintenances}} 
+                    <tbody>
+                     {{#each maintenance}}
+                        <tr>
+                            <td>{{this.Id}}</td>
+                            <td>{{this.StartDate}}</td>
+                            <td>{{this.EndDate}}</td>
+                            <td>{{this.Description}}</td>
+                            <td>{{this.BreakDownCode}}</td>
+                            <td>{{this.BreakDownReason}}</td>
+
+                        </tr>
+                       {{/each}} 
+                    </tbody>
+                   {{/if}} 
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- END PAGE CONTAINER-->  
+
