@@ -11,6 +11,9 @@ router.get('/report/equipment/installation/:Id',reportController.equipmentInstal
 router.get('/report/equipment/dailyInspection/:Id',reportController.equipmentDialyInspectionReport);
 router.get('/report/dialyInspection/:code',reportController.dialyInspectionReport);
 router.get('/report/equipment/ppm/:Id',reportController.equipmentPpmReport);
+router.get('/report/equipment/breakDowns/:Id',reportController.equipmentBreakDownReport);
+router.get('/report/equipment/maintenance/:Id',reportController.equipmentMaintenaceReport);
+router.get('/report/equipment/spareParts/:Id',reportController.equipmentSparePartsReport);
 router.get('/report/ppm/:code',reportController.PpmReport);
 
 module.exports=router;

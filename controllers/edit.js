@@ -167,7 +167,7 @@ exports.editWorkOrder=(req,res)=>{
       }
 
    res.render('editWorkOrder',{layout:'main-layout.handlebars',pageTitle:'Edit',
-                                       WorkOrder:true,workOrder:wd});
+                                       WO:true,workOrder:wd});
 
 
 

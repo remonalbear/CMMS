@@ -63,7 +63,19 @@
                 <li class="{{#if DI }}active{{/if}} has-sub">
                     <a class="js-arrow" href="/report/equipment/dailyInspection/{{ code }}">
                         <i class="fas fa-copy"></i>Daily Inspection</a>
-                </li>         
+                </li>    
+                   <li class="{{#if SP }}active{{/if}} has-sub">
+                    <a class="js-arrow" href="/report/equipment/spareParts/{{ code }}">
+                        <i class="fas fa-copy"></i>Spare Parts</a>
+                </li>    
+                  <li class="{{#if BD }}active{{/if}} has-sub">
+                    <a class="js-arrow" href="/report/equipment/breakDowns/{{ code }}">
+                        <i class="fas fa-copy"></i>Break Downs</a>
+                </li> 
+               <li class="{{#if M }}active{{/if}} has-sub">
+                    <a class="js-arrow" href="/report/equipment/maintenance/{{ code }}">
+                        <i class="fas fa-copy"></i>Maintenance</a>
+                </li>             
                     </ul>
                 </nav>
             </div>
