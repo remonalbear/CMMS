@@ -23,10 +23,7 @@
                                             <label class=" form-control-label">LName</label>
                                             <input type="text" required name="LName" placeholder="New Last name" value="{{ clinicalEngineer.LName}}" class="form-control">
                                         </div>
-                                          {{!-- <div class="form-group">
-                                            <label class=" form-control-label">Photo</label>
-                                            <input type="file"  name="image" placeholder="New Last name" value="{{ clinicalEngineer.Image}}" class="form-control">
-                                        </div> --}}
+
                                         <div class="form-group">
                                             <label class=" form-control-label">Phone</label>
                                             <input type="text" required name="Phone" placeholder="New Phone"  value="{{ clinicalEngineer.Phone}}" class="form-control">
@@ -49,11 +46,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label class=" form-control-label">Department</label>
-                                            <select name="Department"required id="select"  class="form-control" >
-                                                <option value="Radiology">Radiology</option>
-                                                <option value="OR">OR</option>
-                                                <option value="ICU">ICU</option>
-                                                <option value="CSSD">CSSD</option>
+                                            <select name="Department"required id="select"   class="form-control" >
+                                                <option value="Radiology" {{#if clinicalEngineer.Radiology}} selected {{/if}}>Radiology</option>
+                                                <option value="OR" {{#if clinicalEngineer.OR}} selected {{/if}}>OR</option>
+                                                <option value="ICU" {{#if clinicalEngineer.ICU}} selected {{/if}}>ICU</option>
+                                                <option value="CSSD" {{#if clinicalEngineer.CSSD}} selected {{/if}}>CSSD</option>
                                             </select>
                                         </div>                                        
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">ADD</button>

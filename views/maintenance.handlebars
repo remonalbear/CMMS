@@ -20,8 +20,11 @@
                                     <th>Id</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
-                                    <th>Break Down ID</th>
                                     <th>Description</th>
+                                    <th>Break Down ID</th>
+                                    <th>Department</th>
+                                    <th>Equipment</th>
+                                    <th>Engineer</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -33,8 +36,11 @@
                                     <td>{{this.Id}}</td>
                                     <td>{{this.StartDate}}</td>
                                     <td>{{this.EndDate}}</td>
-                                    <td>{{this.BreakDownCode}}</td>
                                     <td>{{this.Description}}</td>
+                                    <td>{{this.BreakDownCode}}</td>
+                                    <td>{{this.Department}}</td>
+                                    <td><img src="images/{{this.EquipmentImage}}" style="height: 50px; width:50px; border-radius: 50%;" >  {{this.EquipmentName}}-{{this.EquipmentCode}}</td>
+                                    <td> <img src="images/{{this.ClinicalEngineerImage}}" style="height: 50px; width:50px; border-radius: 50%;" > {{this.ClinicalEngineer}} </td>
                                     <td>
                                        <div class="table-data-feature">
                                                 <a href="/maintenance/edit/{{ this.Id }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
@@ -79,11 +85,19 @@
                 <div class="login-form">
                           <div class="form-group">
                             <label class=" form-control-label">Engineer DSSN</label>
-                            <input type="text" required name="DSSN" placeholder="Enter Code  " class="form-control">
+                            <select name="DSSN"required id="select" class="form-control">
+                                {{#each Engineers}}
+                                    <option value="{{this.DSSN}}">{{this.FName}} {{this.LName}} {{this.DSSN}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Break Down Code</label>
-                            <input type="text" required name="BreakDownID" placeholder="Enter Code  " class="form-control">
+                            <select name="BreakDownID"required id="select" class="form-control">
+                                {{#each breakDowns}}
+                                    <option value="{{this.Code}}">{{this.Code}} : {{this.Date}} ({{this.EquipmentName}}-{{this.EquipmentCode}}) {{this.Reason}}</option>
+                                {{/each}}
+                            </select>
                         </div>
                            <div class="form-group">
                             <label class=" form-control-label">Start Date</label>

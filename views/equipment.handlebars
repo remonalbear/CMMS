@@ -16,12 +16,8 @@
                             <div class="card-text">Name: <span>{{ this.Name }}</span></div>
                             <div class="card-text">Model: <span>{{ this.Model}}</span></div>
                             <div class="card-text">Serial Number: <span>{{ this.SerialNumber }}</span></div>
-                            {{!-- <div class="card-text">Manufacturer: <span>{{ this.Manufacturer}}</span></div> --}}
                             <div class="card-text">Location: <span>{{ this.Location }}</span></div>
                             <div class="card-text">Department: <span>{{ this.DepartmentCode }}</span></div>
-                            {{!-- <div class="card-text">Installation Date: <span>{{ this.InstallationDate }}</span></div> --}}
-                            {{!-- <div class="card-text">Agent: <span>{{ this.AgentSupplierId }}</span></div> --}}
-                            {{!-- <div class="card-text">Cost: <span>{{ this.Cost }}</span></div> --}}
                             <div class="card-text">PM: <span>{{ this.PM }}</span></div>
 
                         </div>
@@ -106,7 +102,11 @@
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">Agent Code</label>
-                            <input type="text" required name="Agent" placeholder="Enter Agent Code" class="form-control">
+                            <select name="Agent"required id="select" class="form-control">
+                                {{#each Agents}}
+                                    <option value="{{this.Id}}">{{this.Name}} {{this.Id}} </option>
+                                {{/each}}
+                            </select>
                         </div>
                         <div class="form-group">
                             <label class=" form-control-label">PM</label>
