@@ -98,13 +98,13 @@
  ### Then from here they will appear.
  <img src="images/more_info2 equipment.png" width="1200" height="400" /> </br>
 
-    * ### Spare Parts:
+    * ### Spare Parts: </br>
 <img src="images/spare parts.png" width="1200" height="400" /> </br>
 
-    * ### Break downs:
+    * ### Break downs: </br>
 <img src="images/break downs.png" width="1200" height="400" /> </br>
 
-    * ### Maintenance:
+    * ### Maintenance: </br>
 <img src="images/maintenance.png" width="1200" height="400" /> </br>
 
 
