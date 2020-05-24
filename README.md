@@ -4,13 +4,21 @@
 
 ## How to use our software?
  1- First you have to download Node and install it. You can download it from [here](https://nodejs.org/en/)
+
  2- Second download mysql database and install it, Preferd ampps and you can download it from [here](https://www.ampps.com/downloads)
+
  3- Open ampps and turn on Apache and MySQl.
+
  4- from [phpMyAdmin](http://localhost/phpmyadmin/) create new database and name it **cmms**.
+
  5- Open the folder of the project using your IDE .
+
  6- Open the terminal of your IDE and write **npm install**, then **nodemon start**.
+
  7- If it doesn't work you can try **node server.js** or **npm start**.
+
  8- In your browser open **localhost:3000**.
+ 
  9- You will find the home of our website and to see the rest of our website you have to login.
 * Note: **email**:admin@gmail.com, **password**:0000
 
