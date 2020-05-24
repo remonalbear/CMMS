@@ -175,7 +175,6 @@ Recording all the maintenance operations in your system is very important for de
 
 ## Agent/Suppliers 
 ### Here we can **Add** any new agent or supplier we dealed with :
-
 <img src = "images/Add Agent_1.png" width = "" height = ""/>
 
 ### Here we can see colored arrows which indicate:
