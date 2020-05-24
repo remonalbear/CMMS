@@ -14,7 +14,7 @@
 
  - ### There is some steps you must do it to get your installation report:
  ### 1- press on "*ADD EQUIPMENT* "
-     <img src="images/add_equipment installation.jpeg" width="1000" height="100" /> </br>   
+  <img src="images/add_equipment installation.jpeg" width="1000" height="100" /> </br>   
  ### 2- Here is the Form you must fill it
    <img src="images/form.png" align="center" width="500" height="700" /> </br>
  ### 3- After you fill it, Equipment Card will appear with all equipment information, press here '' (...) ''  to get your Installation Report
@@ -33,15 +33,15 @@
 
  - ### To see your saved report , you must:
  ### 1- press log out
-     <img src="images/logout.jpeg" width="800" height="500" /> </br>
+  <img src="images/logout.jpeg" width="800" height="500" /> </br>
  ### 2- Sign in as an Admin
-     <img src="images/sign in daily_inspec.jpeg" width="800" height="500" /> </br>
+  <img src="images/sign in daily_inspec.jpeg" width="800" height="500" /> </br>
  ### 3- Here is our Home, press on " Reports " then " Daily Inspection "
-     <img src="images/home_reports.png" width="900" height="600" /> </br>
+  <img src="images/home_reports.png" width="900" height="600" /> </br>
  ### 4- Here is your saved report, press " (...) " to show it
-     <img src="images/final daily_inspec.jpeg" width="900" height="200" /> </br>
+  <img src="images/final daily_inspec.jpeg" width="900" height="200" /> </br>
  ### 5- Final form for Daily Inspection Report of Steam Sterilizer device
-     <img src="images/daily_inspec.jpeg" width="1200" height="700" /> </br>
+  <img src="images/daily_inspec.jpeg" width="1200" height="700" /> </br>
 
  ## 3. **PPM (**Planned Preventative Maintenance**) Report**
  - ### For all the equipment, there is a PPM report that is filled with a specific schedule to make sure that the device/accessories need to be maintained or that it is working effectively.
@@ -50,21 +50,21 @@
  ### 1- Sign in as a clinical engineer:
    <img src="images/sign in.jpeg" width="800" height="400" /> </br>
  ### 2- All reports will appear, choose red " PPM ", a small Form will appear choose the equipment you want to fill it's PPM report then click on blue " PPM ":
-     <img src="images/PPM1.png" width="1000" height="600" /> </br>
+  <img src="images/PPM1.png" width="1000" height="600" /> </br>
  ### 3- Here is PPM report for C-Arm 680 OR device, Fill it then press " Save ":
-     <img src="images/PPM2.png" width="1200" height="600" /> </br>
+  <img src="images/PPM2.png" width="1200" height="600" /> </br>
 
  - ### To see your saved report , you must:
  ### 1- press log out
-     <img src="images/logout.jpeg" width="800" height="500" /> </br>
+  <img src="images/logout.jpeg" width="800" height="500" /> </br>
  ### 2- Sign in as an Admin
-     <img src="images/sign in daily_inspec.jpeg" width="800" height="500" /> </br>
+  <img src="images/sign in daily_inspec.jpeg" width="800" height="500" /> </br>
  ### 3- Here is our Home, press on " Reports " then " PPM "
-     <img src="images/PPM3.png" width="900" height="600" /> </br>
+  <img src="images/PPM3.png" width="900" height="600" /> </br>
  ### 4- Here is your saved report, press " (...) " to show it
-     <img src="images/PPM4.png" width="900" height="200" /> </br>
+  <img src="images/PPM4.png" width="900" height="200" /> </br>
  ### 5- Final form for PPM Report of C-Arm 680 OR device
-     <img src="images/PPM5.png" width="1200" height="700" /> </br>
+  <img src="images/PPM5.png" width="1200" height="700" /> </br>
 
 
  # **Departments & Equipments**
@@ -96,16 +96,16 @@
     <img src="images/more option equipment.png" width="300" height="400" />
 
  ### Then from here they will appear.
-    <img src="images/more_info2 equipment.png" width="1200" height="400" /> </br>
+ <img src="images/more_info2 equipment.png" width="1200" height="400" /> </br>
 
     * ### Spare Parts:
-    <img src="images/spare parts.png" width="1200" height="400" /> </br>
+<img src="images/spare parts.png" width="1200" height="400" /> </br>
 
     * ### Break downs:
-    <img src="images/break downs.png" width="1200" height="400" /> </br>
+<img src="images/break downs.png" width="1200" height="400" /> </br>
 
     * ### Maintenance:
-    <img src="images/maintenance.png" width="1200" height="400" /> </br>
+<img src="images/maintenance.png" width="1200" height="400" /> </br>
 
 
 ## Work Orders:
