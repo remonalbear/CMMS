@@ -213,7 +213,7 @@
 
   * When choosing Installation, the installation report of the Equipment will appear:
 
-![1](images/Equip_more_install.png)
+![1](images/Equip_install.png)
 
   * When choosing PPM, the PPM report of the Equipment will appear:
 
@@ -337,7 +337,6 @@ Recording all the maintenance operations in your system is very important for de
 ![Edit maintenance](images/editmaintenance.png)
 
 * Delete any specific maintenance
-
 
 
 ## Spare Parts:
