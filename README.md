@@ -1,46 +1,53 @@
 # CMMS
 ## What is CMMS?
- It stands for Computerized Maintenance Management System. It's a software designed to store the hospital's maintenance data on a computer, whether it's a workorder for a breakdown or a daily inspection. This software simplify the maintenance mangement by giving users insight into the state of maintenance needs with comprehensive work order schedules, accurate inventory of spare parts, and access to very important reports. This information makes it easier for maintenance workers do their jobs more effectively. And CMMS is not only used in medical field, it's used in every industry.
+ It stands for Computerized Maintenance Management System. It is a software designed to store the hospital's maintenance data on a computer, whether it's a work order for a breakdown or a daily inspection. This software simplifies the maintenance management by giving users insight into the state of maintenance needs with comprehensive work order schedules, accurate inventory of spare parts, and access to very important reports. This information makes it easier for maintenance workers to do their jobs more effectively. And CMMS is not only used in the medical field, it's used in every industry.
 
 ## How to use our software?
- 1- First you have to download Node and install it. You can download it from [here](https://nodejs.org/en/)
+ 1- First, you have to download Node and install it. You can download it from [here](https://nodejs.org/en/)
 
- 2- Second download mysql database and install it, Preferd ampps and you can download it from [here](https://www.ampps.com/downloads)
+ 2- Second, download MySQL database and install it, Preferred Ampps and you can download it from [here](https://www.ampps.com/downloads)
 
- 3- Open ampps and turn on Apache and MySQl.
+ 3- Open Ampps and turn on Apache and MySQL.
 
- 4- from [phpMyAdmin](http://localhost/phpmyadmin/) create new database and name it **cmms**.
+ 4- From [phpMyAdmin](http://localhost/phpmyadmin/) create new database and name it **cmms**.
 
- 5- Open the folder of the project using your IDE .
+ 5- Open the folder of the project using your IDE.
 
  6- Open the terminal of your IDE and write **npm install**, then **nodemon start**.
 
  7- If it doesn't work you can try **node server.js** or **npm start**.
 
  8- In your browser open **localhost:3000**.
- 
- 9- You will find the home of our website and to see the rest of our website you have to login.
-* Note: **email**:admin@gmail.com, **password**:0000
+
+ 9- You will find the home of our website. To see the rest of our website you have to log in.
+* Note: **email**: admin@gmail.com, **password**: 0000
 
 10- Now you can see all the content of our website and edit it.
-  
- 
+* Note: There is an uploaded SQL file for our CMMS on our Repository
+
+
+## The Relational Model of Our CMMS Database :
+
+![Work Orders](images/RM.png)
+
 
 
 ## Work Orders:
-Managing work orders is one of the important features in CMMS systems ,So,we added this feature in our project.
+Managing work orders is one of the important features in CMMS systems. So, we added this feature to our project.
+
 ### The admin of the site:
 * View all the work orders
-    
+
     As shown the admin can view many data for each order:
-    
-    * Code of the order
-    * Start and End date
-    * Desciption
+
+    * The Code of the order
+    * The Start and End date
+    * The Description
     * The Engineer associated with the order
     * The Equipment associated with the order
     * The Cost
     * The Priority of the order marked with colors
+
 
  ![Work Orders](images/workorder.png)
 
@@ -48,62 +55,66 @@ Managing work orders is one of the important features in CMMS systems ,So,we add
 
     As shown the admin can easily select the engineer and the equipment
 
-![Add work order](images/addworkorder.png) 
+![Add work order](images/addworkorder.png)
 
 * Edit any specific work order
 
-![Edit work order](images/editworkorder.png) 
+![Edit work order](images/editworkorder.png)
 
 * Delete any specific work order
 
-### The clinical Engineer:
-After log in the clinical engineer can view all his work order in a chalender ,the color represent the priority of the order.
+### The Clinical Engineer:
+After log in the clinical engineer can view all his work orders in a calendar, the color represents the priority of the order.
 
 ![chalender](images/chalender1.png)
 
-![chalender list](images/chalender2.png) 
+![chalender list](images/chalender2.png)
 
-## Break Downs:
-Recording all the breakdowns happend in your system is very important for decision taking and statistics ,So,in our project the admin can view all the break downs in detials.
+## Breakdowns:
+Recording all the breakdowns that happened in your system is very important for decision making and statistics. So, in our project the admin can view all the break downs in detail.
+
 ### The admin of the site:
 * View all the break downs
-    
+
     As shown the admin can view many data for each order:
-    
-    * Code of the break down
-    * Reason of the break down
-    * The Equipment broken down
+
+    * The Code of the breakdown
+    * The Reason of the breakdown
+    * The Equipment which is broken down
     * The Date
-    * The Deparment of the equipment 
+    * The Department of the equipment
+
 
  ![Break Downs](images/breakdown.png)
 
-* Add new break downs
+* Add new breakdowns
 
     As shown the admin can easily select the equipment
 
-![Add break down](images/addbreakdown.png) 
+![Add break down](images/addbreakdown.png)
 
-* Edit any specific break down
+* Edit any specific breakdown
 
-![Edit break down](images/editbreakdown.png) 
+![Edit break down](images/editbreakdown.png)
 
-* Delete any specific break down
+* Delete any specific breakdown
+
 
 ## Maintenance:
-Recording all the maintenance operations in your system is very important for decision taking and statistics ,So,in our project the admin can view all the maintenance operations in detials.
+Recording all the maintenance operations in your system is very important for decision making and statistics. So, in our project the admin can view all the maintenance operations in detail.
 ### The admin of the site:
 * View all the maintenance operations
-    
+
     As shown the admin can view many data for each order:
-    
-    * Code of the maintenance
-    * Start and End Date
-    * Description of the maitenance
-    * The Equipment assiocated with the maintenance operation
-    * the Engineer who made the maintenance operation
+
+    * The Code of the maintenance
+    * The Start and End Date
+    * The Description of the maintenance
+    * The Equipment associated with the maintenance operation
+    * The Engineer who made the maintenance operation
     * The Department
-    * The break down assiosated with this maintenance
+    * The breakdown associated with this maintenance
+
 
  ![Maintenence](images/maintenance.png)
 
@@ -111,88 +122,162 @@ Recording all the maintenance operations in your system is very important for de
 
     As shown the admin can easily select the equipment and the breakdown
 
-![Add maintenance](images/addmaintenance.png) 
+![Add maintenance](images/addmaintenance.png)
 
 * Edit any specific maintenance
 
-![Edit maintenance](images/editmaintenance.png) 
+![Edit maintenance](images/editmaintenance.png)
 
 * Delete any specific maintenance
 
 
 ## Departments:
-- ### We have 4 departments: OR, ICU, Radiology, CSSD.
-- ### Each department has its own information, such as code, location, equipments and engineers who working in it.
+* We have 4 departments: **OR**, **ICU**, **Radiology**, **CSSD**.
+* Each department has its own information, such as:
 
-    <img src="images/1.png" align="center" width="1000" height="400" />
+  * The Code of the department
+  * The Location of the department
+  * The Equipment's number
+  * The Engineers' number working in it.
 
-- ### You can add new departments using (*ADD DEPARTMENT*) button.
+![1](images/1.png)
 
-   <img src="images/2.png" width="1000" height="400" />
+* You can add New Departments using (*ADD DEPARTMENT*) button.
 
-- ### You can get more information for each department from here.
+![2](images/2.png)
 
-   <img src="images/3.png" width="1000" height="400" />
+* This will open a form like this to fill in the new data:
 
-
-## Equipments:
-- ### There are all equipments of each department.
-- ### Each equipment has its own information, such as name, code, model, serial number, location and the department it's belong to.
-
-   <img src="images/4.png" width="1000" height="400" />
-
-- ### You can add new equipments using (*ADD EQUIPMENT*) button.
-
-   <img src="images/5.png" width="1000" height="400" />
-
-- ### You can edit, delete or preview the installation report of each equipment from here.
-
-   <img src="images/6.png" width="1000" height="400" />
-
-- ### To see equipment's spare parts, maintenance and break downs, choose "(...)"
-    <img src="images/more option equipment.png" width="300" height="400" />
-
- ### Then from here they will appear.
- <img src="images/more_info2 equipment.png" width="1200" height="400" /> </br>
-
-  * ### Spare Parts: </br>
-  <img src="images/spare parts.png" width="1200" height="400" /> </br>
-
-  * ### Break downs: </br>
-  <img src="images/break downs.png" width="1200" height="400" /> </br>
-
-  * ### Maintenance: </br>
-  <img src="images/maintenance.png" width="1200" height="400" /> </br>
+![2](images/Dept_Add_Form.png)
 
 
+* You can get more information for each Department from here.
+
+![1](images/3.png)
+
+* A table will appear that shows information about all the Equipment included in a certain Department. These information as shown are the Equipment's:
+
+  * Code
+  * Name
+  * Cost
+  * Model
+  * Serial Number
+
+![1](images/Dep_info.png)
+
+## The Equipment:
+* Include all Equipment of each Department.
+* Each Equipment has its own information such as the Equipment's:
+  * Name
+  * Code
+  * Model
+  * Serial number
+  * Location
+  * Department
+
+![1](images/4.png)
+
+* You can add New Equipment using (*ADD EQUIPMENT*) button.
+
+![1](images/5.png)
+
+* A form will appear like this to fill in the new data:
+
+![2](images/Equip_Add_Form.jpeg)
+
+* You can edit or delete Equipment from here.
+
+![1](images/6.png)
+
+* Here is the Edit form of a certain Equipment:
+
+![1](images/Eq-edit.jpeg)
+
+* To see the Equipment's Reports, Spare parts, Maintenance, and Breakdowns, choose "(...)"
 
 
-## Spareparts:
-### Here we can **Add** any new sparepart entering the Database :
+![1](images/more_option_equipment.png)
 
-<img src = "images/Add_1.png" width = "" height = ""/>
+* Then from here they will appear:
 
-### Here we can see colored arrows which indicate:
-* ###  Black Arrow : The **Code** of the Sparepart
-* ###  Violet Arrow : The **Name** of the Sparepart
-* ###  Blue Arrow : The **Amount or Number** of the Spareparts we have in the inventory
-* ###  Green Arrow : The **Equipment Code** which the sparepart belongs to
-* ###  Red Arrow : The **Agent ID** which the Equipment and its Spareparts belong to
-<br>
-<img src = "images/Spare Attr_1.png" width = "" height = ""/>
+![1](images/more_info2_equipment.png)
 
-## Agent/Suppliers 
-### Here we can **Add** any new agent or supplier we dealed with :
-<img src = "images/Add Agent_1.png" width = "" height = ""/>
+* When choosing **Spare Parts** :
 
-### Here we can see colored arrows which indicate:
-* ###  Blue Arrow : The **ID** of the Supplier
-* ###  Violet Arrow : The **Name** of the Supplier
-* ###  Black Arrow : The **Address** of the Supplier
-* ###  Green Arrow : The **Phone Number** of the Supplier
-* ###  Red Arrow : The **E-mail or Fax** of the Supplier
-<br>
-<img src = "images/Agent Attr_1.png" width = "" height = ""/>
+![1](images/spare_parts.png)
+
+* When choosing **Break downs** :
+
+![1](images/break_downs.png)
+
+* When choosing **Maintenance** :
+
+![1](images/maintenance2.png)
+
+## Spare Parts:
+
+* The card of each Spare Part include some information such as the Spare Part's:
+
+  * Code
+  * Name
+  * Amount
+  * Equipment Code
+  * Agent ID
+
+![2](images/Spare_Info.png)
+
+* Here we can **Add** any new Spare part entering the Database :
+
+![1](images/Spare_Add_btn.png)
+
+* When adding a new Spare Part, this form should be filled in first:
+
+![2](images/Spare_Add_Form.png)
+
+
+* From here you can edit or delete any Spare Part:
+
+![2](images/Spare_Edit_btn.png)
+
+* When editing any Spare Part a form like this will appear:
+
+![2](images/Spare_Edit.png)
+
+## Agent / Suppliers
+
+* The table is showing information about each agent such as the agent's:
+  * ID
+  * Name
+  * Address
+  * Phone Number
+  * E-mail or Fax
+
+![2](images/Agent_Info.png)
+
+* Here we can **Add** any new agent or supplier we are dealing with :
+
+![2](images/Agent_Add_btn.png)
+
+* And this will be done by filling in this form:
+
+![2](images/Agent_Add_Form.png)
+
+* We can edit or delete any information about our agents from here:
+
+![2](images/Agent_Edit_btn.png)
+
+* The Edit form will appear as the following one:
+
+![2](images/Agent_Edit.png)
+
+* To know more about the dealing with each agent, we can click on the more (...) button:
+
+![2](images/Agent_More_btn.png)
+
+* This will show a table including any Spare Parts we have from this agent:
+* The Code of each Spare Part and its amount are shown too.
+
+![2](images/Agent_More.png)
 
 
 # **Reports**
@@ -204,61 +289,101 @@ Recording all the maintenance operations in your system is very important for de
 
  ## 1. **Installation Report**
 
- - ### For all the equipment there is an installation report that shows when this device is arrived, installed, warranty period, purchase cost and PM schedule.
+ - ### For all the equipment there is an installation report that shows : When this device arrived, installed, warranty period, purchase cost, and PM schedule.
 
- - ### There is some steps you must do it to get your installation report:
- ### 1- press on "*ADD EQUIPMENT* "
-  <img src="images/add_equipment installation.jpeg" width="1000" height="100" /> </br>   
- ### 2- Here is the Form you must fill it
-   <img src="images/form.png" align="center" width="500" height="700" /> </br>
- ### 3- After you fill it, Equipment Card will appear with all equipment information, press here '' (...) ''  to get your Installation Report
-   <img src="images/the new equipment.jpeg" align="center" width="1300" height="400" /> </br></br>
-   <img src="images/installation report.jpeg" align="center" width="1300" height="600" />
+ - ### There are some steps you must do to get your installation report:
+ ### 1- Press on "*ADD EQUIPMENT* "
+
+  ![2](images/add_equipment_installation.jpeg)
+
+ ### 2- Here is a form which you have to fill it in
+   ![2](images/form.png)
+
+
+ ### 3- After filling it in, an Equipment Card will appear with all equipment information. Press here '' (...) ''  to get your Installation Report
+
+   ![2](images/the_new_equipment.jpeg)
+
+   ![2](images/installation_report.jpeg)
 
  ## 2. **Daily Inspection Report**
 
- - ### Daily inspection Report is filled by clinical engineer to ensure the safety of the device and its accessories in each department and check if the device needs maintenance or not.
+ - ### Daily inspection Report is filled by a Clinical Engineer to ensure the safety of the device and its accessories in each department and check if the device needs maintenance or not.
 
  - ### There is some steps to fill this report
- ### 1- Sign in as a clinical engineer:
-   <img src="images/sign in.jpeg" width="800" height="400" /> </br>
- ### 2- Fill the report then press '' Save''
-   <img src="images/daily inspection.jpeg" width="1200" height="700" /> </br>
+ ### 1- Sign in as a Clinical Engineer:
 
- - ### To see your saved report , you must:
- ### 1- press log out
-  <img src="images/logout.jpeg" width="800" height="500" /> </br>
+   ![2](images/sign_in.jpeg)
+
+ ### 2- Fill in the report then press **Save**
+
+   ![2](images/daily_inspection.jpeg)
+
+ - ### To see your saved report, you must:
+ ### 1- Press log out
+
+  ![2](images/logout.jpeg)
+
  ### 2- Sign in as an Admin
-  <img src="images/sign in daily_inspec.jpeg" width="800" height="500" /> </br>
- ### 3- Here is our Home, press on " Reports " then " Daily Inspection "
-  <img src="images/home_reports.png" width="900" height="600" /> </br>
+
+  ![2](images/sign_in_daily_inspec.jpeg)
+
+ ### 3- Here is our Home, press on " **Reports** " then " **Daily Inspection** "
+
+  ![2](images/home_reports.png)
+
  ### 4- Here is your saved report, press " (...) " to show it
-  <img src="images/final daily_inspec.jpeg" width="900" height="200" /> </br>
+
+  ![2](images/final_daily_inspec.jpeg)
+
  ### 5- Final form for Daily Inspection Report of Steam Sterilizer device
-  <img src="images/daily_inspec.jpeg" width="1200" height="700" /> </br>
+
+  ![2](images/daily_inspec.jpeg)
 
  ## 3. **PPM (**Planned Preventative Maintenance**) Report**
- - ### For all the equipment, there is a PPM report that is filled with a specific schedule to make sure that the device/accessories need to be maintained or that it is working effectively.
+ - ### For all Equipment, there is a PPM report that is filled with a specific schedule to make sure that the device/accessories need to be maintained or that it is working effectively.
 
- - ### There is some steps to fill this report
+ - ### There are some steps to fill in this report
  ### 1- Sign in as a clinical engineer:
-   <img src="images/sign in.jpeg" width="800" height="400" /> </br>
- ### 2- All reports will appear, choose red " PPM ", a small Form will appear choose the equipment you want to fill it's PPM report then click on blue " PPM ":
-  <img src="images/PPM1.png" width="1000" height="600" /> </br>
- ### 3- Here is PPM report for C-Arm 680 OR device, Fill it then press " Save ":
-  <img src="images/PPM2.png" width="1200" height="600" /> </br>
+
+   ![2](images/sign_in.jpeg)
+
+ ### 2- All reports will appear, choose **Red** " PPM ", a small Form will appear choose the Equipment you want to fill it's PPM report in and then click on **Blue** " PPM ":
+
+  ![2](images/PPM1.png)
+
+ ### 3- Here is PPM report for C-Arm 680 OR device, Fill it in then press " **Save** ":
+
+  ![2](images/PPM2.png)
 
  - ### To see your saved report , you must:
- ### 1- press log out
-  <img src="images/logout.jpeg" width="800" height="500" /> </br>
+ ### 1- Press log out
+ ![2](images/logout.jpeg)
+
  ### 2- Sign in as an Admin
-  <img src="images/sign in daily_inspec.jpeg" width="800" height="500" /> </br>
+
+  ![2](images/sign_in_daily_inspec.jpeg)
+
  ### 3- Here is our Home, press on " Reports " then " PPM "
-  <img src="images/PPM3.png" width="900" height="600" /> </br>
+
+  ![2](images/PPM3.png)
+
  ### 4- Here is your saved report, press " (...) " to show it
-  <img src="images/PPM4.png" width="900" height="200" /> </br>
+
+  ![2](images/PPM4.png)
+
  ### 5- Final form for PPM Report of C-Arm 680 OR device
-  <img src="images/PPM5.png" width="1200" height="700" /> </br>
 
+  ![2](images/PPM5.png)
 
+# About Us:
+## Team Number : 6
+## Team Members :
 
+| Name | Section | B.N |
+| :----: | :----: | :----: |
+| **Remon Albear** | 1 | 31 |
+| **Salma Ayman** | 1 | 37 |
+| **Rawan Sayed** | 1 | 30 |
+| **Sara Adel** | 1 | 35 |
+| **Omar Abdelzaher** | 2 | 11|
