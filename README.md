@@ -166,7 +166,7 @@ Recording all the maintenance operations in your system is very important for de
 ![1](images/Dep_info.png)
 
 ## The Equipment:
-* Include all Equipment of each Department.
+* It Includes all Equipment of each Department.
 * Each Equipment has its own information such as the Equipment's:
   * Name
   * Code
