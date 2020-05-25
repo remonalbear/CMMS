@@ -601,7 +601,7 @@ exports.dailyInspection=(req,res)=>{
         }
 
  })
- res.render('dialyinspectionTable',{pageTitle:'Dialy Inspection',
+ res.render('dialyinspectionTable',{pageTitle:'Daily Inspection',
     Reports:true,eq:true,reports:reps,hasReports:reps.length>0 })  
 }).catch(err => {
     res.render('error',{layout:false,pageTitle:'Error',href:'/',message:'Sorry !!! Could Not Get Report'})

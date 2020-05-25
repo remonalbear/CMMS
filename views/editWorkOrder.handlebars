@@ -40,9 +40,9 @@
                                         <div class="form-group">
                                             <label class=" form-control-label">Priority</label>
                                             <select name="Priority"required id="select"  class="form-control" >
-                                                <option value="Low">Low</option>
-                                                <option value="Medium">Medium</option>
-                                                <option value="High">High</option>
+                                                <option value="Low" {{#if workOrder.low}} selected {{/if}}>Low</option>
+                                                <option value="Medium" {{#if workOrder.med}} selected {{/if}}>Medium</option>
+                                                <option value="High" {{#if workOrder.high}} selected {{/if}}>High</option>
                                             </select>
                                         </div>                                        
                                         <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Edit</button>

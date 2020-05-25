@@ -101,7 +101,7 @@ equipment.hasMany(spare_parts)
 // synchronizing with database 
 sequelize.sync()
 //sequelize.sync({force:true})
-.then(res => { 
+.then(res => {
     app.listen(3000,() => {
         console.log('Running')
        })
