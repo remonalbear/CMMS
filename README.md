@@ -212,9 +212,13 @@
 ![1](images/Equip_more_Reports.png)
 
   * When choosing Installation, the installation report of the Equipment will appear:
+<br>
 
-![install](images/install.png)
-  
+<img src = "images/install.png">
+
+<br>
+<br>
+
   * When choosing PPM, the PPM report of the Equipment will appear:
 
 ![1](images/Equipment_more_PPM.png)
