@@ -162,6 +162,9 @@ exports.editWorkOrder=(req,res)=>{
          Description:workOrder.Description,
          EquipmentCode:workOrder.EquipmentCode,
          Priority:workOrder.Priority,
+         med:workOrder.Priority=='Medium'?true:false,
+         high:workOrder.Priority=='High'?true:false,
+         low:workOrder.Priority=='Low'?true:false,
          ClinicalEnginnerDSSN:workOrder.ClinicalEnginnerDSSN 
 
       }

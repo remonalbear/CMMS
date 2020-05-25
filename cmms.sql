@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 23, 2020 at 08:58 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: May 25, 2020 at 01:17 PM
+-- Server version: 8.0.18
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,25 +25,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `AgentSuppliers`
+-- Table structure for table `agentsuppliers`
 --
 
-CREATE TABLE `AgentSuppliers` (
+CREATE TABLE `agentsuppliers` (
   `Id` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Adress` varchar(255) NOT NULL,
+  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Adress` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `Phone` bigint(20) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Notes` text DEFAULT NULL,
+  `Email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Notes` text COLLATE utf8mb4_general_ci,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `AgentSuppliers`
+-- Dumping data for table `agentsuppliers`
 --
 
-INSERT INTO `AgentSuppliers` (`Id`, `Name`, `Adress`, `Phone`, `Email`, `Notes`, `createdAt`, `updatedAt`) VALUES
+INSERT INTO `agentsuppliers` (`Id`, `Name`, `Adress`, `Phone`, `Email`, `Notes`, `createdAt`, `updatedAt`) VALUES
 (11111, 'El Flwa', '10 El Kasr Al Eainy ,El syda zeinab ,Cairo', 2235651272, 'Fal_med@elfalwa.com', '', '2020-05-21 18:12:28', '2020-05-21 18:12:28'),
 (11112, 'The Egyption Group ', '19 Abd El Rahman st,Masr El Gdeda ,Cairo', 222687712, 'null@gmail.com', '', '2020-05-21 18:15:03', '2020-05-21 18:17:11'),
 (11113, 'Gesca', '45 Abd El Kahlek tharwat st,Cairo', 223919696, 'info@gesca.com', '', '2020-05-21 18:16:55', '2020-05-21 18:16:55'),
@@ -68,23 +68,23 @@ INSERT INTO `AgentSuppliers` (`Id`, `Name`, `Adress`, `Phone`, `Email`, `Notes`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `BreakDowns`
+-- Table structure for table `breakdowns`
 --
 
-CREATE TABLE `BreakDowns` (
+CREATE TABLE `breakdowns` (
   `Code` int(11) NOT NULL,
-  `Reason` text NOT NULL,
-  `DATE` text NOT NULL,
+  `Reason` text COLLATE utf8mb4_general_ci NOT NULL,
+  `DATE` text COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `EquipmentCode` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `BreakDowns`
+-- Dumping data for table `breakdowns`
 --
 
-INSERT INTO `BreakDowns` (`Code`, `Reason`, `DATE`, `createdAt`, `updatedAt`, `EquipmentCode`) VALUES
+INSERT INTO `breakdowns` (`Code`, `Reason`, `DATE`, `createdAt`, `updatedAt`, `EquipmentCode`) VALUES
 (1, ' MRI helium level is low', '2020-02-15', '2020-05-21 20:08:26', '2020-05-21 20:08:26', 781396),
 (2, 'cracks/cuts on the probe lens or on the TEE probe tube.', '2020-05-04', '2020-05-21 20:09:36', '2020-05-21 20:09:45', 4573397),
 (3, 'cut on the probe lens or on the TEE probe tube.', '2020-04-06', '2020-05-21 20:10:45', '2020-05-21 20:10:45', 991415561),
@@ -132,121 +132,121 @@ INSERT INTO `BreakDowns` (`Code`, `Reason`, `DATE`, `createdAt`, `updatedAt`, `E
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ClinicalEnginners`
+-- Table structure for table `clinicalenginners`
 --
 
-CREATE TABLE `ClinicalEnginners` (
+CREATE TABLE `clinicalenginners` (
   `DSSN` bigint(20) NOT NULL,
-  `FName` varchar(255) NOT NULL,
-  `LName` varchar(255) NOT NULL,
+  `FName` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `LName` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `Phone` bigint(20) NOT NULL,
-  `Image` varchar(255) NOT NULL,
+  `Image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Age` int(11) NOT NULL,
-  `Email` varchar(255) NOT NULL,
-  `Adress` varchar(255) NOT NULL,
+  `Email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Adress` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `WorkHours` int(11) DEFAULT NULL,
-  `Password` varchar(255) NOT NULL,
+  `Password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `DepartmentCode` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `ClinicalEnginners`
+-- Dumping data for table `clinicalenginners`
 --
 
-INSERT INTO `ClinicalEnginners` (`DSSN`, `FName`, `LName`, `Phone`, `Image`, `Age`, `Email`, `Adress`, `WorkHours`, `Password`, `createdAt`, `updatedAt`, `DepartmentCode`) VALUES
+INSERT INTO `clinicalenginners` (`DSSN`, `FName`, `LName`, `Phone`, `Image`, `Age`, `Email`, `Adress`, `WorkHours`, `Password`, `createdAt`, `updatedAt`, `DepartmentCode`) VALUES
 (24697, 'Omar', 'Abdelzaher', 1125414586, 'Omar.jpeg', 22, 'omarzaher787@gmail.com', '24 Soliman Badwy', 7, '$2a$10$o9/wxciC2gi1oLzTe.LCtegbaP8aRR8reY702WJrUbmc9b3dIxI66', '2020-05-23 02:59:14', '2020-05-23 13:49:14', 3456),
-(31098, 'Sara', 'Adel', 1120592405, 'image_sara.jpeg', 21, 'sarahadel540@gmail.com', '15 May City', 8, '$2a$10$n9BqUSxMIs.uiQLP2Bhp3OJJ2e2JPfa0W6CIrKIF4XB2.d98igTs6', '2020-05-23 05:19:11', '2020-05-23 05:19:11', 9119),
+(31098, 'Sara', 'Adel', 1120592405, 'image_sara.jpeg', 21, 'sarahadel540@gmail.com', '15 May City', 8, '$2a$10$n9BqUSxMIs.uiQLP2Bhp3OJJ2e2JPfa0W6CIrKIF4XB2.d98igTs6', '2020-05-23 05:19:11', '2020-05-25 13:17:01', 7686),
 (29151719, 'Rawan', 'Sayed', 1210004644, 'image_Rawan.jpeg', 21, 'rawansayed2021@gmail.com', '6 October Street  Zahraa Nasr City', 8, '$2a$10$SEUBJeUSrX47p0e7fUxMBek46h1YINuMPlhotVthSZO0NliFMi2wm', '2020-05-23 02:15:56', '2020-05-23 02:15:56', 9119),
-(9921050746980, 'Remon', 'Albear', 1121963376, 'image_remon profile.jpg', 21, 'remonalbear522@gmail.com', '5 marzok shokry st giza', 8, '$2a$10$SqBzUGUAz1fLF.rsiU09N.b08FhgIJaLMtA78op8s/tZePEGEXUk.', '2020-05-21 18:03:56', '2020-05-23 13:49:40', 7686),
+(9921050746980, 'Remon', 'Albear', 1121963376, 'image_remon profile.jpg', 21, 'remonalbear522@gmail.com', '5 marzok shokry st giza', 8, '$2a$10$SqBzUGUAz1fLF.rsiU09N.b08FhgIJaLMtA78op8s/tZePEGEXUk.', '2020-05-21 18:03:56', '2020-05-25 13:17:11', 1010),
 (29809090102359, 'Salma', 'Ayman', 1120448157, 'image_IMG_20190318_154724_250.JPG', 21, 'soayman9@gmail.com', '15 Azam Mosque', 9, '$2a$10$Q1iScIY0CUR2OMTV2VZFX.v37oSZ2K023v8iSKL6vgfBuxk0c2NEK', '2020-05-23 13:33:26', '2020-05-23 13:33:26', 9119);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Departments`
+-- Table structure for table `departments`
 --
 
-CREATE TABLE `Departments` (
+CREATE TABLE `departments` (
   `Code` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Location` varchar(255) NOT NULL,
+  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Location` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Departments`
+-- Dumping data for table `departments`
 --
 
-INSERT INTO `Departments` (`Code`, `Name`, `Location`, `createdAt`, `updatedAt`) VALUES
-(1010, 'CSSD', 'First floor', '2020-05-21 18:01:44', '2020-05-21 18:01:44'),
+INSERT INTO `departments` (`Code`, `Name`, `Location`, `createdAt`, `updatedAt`) VALUES
+(1010, 'CSSD', 'Ground floor', '2020-05-21 18:01:44', '2020-05-21 18:01:44'),
 (3456, 'ICU', 'Second Floor', '2020-05-21 18:00:06', '2020-05-21 18:00:06'),
-(7686, 'Radiology', 'Ground floor', '2020-05-21 18:01:04', '2020-05-21 18:01:04'),
+(7686, 'Radiology', 'First floor', '2020-05-21 18:01:04', '2020-05-21 18:01:04'),
 (9119, 'OR', 'Third Floor', '2020-05-21 18:00:25', '2020-05-21 18:00:25');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `DialyInspections`
+-- Table structure for table `dialyinspections`
 --
 
-CREATE TABLE `DialyInspections` (
+CREATE TABLE `dialyinspections` (
   `Code` int(11) NOT NULL,
-  `DATE` varchar(255) NOT NULL,
-  `Q1` varchar(255) NOT NULL,
-  `Q2` varchar(255) NOT NULL,
-  `Q3` varchar(255) NOT NULL,
-  `Q4` varchar(255) NOT NULL,
-  `Q5` varchar(255) NOT NULL,
-  `Q6` varchar(255) NOT NULL,
-  `Q7` varchar(255) NOT NULL,
-  `Q8` varchar(255) NOT NULL,
+  `DATE` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q1` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q2` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q3` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q4` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q5` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q6` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q7` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q8` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `EquipmentCode` int(11) DEFAULT NULL,
   `ClinicalEnginnerDSSN` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `DialyInspections`
+-- Dumping data for table `dialyinspections`
 --
 
-INSERT INTO `DialyInspections` (`Code`, `DATE`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `Q6`, `Q7`, `Q8`, `createdAt`, `updatedAt`, `EquipmentCode`, `ClinicalEnginnerDSSN`) VALUES
+INSERT INTO `dialyinspections` (`Code`, `DATE`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `Q6`, `Q7`, `Q8`, `createdAt`, `updatedAt`, `EquipmentCode`, `ClinicalEnginnerDSSN`) VALUES
 (2, '2020-02-04', 'on', 'on', 'on', 'on', 'on', 'on', 'on', 'on', '2020-05-23 18:52:57', '2020-05-23 18:52:57', 781396, 9921050746980);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Equipment`
+-- Table structure for table `equipment`
 --
 
-CREATE TABLE `Equipment` (
+CREATE TABLE `equipment` (
   `Code` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Image` varchar(255) DEFAULT NULL,
+  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Cost` bigint(12) NOT NULL,
-  `Model` varchar(255) NOT NULL,
-  `SerialNumber` varchar(255) NOT NULL,
-  `InstallationDate` text NOT NULL,
-  `ArrivalDate` text NOT NULL,
-  `WarrantyDate` text NOT NULL,
-  `Manufacturer` text DEFAULT NULL,
-  `Location` varchar(255) NOT NULL,
-  `PM` varchar(255) NOT NULL,
-  `Notes` text DEFAULT NULL,
+  `Model` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `SerialNumber` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `InstallationDate` text COLLATE utf8mb4_general_ci NOT NULL,
+  `ArrivalDate` text COLLATE utf8mb4_general_ci NOT NULL,
+  `WarrantyDate` text COLLATE utf8mb4_general_ci NOT NULL,
+  `Manufacturer` text COLLATE utf8mb4_general_ci,
+  `Location` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `PM` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Notes` text COLLATE utf8mb4_general_ci,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `AgentSupplierId` int(11) DEFAULT NULL,
   `DepartmentCode` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Equipment`
+-- Dumping data for table `equipment`
 --
 
-INSERT INTO `Equipment` (`Code`, `Name`, `Image`, `Cost`, `Model`, `SerialNumber`, `InstallationDate`, `ArrivalDate`, `WarrantyDate`, `Manufacturer`, `Location`, `PM`, `Notes`, `createdAt`, `updatedAt`, `AgentSupplierId`, `DepartmentCode`) VALUES
+INSERT INTO `equipment` (`Code`, `Name`, `Image`, `Cost`, `Model`, `SerialNumber`, `InstallationDate`, `ArrivalDate`, `WarrantyDate`, `Manufacturer`, `Location`, `PM`, `Notes`, `createdAt`, `updatedAt`, `AgentSupplierId`, `DepartmentCode`) VALUES
 (201, 'C-ARM Monitor', 'image_carm monitor.jpg', 60000, 'BV-25 GOLD', '1004917.201', '2018-11-05', '2018-11-01', '2021-11-01', 'PHILIPS', 'Room 1', 'Monthly', '', '2020-05-22 21:45:32', '2020-05-22 21:45:32', 11122, 9119),
 (375, 'Lithotrispy', 'image_Lithotripsy SPHINIX 30 LITHO.jpg', 236823, '30 Litho', '375', '2020-02-21', '2020-02-21', '2025-01-07', 'SPHINIX', 'Room 25', 'Annualy', '', '2020-05-21 19:42:58', '2020-05-22 09:18:13', 11118, 7686),
 (680, 'C-ARM', 'image_carm1.jpg', 1000000, 'ZIEHM VISION R', '10680', '2018-03-15', '2018-03-01', '2023-03-01', 'ZIEHM IMAGUNG', 'Room 1', 'Monthly', '', '2020-05-22 21:38:06', '2020-05-22 21:38:06', 11121, 9119),
@@ -305,25 +305,25 @@ INSERT INTO `Equipment` (`Code`, `Name`, `Image`, `Cost`, `Model`, `SerialNumber
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Maintenances`
+-- Table structure for table `maintenances`
 --
 
-CREATE TABLE `Maintenances` (
+CREATE TABLE `maintenances` (
   `Id` int(11) NOT NULL,
-  `StartDate` varchar(255) NOT NULL,
-  `EndDate` varchar(255) NOT NULL,
-  `Description` text NOT NULL,
+  `StartDate` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `EndDate` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Description` text COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `BreakDownCode` int(11) DEFAULT NULL,
   `ClinicalEnginnerDSSN` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `Maintenances`
+-- Dumping data for table `maintenances`
 --
 
-INSERT INTO `Maintenances` (`Id`, `StartDate`, `EndDate`, `Description`, `createdAt`, `updatedAt`, `BreakDownCode`, `ClinicalEnginnerDSSN`) VALUES
+INSERT INTO `maintenances` (`Id`, `StartDate`, `EndDate`, `Description`, `createdAt`, `updatedAt`, `BreakDownCode`, `ClinicalEnginnerDSSN`) VALUES
 (4, '2019-10-25', '2019-10-28', 'The problem solved', '2020-05-23 18:40:44', '2020-05-23 18:40:44', 12, 24697),
 (5, '2019-05-04', '2019-05-05', 'changing lead wires', '2020-05-23 18:41:18', '2020-05-23 18:41:18', 13, 31098),
 (6, '2019-06-17', '2019-06-18', 'Helium level adjusted', '2020-05-23 18:41:58', '2020-05-23 18:41:58', 1, 24697),
@@ -337,26 +337,26 @@ INSERT INTO `Maintenances` (`Id`, `StartDate`, `EndDate`, `Description`, `create
 -- --------------------------------------------------------
 
 --
--- Table structure for table `PpmQuestions`
+-- Table structure for table `ppmquestions`
 --
 
-CREATE TABLE `PpmQuestions` (
+CREATE TABLE `ppmquestions` (
   `Code` int(11) NOT NULL,
-  `Q1` text DEFAULT NULL,
-  `Q2` text DEFAULT NULL,
-  `Q3` text DEFAULT NULL,
-  `Q4` text DEFAULT NULL,
-  `Q5` text DEFAULT NULL,
+  `Q1` text COLLATE utf8mb4_general_ci,
+  `Q2` text COLLATE utf8mb4_general_ci,
+  `Q3` text COLLATE utf8mb4_general_ci,
+  `Q4` text COLLATE utf8mb4_general_ci,
+  `Q5` text COLLATE utf8mb4_general_ci,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `EquipmentCode` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `PpmQuestions`
+-- Dumping data for table `ppmquestions`
 --
 
-INSERT INTO `PpmQuestions` (`Code`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `createdAt`, `updatedAt`, `EquipmentCode`) VALUES
+INSERT INTO `ppmquestions` (`Code`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `createdAt`, `updatedAt`, `EquipmentCode`) VALUES
 (1, 'All connections of the components for tightness examine.\r\n\r\n\r\n', 'Surfaces of the units on damages of lacquer and scrapes examine.', 'All parts on transport damages, depressions, tears, or breaks examine.', 'All cable and connectors on outward damages examine.', 'Control whether all mechanical safety devices are in the prescribed position.\r\n', '2019-12-22 06:27:36', '2019-12-22 06:27:36', 680),
 (2, 'Make sure that the connectors, patient cables, and paddles are not damaged nor\r\nexpired.\r\n\r\n', 'Make sure that the memory card is inserted into the device and that it has a sufficient\r\nmemory capacity.', 'Connect the device to an external power supply and check that the corresponding\r\nindicator on the front panel is illuminated.\r\n', 'Check that the recorder has paper and that it prints correctly.\r\n', 'Check that the battery is charged and that it does not present any signs of damage.', '2019-12-22 06:27:36', '2019-12-22 06:27:36', 4832),
 (3, 'Make sure that the connectors, patient cables, and paddles are not damaged nor\r\nexpired.\r\n\r\n', 'Make sure that the memory card is inserted into the device and that it has a sufficient\r\nmemory capacity.', 'Connect the device to an external power supply and check that the corresponding\r\nindicator on the front panel is illuminated.\r\n', 'Check that the recorder has paper and that it prints correctly.\r\n', 'Check that the battery is charged and that it does not present any signs of damage.', '2019-12-22 06:27:36', '2019-12-22 06:27:36', 414121),
@@ -376,57 +376,57 @@ INSERT INTO `PpmQuestions` (`Code`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `createdAt`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `PPMs`
+-- Table structure for table `ppms`
 --
 
-CREATE TABLE `PPMs` (
+CREATE TABLE `ppms` (
   `Code` int(11) NOT NULL,
-  `DATE` varchar(255) NOT NULL,
-  `Q1` varchar(255) NOT NULL,
-  `Q2` varchar(255) NOT NULL,
-  `Q3` varchar(255) NOT NULL,
-  `Q4` varchar(255) NOT NULL,
-  `Q5` varchar(255) NOT NULL,
-  `N1` text DEFAULT NULL,
-  `N2` text DEFAULT NULL,
-  `N3` text DEFAULT NULL,
-  `N4` text DEFAULT NULL,
-  `N5` text DEFAULT NULL,
+  `DATE` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q1` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q2` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q3` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q4` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Q5` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `N1` text COLLATE utf8mb4_general_ci,
+  `N2` text COLLATE utf8mb4_general_ci,
+  `N3` text COLLATE utf8mb4_general_ci,
+  `N4` text COLLATE utf8mb4_general_ci,
+  `N5` text COLLATE utf8mb4_general_ci,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `EquipmentCode` int(11) DEFAULT NULL,
   `ClinicalEnginnerDSSN` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `PPMs`
+-- Dumping data for table `ppms`
 --
 
-INSERT INTO `PPMs` (`Code`, `DATE`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `N1`, `N2`, `N3`, `N4`, `N5`, `createdAt`, `updatedAt`, `EquipmentCode`, `ClinicalEnginnerDSSN`) VALUES
+INSERT INTO `ppms` (`Code`, `DATE`, `Q1`, `Q2`, `Q3`, `Q4`, `Q5`, `N1`, `N2`, `N3`, `N4`, `N5`, `createdAt`, `updatedAt`, `EquipmentCode`, `ClinicalEnginnerDSSN`) VALUES
 (1, '2020-05-22', 'on', 'on', 'on', 'on', 'on', '', '', '', '', '', '2020-05-23 18:53:29', '2020-05-23 18:53:29', 781396, 9921050746980);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `SpareParts`
+-- Table structure for table `spareparts`
 --
 
-CREATE TABLE `SpareParts` (
+CREATE TABLE `spareparts` (
   `Code` int(11) NOT NULL,
-  `Name` varchar(255) NOT NULL,
-  `Image` varchar(255) NOT NULL,
+  `Name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `Image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `Amount` int(11) NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `AgentSupplierId` int(11) DEFAULT NULL,
   `EquipmentCode` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `SpareParts`
+-- Dumping data for table `spareparts`
 --
 
-INSERT INTO `SpareParts` (`Code`, `Name`, `Image`, `Amount`, `createdAt`, `updatedAt`, `AgentSupplierId`, `EquipmentCode`) VALUES
+INSERT INTO `spareparts` (`Code`, `Name`, `Image`, `Amount`, `createdAt`, `updatedAt`, `AgentSupplierId`, `EquipmentCode`) VALUES
 (942, 'X-ray tubes', 'image_X-ray tubes.jpg', 1, '2020-05-21 21:25:12', '2020-05-21 21:25:12', 11114, 61242056),
 (1465, 'Perfusion System Components', 'image_images_Perfusion.jpg', 2, '2020-05-23 01:30:24', '2020-05-23 01:30:24', 11126, 2694),
 (1555, 'Beam Splitter dual port ', 'image_beamsplitterdual.jpg', 1, '2020-05-23 00:38:28', '2020-05-23 00:38:28', 11124, 9258),
@@ -551,27 +551,27 @@ INSERT INTO `SpareParts` (`Code`, `Name`, `Image`, `Amount`, `createdAt`, `updat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `WorkOrders`
+-- Table structure for table `workorders`
 --
 
-CREATE TABLE `WorkOrders` (
+CREATE TABLE `workorders` (
   `Code` int(11) NOT NULL,
-  `StartDate` text NOT NULL,
-  `EndDate` text NOT NULL,
-  `Description` text NOT NULL,
+  `StartDate` text COLLATE utf8mb4_general_ci NOT NULL,
+  `EndDate` text COLLATE utf8mb4_general_ci NOT NULL,
+  `Description` text COLLATE utf8mb4_general_ci NOT NULL,
   `Cost` int(11) NOT NULL,
-  `Priority` varchar(255) NOT NULL,
+  `Priority` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime NOT NULL,
   `ClinicalEnginnerDSSN` bigint(20) DEFAULT NULL,
   `EquipmentCode` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `WorkOrders`
+-- Dumping data for table `workorders`
 --
 
-INSERT INTO `WorkOrders` (`Code`, `StartDate`, `EndDate`, `Description`, `Cost`, `Priority`, `createdAt`, `updatedAt`, `ClinicalEnginnerDSSN`, `EquipmentCode`) VALUES
+INSERT INTO `workorders` (`Code`, `StartDate`, `EndDate`, `Description`, `Cost`, `Priority`, `createdAt`, `updatedAt`, `ClinicalEnginnerDSSN`, `EquipmentCode`) VALUES
 (5, '2020-05-23', '2020-05-25', 'Urgent', 1500, 'High', '2020-05-23 18:48:05', '2020-05-23 18:48:05', 24697, 2694),
 (6, '2020-05-22', '2020-05-26', 'claibration', 500, 'Low', '2020-05-23 18:49:26', '2020-05-23 18:49:26', 31098, 122663),
 (7, '2019-05-22', '2019-05-26', 'Calibrate the device', 500, 'Medium', '2020-05-23 18:50:05', '2020-05-23 18:52:01', 29151719, 4832),
@@ -583,84 +583,84 @@ INSERT INTO `WorkOrders` (`Code`, `StartDate`, `EndDate`, `Description`, `Cost`,
 --
 
 --
--- Indexes for table `AgentSuppliers`
+-- Indexes for table `agentsuppliers`
 --
-ALTER TABLE `AgentSuppliers`
+ALTER TABLE `agentsuppliers`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indexes for table `BreakDowns`
+-- Indexes for table `breakdowns`
 --
-ALTER TABLE `BreakDowns`
+ALTER TABLE `breakdowns`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `EquipmentCode` (`EquipmentCode`);
 
 --
--- Indexes for table `ClinicalEnginners`
+-- Indexes for table `clinicalenginners`
 --
-ALTER TABLE `ClinicalEnginners`
+ALTER TABLE `clinicalenginners`
   ADD PRIMARY KEY (`DSSN`),
   ADD KEY `DepartmentCode` (`DepartmentCode`);
 
 --
--- Indexes for table `Departments`
+-- Indexes for table `departments`
 --
-ALTER TABLE `Departments`
+ALTER TABLE `departments`
   ADD PRIMARY KEY (`Code`),
   ADD UNIQUE KEY `Code` (`Code`),
   ADD UNIQUE KEY `Name` (`Name`);
 
 --
--- Indexes for table `DialyInspections`
+-- Indexes for table `dialyinspections`
 --
-ALTER TABLE `DialyInspections`
+ALTER TABLE `dialyinspections`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `EquipmentCode` (`EquipmentCode`),
   ADD KEY `ClinicalEnginnerDSSN` (`ClinicalEnginnerDSSN`);
 
 --
--- Indexes for table `Equipment`
+-- Indexes for table `equipment`
 --
-ALTER TABLE `Equipment`
+ALTER TABLE `equipment`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `AgentSupplierId` (`AgentSupplierId`),
   ADD KEY `DepartmentCode` (`DepartmentCode`);
 
 --
--- Indexes for table `Maintenances`
+-- Indexes for table `maintenances`
 --
-ALTER TABLE `Maintenances`
+ALTER TABLE `maintenances`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `BreakDownCode` (`BreakDownCode`),
   ADD KEY `ClinicalEnginnerDSSN` (`ClinicalEnginnerDSSN`);
 
 --
--- Indexes for table `PpmQuestions`
+-- Indexes for table `ppmquestions`
 --
-ALTER TABLE `PpmQuestions`
+ALTER TABLE `ppmquestions`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `EquipmentCode` (`EquipmentCode`);
 
 --
--- Indexes for table `PPMs`
+-- Indexes for table `ppms`
 --
-ALTER TABLE `PPMs`
+ALTER TABLE `ppms`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `EquipmentCode` (`EquipmentCode`),
   ADD KEY `ClinicalEnginnerDSSN` (`ClinicalEnginnerDSSN`);
 
 --
--- Indexes for table `SpareParts`
+-- Indexes for table `spareparts`
 --
-ALTER TABLE `SpareParts`
+ALTER TABLE `spareparts`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `AgentSupplierId` (`AgentSupplierId`),
   ADD KEY `EquipmentCode` (`EquipmentCode`);
 
 --
--- Indexes for table `WorkOrders`
+-- Indexes for table `workorders`
 --
-ALTER TABLE `WorkOrders`
+ALTER TABLE `workorders`
   ADD PRIMARY KEY (`Code`),
   ADD KEY `ClinicalEnginnerDSSN` (`ClinicalEnginnerDSSN`),
   ADD KEY `EquipmentCode` (`EquipmentCode`);
@@ -670,45 +670,45 @@ ALTER TABLE `WorkOrders`
 --
 
 --
--- AUTO_INCREMENT for table `AgentSuppliers`
+-- AUTO_INCREMENT for table `agentsuppliers`
 --
-ALTER TABLE `AgentSuppliers`
+ALTER TABLE `agentsuppliers`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11131;
 
 --
--- AUTO_INCREMENT for table `BreakDowns`
+-- AUTO_INCREMENT for table `breakdowns`
 --
-ALTER TABLE `BreakDowns`
+ALTER TABLE `breakdowns`
   MODIFY `Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT for table `DialyInspections`
+-- AUTO_INCREMENT for table `dialyinspections`
 --
-ALTER TABLE `DialyInspections`
+ALTER TABLE `dialyinspections`
   MODIFY `Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `Maintenances`
+-- AUTO_INCREMENT for table `maintenances`
 --
-ALTER TABLE `Maintenances`
+ALTER TABLE `maintenances`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `PpmQuestions`
+-- AUTO_INCREMENT for table `ppmquestions`
 --
-ALTER TABLE `PpmQuestions`
+ALTER TABLE `ppmquestions`
   MODIFY `Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `PPMs`
+-- AUTO_INCREMENT for table `ppms`
 --
-ALTER TABLE `PPMs`
+ALTER TABLE `ppms`
   MODIFY `Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `WorkOrders`
+-- AUTO_INCREMENT for table `workorders`
 --
-ALTER TABLE `WorkOrders`
+ALTER TABLE `workorders`
   MODIFY `Code` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
@@ -716,64 +716,64 @@ ALTER TABLE `WorkOrders`
 --
 
 --
--- Constraints for table `BreakDowns`
+-- Constraints for table `breakdowns`
 --
-ALTER TABLE `BreakDowns`
-  ADD CONSTRAINT `BreakDowns_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `Equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `breakdowns`
+  ADD CONSTRAINT `breakdowns_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `ClinicalEnginners`
+-- Constraints for table `clinicalenginners`
 --
-ALTER TABLE `ClinicalEnginners`
-  ADD CONSTRAINT `ClinicalEnginners_ibfk_1` FOREIGN KEY (`DepartmentCode`) REFERENCES `Departments` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `clinicalenginners`
+  ADD CONSTRAINT `clinicalenginners_ibfk_1` FOREIGN KEY (`DepartmentCode`) REFERENCES `departments` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `DialyInspections`
+-- Constraints for table `dialyinspections`
 --
-ALTER TABLE `DialyInspections`
-  ADD CONSTRAINT `DialyInspections_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `Equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `DialyInspections_ibfk_2` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `ClinicalEnginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `dialyinspections`
+  ADD CONSTRAINT `dialyinspections_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `dialyinspections_ibfk_2` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `clinicalenginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `Equipment`
+-- Constraints for table `equipment`
 --
-ALTER TABLE `Equipment`
-  ADD CONSTRAINT `Equipment_ibfk_1` FOREIGN KEY (`AgentSupplierId`) REFERENCES `AgentSuppliers` (`Id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `Equipment_ibfk_2` FOREIGN KEY (`DepartmentCode`) REFERENCES `Departments` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `equipment`
+  ADD CONSTRAINT `equipment_ibfk_1` FOREIGN KEY (`AgentSupplierId`) REFERENCES `agentsuppliers` (`Id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `equipment_ibfk_2` FOREIGN KEY (`DepartmentCode`) REFERENCES `departments` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `Maintenances`
+-- Constraints for table `maintenances`
 --
-ALTER TABLE `Maintenances`
-  ADD CONSTRAINT `Maintenances_ibfk_1` FOREIGN KEY (`BreakDownCode`) REFERENCES `BreakDowns` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `Maintenances_ibfk_2` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `ClinicalEnginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `maintenances`
+  ADD CONSTRAINT `maintenances_ibfk_1` FOREIGN KEY (`BreakDownCode`) REFERENCES `breakdowns` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `maintenances_ibfk_2` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `clinicalenginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `PpmQuestions`
+-- Constraints for table `ppmquestions`
 --
-ALTER TABLE `PpmQuestions`
-  ADD CONSTRAINT `PpmQuestions_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `Equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `ppmquestions`
+  ADD CONSTRAINT `ppmquestions_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `PPMs`
+-- Constraints for table `ppms`
 --
-ALTER TABLE `PPMs`
-  ADD CONSTRAINT `PPMs_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `Equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `PPMs_ibfk_2` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `ClinicalEnginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `ppms`
+  ADD CONSTRAINT `ppms_ibfk_1` FOREIGN KEY (`EquipmentCode`) REFERENCES `equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `ppms_ibfk_2` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `clinicalenginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `SpareParts`
+-- Constraints for table `spareparts`
 --
-ALTER TABLE `SpareParts`
-  ADD CONSTRAINT `SpareParts_ibfk_1` FOREIGN KEY (`AgentSupplierId`) REFERENCES `AgentSuppliers` (`Id`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `SpareParts_ibfk_2` FOREIGN KEY (`EquipmentCode`) REFERENCES `Equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `spareparts`
+  ADD CONSTRAINT `spareparts_ibfk_1` FOREIGN KEY (`AgentSupplierId`) REFERENCES `agentsuppliers` (`Id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `spareparts_ibfk_2` FOREIGN KEY (`EquipmentCode`) REFERENCES `equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `WorkOrders`
+-- Constraints for table `workorders`
 --
-ALTER TABLE `WorkOrders`
-  ADD CONSTRAINT `WorkOrders_ibfk_1` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `ClinicalEnginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `WorkOrders_ibfk_2` FOREIGN KEY (`EquipmentCode`) REFERENCES `Equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `workorders`
+  ADD CONSTRAINT `workorders_ibfk_1` FOREIGN KEY (`ClinicalEnginnerDSSN`) REFERENCES `clinicalenginners` (`DSSN`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `workorders_ibfk_2` FOREIGN KEY (`EquipmentCode`) REFERENCES `equipment` (`Code`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
