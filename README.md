@@ -272,13 +272,13 @@ Recording all the maintenance operations in your system is very important for de
 
 * To know more about the dealing with each agent, we can click on the more (...) button:
 
-![2](images/Agent_More_btn.png)
+![1](images/Agent_More_btn.png)
 
 * This will show a table including any Spare Parts we have from this agent:
+
 * The Code of each Spare Part and its amount are shown too.
 
-![2](images/Agent_More.png)
-
+![1](images/Agent_More.png)
 
 # **Reports**
  ## **We have 3 Reports:**
